@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 
 # Form implementation generated from reading ui file 'UI_V5.ui'
 #
@@ -12,18 +13,17 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QMainWindow
 
-
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(900, 800)
-        #MainWindow.hide()
+        # MainWindow.hide()
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.centralwidget)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.widget = QtWidgets.QWidget(self.centralwidget)
-        #self.widget.show()
+        # self.widget.show()
         self.widget.setStyleSheet("#widget{\n"
                                   "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(95, 153, 207, 255), stop:1 rgba(0, 133, 255, 255));\n"
                                   "border-radius: 10px;\n"
@@ -127,9 +127,11 @@ class Ui_MainWindow(object):
                                     "border-top-right-radius: 10px;\n"
                                     "}")
         self.btn_exit.setText("")
+        self.btn_exit.clicked.connect(self.exit)
         icon2 = QtGui.QIcon()
         icon2.addPixmap(
-            QtGui.QPixmap("../Client/View/Image/delete-1--remove-add-button-buttons-delete-cross-x-mathematics-multiply-math.png"),
+            QtGui.QPixmap(
+                "../Client/View/Image/delete-1--remove-add-button-buttons-delete-cross-x-mathematics-multiply-math.png"),
             QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_exit.setIcon(icon2)
         self.btn_exit.setIconSize(QtCore.QSize(20, 28))
@@ -194,7 +196,8 @@ class Ui_MainWindow(object):
                                        "")
         self.btn_profile.setText("")
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("../Client/View/Image/icons8-account-50.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon4.addPixmap(QtGui.QPixmap("../Client/View/Image/icons8-account-50.png"), QtGui.QIcon.Normal,
+                        QtGui.QIcon.Off)
         self.btn_profile.setIcon(icon4)
         self.btn_profile.setIconSize(QtCore.QSize(25, 25))
         self.btn_profile.setObjectName("btn_profile")
@@ -212,7 +215,8 @@ class Ui_MainWindow(object):
                                         "            }")
         self.btn_learning.setText("")
         icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap("../Client/View/Image/icons8-video-camera-50.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon5.addPixmap(QtGui.QPixmap("../Client/View/Image/icons8-video-camera-50.png"), QtGui.QIcon.Normal,
+                        QtGui.QIcon.Off)
         self.btn_learning.setIcon(icon5)
         self.btn_learning.setIconSize(QtCore.QSize(25, 25))
         self.btn_learning.setObjectName("btn_learning")
@@ -318,7 +322,8 @@ class Ui_MainWindow(object):
         self.label_Screen1.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
         self.label_Screen1.setStyleSheet("")
         self.label_Screen1.setText("")
-        self.label_Screen1.setPixmap(QtGui.QPixmap("../Client/View//Image/z5461290588979_692bf1a21a79b202b016a475ef95d80d.jpg"))
+        self.label_Screen1.setPixmap(
+            QtGui.QPixmap("../Client/View//Image/z5461290588979_692bf1a21a79b202b016a475ef95d80d.jpg"))
         self.label_Screen1.setScaledContents(True)
         self.label_Screen1.setAlignment(QtCore.Qt.AlignCenter)
         self.label_Screen1.setObjectName("label_Screen1")
@@ -366,7 +371,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_7.setObjectName("verticalLayout_7")
         self.label_Screen2 = QtWidgets.QLabel(self.widget_16)
         self.label_Screen2.setText("")
-        self.label_Screen2.setPixmap(QtGui.QPixmap("../Client/View/Image/z5461290588979_692bf1a21a79b202b016a475ef95d80d.jpg"))
+        self.label_Screen2.setPixmap(
+            QtGui.QPixmap("../Client/View/Image/z5461290588979_692bf1a21a79b202b016a475ef95d80d.jpg"))
         self.label_Screen2.setScaledContents(True)
         self.label_Screen2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_Screen2.setObjectName("label_Screen2")
@@ -1157,7 +1163,9 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         self.stackedWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
+    def exit(self):
+        #os.system(cmd)
+        QtCore.QCoreApplication.instance().quit()
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -1209,5 +1217,5 @@ class MyMainWindow(QMainWindow):
         self.ui.setupUi(self)
         self.setWindowFlag(Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
-       # self.maximumSize()
-       # self.hide()
+    # self.maximumSize()
+    # self.hide()
