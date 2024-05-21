@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QMainWindow
 
 
 class Ui_MainWindow(object):
@@ -1185,3 +1186,9 @@ class Ui_MainWindow(object):
         self.lineEdit_11.setPlaceholderText(_translate("MainWindow", "    Your phone numbers"))
         self.label_15.setText(_translate("MainWindow", "Email"))
         self.lineEdit_12.setPlaceholderText(_translate("MainWindow", "    Your Email"))
+class MyMainWindow(QMainWindow):
+        def __init__(self):
+                super().__init__()
+                self.ui=Ui_MainWindow()
+                self.ui.setupUi(self)
+
