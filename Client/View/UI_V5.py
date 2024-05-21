@@ -9,13 +9,12 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QMainWindow
 
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1251, 796)
+        MainWindow.resize(1279, 800)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.centralwidget)
@@ -67,7 +66,7 @@ class Ui_MainWindow(object):
         self.label.setStyleSheet("background-color : rgb(53, 70, 87);\n"
 "border-radius : 10px")
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("C:/Users/ADMIN/Downloads/Fox.png"))
+        self.label.setPixmap(QtGui.QPixmap("../pythonProject/PBL5/Client/View/Image/Fox.png"))
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
         self.horizontalLayout_7.addWidget(self.label)
@@ -82,6 +81,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.setSpacing(0)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.btn_substract = QtWidgets.QPushButton(self.widget_4)
+        self.btn_substract.setMinimumSize(QtCore.QSize(50, 50))
         self.btn_substract.setStyleSheet("background-color: rgba(255, 255, 255, 0);\n"
 "background-color:rgba(255,255,255,0);box-shadow:0,0,0,0}\n"
 "#btn_substract:hover{\n"
@@ -91,11 +91,12 @@ class Ui_MainWindow(object):
 "")
         self.btn_substract.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("C:/Users/ADMIN/Downloads/subtract-1--button-delete-buttons-subtract-horizontal-remove-line-add-mathematics-math-minus (1).png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("../pythonProject/PBL5/Client/View/Image/subtract-1--button-delete-buttons-subtract-horizontal-remove-line-add-mathematics-math-minus.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_substract.setIcon(icon)
         self.btn_substract.setObjectName("btn_substract")
         self.horizontalLayout_3.addWidget(self.btn_substract)
         self.btn_pile_stack = QtWidgets.QPushButton(self.widget_4)
+        self.btn_pile_stack.setMinimumSize(QtCore.QSize(50, 50))
         self.btn_pile_stack.setStyleSheet("background-color: rgba(255, 255, 255, 0);\n"
 "background-color:rgba(255,255,255,0);box-shadow:0,0,0,0}\n"
 "#btn_pile_stack:hover{\n"
@@ -103,7 +104,7 @@ class Ui_MainWindow(object):
 "")
         self.btn_pile_stack.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("C:/Users/ADMIN/Downloads/layers-2--design-layer-layers-pile-stack-align (1).png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("../pythonProject/PBL5/Client/View/Image/layers-2--design-layer-layers-pile-stack-align.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_pile_stack.setIcon(icon1)
         self.btn_pile_stack.setObjectName("btn_pile_stack")
         self.horizontalLayout_3.addWidget(self.btn_pile_stack)
@@ -113,12 +114,12 @@ class Ui_MainWindow(object):
 "background-color:rgba(255,255,255,0);\n"
 "}\n"
 "#btn_exit:hover{\n"
-"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(3, 134, 253), stop:1 rgb(1, 81, 255));\n"
+"background-color: rgb(0,160,255);\n"
 "border-top-right-radius: 10px;\n"
 "}")
         self.btn_exit.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("C:/Users/ADMIN/Downloads/delete-1--remove-add-button-buttons-delete-cross-x-mathematics-multiply-math.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap("../pythonProject/PBL5/Client/View/Image/delete-1--remove-add-button-buttons-delete-cross-x-mathematics-multiply-math.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_exit.setIcon(icon2)
         self.btn_exit.setObjectName("btn_exit")
         self.horizontalLayout_3.addWidget(self.btn_exit)
@@ -162,7 +163,7 @@ class Ui_MainWindow(object):
 "            }")
         self.btn_home.setText("")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("C:/Users/ADMIN/Downloads/icons8-home-30.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap("../pythonProject/PBL5/Client/View/Image/icons8-home-30.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_home.setIcon(icon3)
         self.btn_home.setIconSize(QtCore.QSize(25, 25))
         self.btn_home.setObjectName("btn_home")
@@ -181,7 +182,7 @@ class Ui_MainWindow(object):
 "")
         self.btn_profile.setText("")
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("C:/Users/ADMIN/Downloads/icons8-video-camera-50 (1).png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon4.addPixmap(QtGui.QPixmap("../pythonProject/PBL5/Client/View/Image/icons8-account-50.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_profile.setIcon(icon4)
         self.btn_profile.setIconSize(QtCore.QSize(25, 25))
         self.btn_profile.setObjectName("btn_profile")
@@ -199,7 +200,7 @@ class Ui_MainWindow(object):
 "            }")
         self.btn_learning.setText("")
         icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap("C:/Users/ADMIN/Downloads/icons8-account-50.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon5.addPixmap(QtGui.QPixmap("../pythonProject/PBL5/Client/View/Image/icons8-video-camera-50.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_learning.setIcon(icon5)
         self.btn_learning.setIconSize(QtCore.QSize(25, 25))
         self.btn_learning.setObjectName("btn_learning")
@@ -244,7 +245,7 @@ class Ui_MainWindow(object):
         self.btn_back.setGeometry(QtCore.QRect(0, 0, 30, 30))
         self.btn_back.setText("")
         icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap("C:/Users/ADMIN/Downloads/Group 4.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon6.addPixmap(QtGui.QPixmap("../pythonProject/PBL5/Client/View/Image/Group 4.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_back.setIcon(icon6)
         self.btn_back.setIconSize(QtCore.QSize(30, 30))
         self.btn_back.setObjectName("btn_back")
@@ -305,7 +306,7 @@ class Ui_MainWindow(object):
         self.label_Screen1.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
         self.label_Screen1.setStyleSheet("")
         self.label_Screen1.setText("")
-        self.label_Screen1.setPixmap(QtGui.QPixmap("C:/Users/ADMIN/Downloads/z5461290588979_692bf1a21a79b202b016a475ef95d80d.jpg"))
+        self.label_Screen1.setPixmap(QtGui.QPixmap("../pythonProject/PBL5/Client/View/Image/z5461290588979_692bf1a21a79b202b016a475ef95d80d.jpg"))
         self.label_Screen1.setScaledContents(True)
         self.label_Screen1.setAlignment(QtCore.Qt.AlignCenter)
         self.label_Screen1.setObjectName("label_Screen1")
@@ -353,7 +354,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_7.setObjectName("verticalLayout_7")
         self.label_Screen2 = QtWidgets.QLabel(self.widget_16)
         self.label_Screen2.setText("")
-        self.label_Screen2.setPixmap(QtGui.QPixmap("C:/Users/ADMIN/Downloads/z5461290588979_692bf1a21a79b202b016a475ef95d80d.jpg"))
+        self.label_Screen2.setPixmap(QtGui.QPixmap("../pythonProject/PBL5/Client/View/Image/z5461290588979_692bf1a21a79b202b016a475ef95d80d.jpg"))
         self.label_Screen2.setScaledContents(True)
         self.label_Screen2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_Screen2.setObjectName("label_Screen2")
@@ -370,7 +371,7 @@ class Ui_MainWindow(object):
         self.label_icon.setMinimumSize(QtCore.QSize(50, 35))
         self.label_icon.setMaximumSize(QtCore.QSize(50, 50))
         self.label_icon.setText("")
-        self.label_icon.setPixmap(QtGui.QPixmap("C:/Users/ADMIN/Downloads/Group 7.png"))
+        self.label_icon.setPixmap(QtGui.QPixmap("../pythonProject/PBL5/Client/View/Image/Group 37.png"))
         self.label_icon.setObjectName("label_icon")
         self.horizontalLayout_33.addWidget(self.label_icon)
         self.LEdit_Predict = QtWidgets.QLineEdit(self.widget_18)
@@ -409,6 +410,8 @@ class Ui_MainWindow(object):
         self.label_66.setGeometry(QtCore.QRect(20, 0, 35, 35))
         self.label_66.setMinimumSize(QtCore.QSize(0, 35))
         self.label_66.setMaximumSize(QtCore.QSize(35, 16777215))
+        self.label_66.setText("")
+        self.label_66.setPixmap(QtGui.QPixmap("../pythonProject/PBL5/Client/View/Image/bi_volume-down-fill.png"))
         self.label_66.setObjectName("label_66")
         self.horizontalSlider = QtWidgets.QSlider(self.widget_17)
         self.horizontalSlider.setGeometry(QtCore.QRect(60, 0, 160, 35))
@@ -491,7 +494,9 @@ class Ui_MainWindow(object):
         self.pushButton_3 = QtWidgets.QPushButton(self.widget_19)
         self.pushButton_3.setGeometry(QtCore.QRect(0, 0, 30, 30))
         self.pushButton_3.setText("")
-        self.pushButton_3.setIcon(icon6)
+        icon7 = QtGui.QIcon()
+        icon7.addPixmap(QtGui.QPixmap("../../ADMIN/Downloads/Group 4.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButton_3.setIcon(icon7)
         self.pushButton_3.setIconSize(QtCore.QSize(30, 30))
         self.pushButton_3.setObjectName("pushButton_3")
         self.label_7 = QtWidgets.QLabel(self.widget_19)
@@ -557,7 +562,7 @@ class Ui_MainWindow(object):
         self.label_50.setMinimumSize(QtCore.QSize(30, 30))
         self.label_50.setMaximumSize(QtCore.QSize(40, 30))
         self.label_50.setText("")
-        self.label_50.setPixmap(QtGui.QPixmap("C:/Users/ADMIN/Downloads/Vector_2.png"))
+        self.label_50.setPixmap(QtGui.QPixmap("../pythonProject/PBL5/Client/View/Image/Vector_2.png"))
         self.label_50.setAlignment(QtCore.Qt.AlignCenter)
         self.label_50.setObjectName("label_50")
         self.horizontalLayout_27.addWidget(self.label_50)
@@ -657,7 +662,7 @@ class Ui_MainWindow(object):
         self.label_55.setMinimumSize(QtCore.QSize(50, 0))
         self.label_55.setMaximumSize(QtCore.QSize(50, 16777215))
         self.label_55.setText("")
-        self.label_55.setPixmap(QtGui.QPixmap("C:/Users/ADMIN/Downloads/startup--shop-rocket-launch-startup.png"))
+        self.label_55.setPixmap(QtGui.QPixmap("../pythonProject/PBL5/Client/View/Image/startup--shop-rocket-launch-startup.png"))
         self.label_55.setAlignment(QtCore.Qt.AlignCenter)
         self.label_55.setObjectName("label_55")
         self.horizontalLayout_28.addWidget(self.label_55)
@@ -838,7 +843,7 @@ class Ui_MainWindow(object):
         self.label_20 = QtWidgets.QLabel(self.widget_45)
         self.label_20.setMaximumSize(QtCore.QSize(30, 16777215))
         self.label_20.setText("")
-        self.label_20.setPixmap(QtGui.QPixmap("C:/Users/ADMIN/Downloads/image 1 (1).png"))
+        self.label_20.setPixmap(QtGui.QPixmap("../pythonProject/PBL5/Client/View/Image/image 1.png"))
         self.label_20.setObjectName("label_20")
         self.horizontalLayout_20.addWidget(self.label_20)
         self.label_21 = QtWidgets.QLabel(self.widget_45)
@@ -1140,7 +1145,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -1149,7 +1154,6 @@ class Ui_MainWindow(object):
         self.label_avatar.setText(_translate("MainWindow", "avatar"))
         self.label_2.setText(_translate("MainWindow", "Learning Sign Language"))
         self.label_5.setText(_translate("MainWindow", "Word:"))
-        self.label_66.setText(_translate("MainWindow", "Icon"))
         self.btn_Next.setText(_translate("MainWindow", "Next"))
         self.label_7.setText(_translate("MainWindow", "Home"))
         self.label_51.setText(_translate("MainWindow", "Complete"))
@@ -1186,9 +1190,3 @@ class Ui_MainWindow(object):
         self.lineEdit_11.setPlaceholderText(_translate("MainWindow", "    Your phone numbers"))
         self.label_15.setText(_translate("MainWindow", "Email"))
         self.lineEdit_12.setPlaceholderText(_translate("MainWindow", "    Your Email"))
-class MyMainWindow(QMainWindow):
-        def __init__(self):
-                super().__init__()
-                self.ui=Ui_MainWindow()
-                self.ui.setupUi(self)
-
