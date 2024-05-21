@@ -3,3 +3,5 @@ class User:
         self.id = id
         self.username = username
         self.email = email
+        self.fullname = fullname
+        self.nickname
