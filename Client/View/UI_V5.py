@@ -259,8 +259,12 @@ class Ui_MainWindow(object):
                                         "border-radius: 35px;\n"
                                         "border-right : none\n"
                                         "")
+        self.label_avatar.setText("")
+        self.label_avatar.setPixmap(QtGui.QPixmap("Image/Ellipse 10.png"))
+        self.label_avatar.setScaledContents(True)
         self.label_avatar.setAlignment(QtCore.Qt.AlignCenter)
         self.label_avatar.setObjectName("label_avatar")
+
         self.horizontalLayout_6.addWidget(self.label_avatar)
         self.verticalLayout_2.addWidget(self.widget_8)
         self.horizontalLayout_5.addWidget(self.widget_6)
@@ -412,7 +416,7 @@ class Ui_MainWindow(object):
         self.label_icon.setMinimumSize(QtCore.QSize(50, 35))
         self.label_icon.setMaximumSize(QtCore.QSize(50, 50))
         self.label_icon.setText("")
-        self.label_icon.setPixmap(QtGui.QPixmap("Image/Group 7.png"))
+        self.label_icon.setPixmap(QtGui.QPixmap("Image/Group 37.png"))
         self.label_icon.setObjectName("label_icon")
         self.horizontalLayout_33.addWidget(self.label_icon)
         self.LEdit_Predict = QtWidgets.QLineEdit(self.widget_18)
@@ -973,10 +977,12 @@ class Ui_MainWindow(object):
         self.horizontalLayout_13 = QtWidgets.QHBoxLayout(self.widget_25)
         self.horizontalLayout_13.setObjectName("horizontalLayout_13")
         self.label_4 = QtWidgets.QLabel(self.widget_25)
-        self.label_4.setMinimumSize(QtCore.QSize(57, 0))
-        self.label_4.setMaximumSize(QtCore.QSize(53, 16777215))
-        self.label_4.setStyleSheet("background-color: rgb(29, 127, 255);\n"
-                                   "border-radius: 27px;")
+        self.label_4.setMinimumSize(QtCore.QSize(70, 0))
+        self.label_4.setMaximumSize(QtCore.QSize(30, 70))
+        self.label_4.setStyleSheet("border-radius: 27px;")
+        self.label_4.setText("")
+        self.label_4.setPixmap(QtGui.QPixmap("Image/Ellipse 11.png"))
+        self.label_4.setScaledContents(True)
         self.label_4.setAlignment(QtCore.Qt.AlignCenter)
         self.label_4.setObjectName("label_4")
         self.horizontalLayout_13.addWidget(self.label_4)
@@ -1050,7 +1056,7 @@ class Ui_MainWindow(object):
         self.lineEdit.setMaximumSize(QtCore.QSize(16777215, 70))
         self.lineEdit.setStyleSheet("border-radius:8px;\n"
                                     "background-color : rgb(255, 255, 255);\n"
-                                    "padding-right:132px;")
+                                    "padding-left:18px;")
         self.lineEdit.setObjectName("lineEdit")
         self.verticalLayout_15.addWidget(self.lineEdit)
         self.horizontalLayout_14.addWidget(self.widget_32)
@@ -1070,7 +1076,8 @@ class Ui_MainWindow(object):
         self.lineEdit_2 = QtWidgets.QLineEdit(self.widget_33)
         self.lineEdit_2.setMinimumSize(QtCore.QSize(0, 38))
         self.lineEdit_2.setStyleSheet("border-radius:8px;\n"
-                                      "background-color : rgb(255, 255, 255)")
+                                      "background-color : rgb(255, 255, 255);\n"
+                                      "padding-left:18px;\n")
         self.lineEdit_2.setMaxLength(32761)
         self.lineEdit_2.setClearButtonEnabled(False)
         self.lineEdit_2.setObjectName("lineEdit_2")
@@ -1097,7 +1104,8 @@ class Ui_MainWindow(object):
         self.lineEdit_3 = QtWidgets.QLineEdit(self.widget_35)
         self.lineEdit_3.setMinimumSize(QtCore.QSize(0, 38))
         self.lineEdit_3.setStyleSheet("border-radius:8px;\n"
-                                      "background-color :rgb(255, 255, 255)")
+                                      "background-color :rgb(255, 255, 255);\n"
+                                      "padding-left:18px")
         self.lineEdit_3.setObjectName("lineEdit_3")
         self.verticalLayout_26.addWidget(self.lineEdit_3)
         self.horizontalLayout_16.addWidget(self.widget_35)
@@ -1117,7 +1125,8 @@ class Ui_MainWindow(object):
         self.lineEdit_10 = QtWidgets.QLineEdit(self.widget_36)
         self.lineEdit_10.setMinimumSize(QtCore.QSize(0, 38))
         self.lineEdit_10.setStyleSheet("border-radius:8px;\n"
-                                       "background-color : rgb(255, 255, 255)")
+                                       "background-color : rgb(255, 255, 255);\n"
+                                       "padding-left:18px;")
         self.lineEdit_10.setObjectName("lineEdit_10")
         self.verticalLayout_27.addWidget(self.lineEdit_10)
         self.horizontalLayout_16.addWidget(self.widget_36)
@@ -1142,7 +1151,8 @@ class Ui_MainWindow(object):
         self.lineEdit_11 = QtWidgets.QLineEdit(self.widget_38)
         self.lineEdit_11.setMinimumSize(QtCore.QSize(0, 38))
         self.lineEdit_11.setStyleSheet("border-radius:8px;\n"
-                                       "background-color : rgb(255, 255, 255)")
+                                       "background-color : rgb(255, 255, 255);\n"
+                                       "padding-left:18px")
         self.lineEdit_11.setObjectName("lineEdit_11")
         self.verticalLayout_28.addWidget(self.lineEdit_11)
         self.horizontalLayout_17.addWidget(self.widget_38)
@@ -1162,7 +1172,8 @@ class Ui_MainWindow(object):
         self.lineEdit_12 = QtWidgets.QLineEdit(self.widget_39)
         self.lineEdit_12.setMinimumSize(QtCore.QSize(0, 38))
         self.lineEdit_12.setStyleSheet("border-radius:8px;\n"
-                                       "background-color : rgb(255, 255, 255)")
+                                       "background-color : rgb(255, 255, 255);\n"
+                                       "padding-left:18px\n")
         self.lineEdit_12.setObjectName("lineEdit_12")
         self.verticalLayout_29.addWidget(self.lineEdit_12)
         self.horizontalLayout_17.addWidget(self.widget_39)
@@ -1229,17 +1240,17 @@ class Ui_MainWindow(object):
         self.lbl_email.setText(_translate("MainWindow", "minhvulqd2003@gmail.com"))
         self.btn_edit.setText(_translate("MainWindow", "Edit"))
         self.label_8.setText(_translate("MainWindow", "Full Name"))
-        self.lineEdit.setPlaceholderText(_translate("MainWindow", "    Your Full Name"))
+        self.lineEdit.setPlaceholderText(_translate("MainWindow", "Your Full Name"))
         self.label_9.setText(_translate("MainWindow", "Nick Name"))
-        self.lineEdit_2.setPlaceholderText(_translate("MainWindow", "    Your Nick Name"))
+        self.lineEdit_2.setPlaceholderText(_translate("MainWindow", "Your Nick Name"))
         self.label_10.setText(_translate("MainWindow", "Gender"))
-        self.lineEdit_3.setPlaceholderText(_translate("MainWindow", "    Your Gender"))
+        self.lineEdit_3.setPlaceholderText(_translate("MainWindow", "Your Gender"))
         self.label_11.setText(_translate("MainWindow", "First Name"))
-        self.lineEdit_10.setPlaceholderText(_translate("MainWindow", "    Your First Name"))
+        self.lineEdit_10.setPlaceholderText(_translate("MainWindow", "Your First Name"))
         self.label_12.setText(_translate("MainWindow", "Phone numbers"))
-        self.lineEdit_11.setPlaceholderText(_translate("MainWindow", "    Your phone numbers"))
+        self.lineEdit_11.setPlaceholderText(_translate("MainWindow", "Your phone numbers"))
         self.label_15.setText(_translate("MainWindow", "Email"))
-        self.lineEdit_12.setPlaceholderText(_translate("MainWindow", "    Your Email"))
+        self.lineEdit_12.setPlaceholderText(_translate("MainWindow", "Your Email"))
 
 
 class MyMainWindow(QMainWindow):
