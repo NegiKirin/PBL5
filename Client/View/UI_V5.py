@@ -116,6 +116,7 @@ class Ui_MainWindow(object):
         self.btn_pile_stack.setIcon(icon1)
         self.btn_pile_stack.setIconSize(QtCore.QSize(23, 27))
         self.btn_pile_stack.setObjectName("btn_pile_stack")
+        self.btn_pile_stack.clicked.connect(MainWindow.window().showFullScreen)
         self.horizontalLayout_3.addWidget(self.btn_pile_stack)
         self.btn_exit = QtWidgets.QPushButton(self.widget_4)
         self.btn_exit.setMinimumSize(QtCore.QSize(50, 50))
