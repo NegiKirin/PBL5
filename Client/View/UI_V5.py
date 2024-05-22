@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import sys
 
 # Form implementation generated from reading ui file 'UI_V5.ui'
 #
@@ -10,8 +11,9 @@ import os
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtCore import Qt, QEvent
+from PyQt5.QtWidgets import QMainWindow, QApplication
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -70,7 +72,7 @@ class Ui_MainWindow(object):
         self.label.setStyleSheet("background-color : rgb(53, 70, 87);\n"
                                  "border-radius : 10px")
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("../Client/View/Image/Fox.png"))
+        self.label.setPixmap(QtGui.QPixmap("Image/Fox.png"))
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
         self.horizontalLayout_7.addWidget(self.label)
@@ -97,7 +99,7 @@ class Ui_MainWindow(object):
         self.btn_substract.clicked.connect(MainWindow.window().showMinimized)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(
-            "../Client/View/Image/icons8-reduce-50.png"),
+            "Image/icons8-reduce-50.png"),
             QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_substract.setIcon(icon)
         self.btn_substract.setIconSize(QtCore.QSize(23, 29))
@@ -112,7 +114,7 @@ class Ui_MainWindow(object):
                                           "")
         self.btn_pile_stack.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../Client/View/Image/icons8-restore-window-50.png"),
+        icon1.addPixmap(QtGui.QPixmap("Image/icons8-restore-window-50.png"),
                         QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_pile_stack.setIcon(icon1)
         self.btn_pile_stack.setIconSize(QtCore.QSize(23, 27))
@@ -130,7 +132,7 @@ class Ui_MainWindow(object):
                                           "")
         self.btn_maximize.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../Client/View/Image/icons8-maximize-window-50.png"),
+        icon1.addPixmap(QtGui.QPixmap("Image/icons8-maximize-window-50.png"),
                         QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_maximize.setIcon(icon1)
         self.btn_maximize.setIconSize(QtCore.QSize(23, 27))
@@ -152,7 +154,7 @@ class Ui_MainWindow(object):
         icon2 = QtGui.QIcon()
         icon2.addPixmap(
             QtGui.QPixmap(
-                "../Client/View/Image/icons8-close-window-50.png"),
+                "Image/icons8-close-window-50.png"),
             QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_exit.setIcon(icon2)
         self.btn_exit.setIconSize(QtCore.QSize(23, 28))
@@ -198,7 +200,7 @@ class Ui_MainWindow(object):
                                     "            }")
         self.btn_home.setText("")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("../Client/View/Image/icons8-home-30.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap("Image/icons8-home-30.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_home.setIcon(icon3)
         self.btn_home.setIconSize(QtCore.QSize(25, 25))
         self.btn_home.setObjectName("btn_home")
@@ -217,7 +219,7 @@ class Ui_MainWindow(object):
                                        "")
         self.btn_profile.setText("")
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("../Client/View/Image/icons8-account-50.png"), QtGui.QIcon.Normal,
+        icon4.addPixmap(QtGui.QPixmap("Image/icons8-account-50.png"), QtGui.QIcon.Normal,
                         QtGui.QIcon.Off)
         self.btn_profile.setIcon(icon4)
         self.btn_profile.setIconSize(QtCore.QSize(25, 25))
@@ -236,7 +238,7 @@ class Ui_MainWindow(object):
                                         "            }")
         self.btn_learning.setText("")
         icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap("../Client/View/Image/icons8-video-camera-50.png"), QtGui.QIcon.Normal,
+        icon5.addPixmap(QtGui.QPixmap("Image/icons8-video-camera-50.png"), QtGui.QIcon.Normal,
                         QtGui.QIcon.Off)
         self.btn_learning.setIcon(icon5)
         self.btn_learning.setIconSize(QtCore.QSize(25, 25))
@@ -282,7 +284,7 @@ class Ui_MainWindow(object):
         self.btn_back.setGeometry(QtCore.QRect(0, 0, 30, 30))
         self.btn_back.setText("")
         icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap("../Client/View/Image/Group 4.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon6.addPixmap(QtGui.QPixmap("Image/Group 4.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_back.setIcon(icon6)
         self.btn_back.setIconSize(QtCore.QSize(30, 30))
         self.btn_back.setObjectName("btn_back")
@@ -344,7 +346,7 @@ class Ui_MainWindow(object):
         self.label_Screen1.setStyleSheet("")
         self.label_Screen1.setText("")
         self.label_Screen1.setPixmap(
-            QtGui.QPixmap("../Client/View//Image/z5461290588979_692bf1a21a79b202b016a475ef95d80d.jpg"))
+            QtGui.QPixmap("Image/z5461290588979_692bf1a21a79b202b016a475ef95d80d.jpg"))
         self.label_Screen1.setScaledContents(True)
         self.label_Screen1.setAlignment(QtCore.Qt.AlignCenter)
         self.label_Screen1.setObjectName("label_Screen1")
@@ -393,7 +395,7 @@ class Ui_MainWindow(object):
         self.label_Screen2 = QtWidgets.QLabel(self.widget_16)
         self.label_Screen2.setText("")
         self.label_Screen2.setPixmap(
-            QtGui.QPixmap("../Client/View/Image/z5461290588979_692bf1a21a79b202b016a475ef95d80d.jpg"))
+            QtGui.QPixmap("Image/z5461290588979_692bf1a21a79b202b016a475ef95d80d.jpg"))
         self.label_Screen2.setScaledContents(True)
         self.label_Screen2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_Screen2.setObjectName("label_Screen2")
@@ -410,7 +412,7 @@ class Ui_MainWindow(object):
         self.label_icon.setMinimumSize(QtCore.QSize(50, 35))
         self.label_icon.setMaximumSize(QtCore.QSize(50, 50))
         self.label_icon.setText("")
-        self.label_icon.setPixmap(QtGui.QPixmap("../Client/View/Image/Group 7.png"))
+        self.label_icon.setPixmap(QtGui.QPixmap("Image/Group 7.png"))
         self.label_icon.setObjectName("label_icon")
         self.horizontalLayout_33.addWidget(self.label_icon)
         self.LEdit_Predict = QtWidgets.QLineEdit(self.widget_18)
@@ -450,7 +452,7 @@ class Ui_MainWindow(object):
         self.label_66.setMinimumSize(QtCore.QSize(0, 35))
         self.label_66.setMaximumSize(QtCore.QSize(35, 16777215))
         self.label_66.setText("")
-        self.label_66.setPixmap(QtGui.QPixmap("../Client/View/Image/bi_volume-down-fill.png"))
+        self.label_66.setPixmap(QtGui.QPixmap("Image/bi_volume-down-fill.png"))
         self.label_66.setObjectName("label_66")
         self.horizontalSlider = QtWidgets.QSlider(self.widget_17)
         self.horizontalSlider.setGeometry(QtCore.QRect(60, 0, 160, 35))
@@ -599,7 +601,7 @@ class Ui_MainWindow(object):
         self.label_50.setMinimumSize(QtCore.QSize(30, 30))
         self.label_50.setMaximumSize(QtCore.QSize(40, 30))
         self.label_50.setText("")
-        self.label_50.setPixmap(QtGui.QPixmap("../Client/View/Image/Vector_2.png"))
+        self.label_50.setPixmap(QtGui.QPixmap("Image/Vector_2.png"))
         self.label_50.setAlignment(QtCore.Qt.AlignCenter)
         self.label_50.setObjectName("label_50")
         self.horizontalLayout_27.addWidget(self.label_50)
@@ -699,7 +701,7 @@ class Ui_MainWindow(object):
         self.label_55.setMinimumSize(QtCore.QSize(50, 0))
         self.label_55.setMaximumSize(QtCore.QSize(50, 16777215))
         self.label_55.setText("")
-        self.label_55.setPixmap(QtGui.QPixmap("../Client/View/Image/startup--shop-rocket-launch-startup.png"))
+        self.label_55.setPixmap(QtGui.QPixmap("Image/startup--shop-rocket-launch-startup.png"))
         self.label_55.setAlignment(QtCore.Qt.AlignCenter)
         self.label_55.setObjectName("label_55")
         self.horizontalLayout_28.addWidget(self.label_55)
@@ -880,7 +882,7 @@ class Ui_MainWindow(object):
         self.label_20 = QtWidgets.QLabel(self.widget_45)
         self.label_20.setMaximumSize(QtCore.QSize(30, 16777215))
         self.label_20.setText("")
-        self.label_20.setPixmap(QtGui.QPixmap("../Client/View/Image/image 1.png"))
+        self.label_20.setPixmap(QtGui.QPixmap("Image/image 1.png"))
         self.label_20.setObjectName("label_20")
         self.horizontalLayout_20.addWidget(self.label_20)
         self.label_21 = QtWidgets.QLabel(self.widget_45)
@@ -1187,6 +1189,15 @@ class Ui_MainWindow(object):
     def exit(self):
         #os.system(cmd)
         QtCore.QCoreApplication.instance().quit()
+
+    def window_state_changed(self, state):
+        if state == Qt.WindowState.WindowMaximized:
+            self.btn_pile_stack.setVisible(True)
+            self.btn_maximize.setVisible(False)
+        else:
+            self.btn_maximize.setVisible(True)
+            self.btn_pile_stack.setVisible(False)
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -1238,6 +1249,14 @@ class MyMainWindow(QMainWindow):
         self.ui.setupUi(self)
         self.setWindowFlag(Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
+    def changeEvent(self, event):
+        if event.type() == QEvent.Type.WindowStateChange:
+            self.ui.window_state_changed(self.windowState())
+        super().changeEvent(event)
+        event.accept()
+    #def window_state_changed(self, state):
+        #self.ui.btn_pile_stack.setVisible(state == Qt.WindowState.WindowMaximized)
+       # self.ui.btn_maximize.setVisible(state != Qt.WindowState.WindowMaximized)
     def mousePressEvent(self, event):
         if event.button() == Qt.MouseButton.LeftButton:
             self.initial_pos = event.pos()
@@ -1258,4 +1277,10 @@ class MyMainWindow(QMainWindow):
         self.initial_pos = None
         super().mouseReleaseEvent(event)
         event.accept()
+app = QApplication(sys.argv)
+window = MyMainWindow()
+#window.move(180, 30)
+window.show()
+
+sys.exit(app.exec_())
 
