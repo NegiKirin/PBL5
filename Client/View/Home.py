@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_MainWindow(object):
+class Home(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1251, 796)
@@ -54,7 +54,7 @@ class Ui_MainWindow(object):
         self.widget_9 = QtWidgets.QWidget(self.widget_5)
         self.widget_9.setMinimumSize(QtCore.QSize(100, 50))
         self.widget_9.setMaximumSize(QtCore.QSize(100, 50))
-        self.widget_9.setStyleSheet("border-right : 2px solid rgb(125, 145, 170)")
+        self.widget_9.setStyleSheet("border-right : 2px solid rgb(125, 145, 170);")
         self.widget_9.setObjectName("widget_9")
         self.horizontalLayout_7 = QtWidgets.QHBoxLayout(self.widget_9)
         self.horizontalLayout_7.setContentsMargins(0, 0, 0, 0)
@@ -214,10 +214,10 @@ class Ui_MainWindow(object):
         self.horizontalLayout_6.setObjectName("horizontalLayout_6")
         self.label_avatar = QtWidgets.QLabel(self.widget_8)
         self.label_avatar.setMaximumSize(QtCore.QSize(70, 70))
-        self.label_avatar.setStyleSheet("background-color: rgb(29, 127, 255);\n"
-"border-radius: 35px;\n"
-"border-right : none\n"
-"")
+        self.label_avatar.setText("")
+        self.label_avatar.setPixmap(QtGui.QPixmap("Client/View/Image/avatar.jpg"))
+        self.label_avatar.setStyleSheet("border-radius : 15px")
+        self.label_avatar.setScaledContents(True)
         self.label_avatar.setAlignment(QtCore.Qt.AlignCenter)
         self.label_avatar.setObjectName("label_avatar")
         self.horizontalLayout_6.addWidget(self.label_avatar)
@@ -1139,13 +1139,12 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label_avatar.setText(_translate("MainWindow", "avatar"))
         self.label_2.setText(_translate("MainWindow", "Learning Sign Language"))
         self.label_5.setText(_translate("MainWindow", "Word:"))
         self.label_66.setText(_translate("MainWindow", "Icon"))
@@ -1185,13 +1184,11 @@ class Ui_MainWindow(object):
         self.lineEdit_11.setPlaceholderText(_translate("MainWindow", "    Your phone numbers"))
         self.label_15.setText(_translate("MainWindow", "Email"))
         self.lineEdit_12.setPlaceholderText(_translate("MainWindow", "    Your Email"))
-
-
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
+    ui = Home()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())

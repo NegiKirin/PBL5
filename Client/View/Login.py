@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_MainWindow(object):
+class Login(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(517, 736)
@@ -42,7 +42,7 @@ class Ui_MainWindow(object):
 "}")
         self.btn_exit.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/icons/images/icons/cil-x.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("../Client/View/Image/delete-1--remove-add-button-buttons-delete-cross-x-mathematics-multiply-math.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_exit.setIcon(icon)
         self.btn_exit.setObjectName("btn_exit")
         self.verticalLayout_2.addWidget(self.widget_2)
@@ -106,6 +106,7 @@ class Ui_MainWindow(object):
 "padding-left : 20px;\n"
 "")
         self.LEdit_password_signin.setText("")
+        self.LEdit_password_signin.setEchoMode(QtWidgets.QLineEdit.Password)
         self.LEdit_password_signin.setObjectName("LEdit_password_signin")
         self.btn_signIn = QtWidgets.QPushButton(self.page_1)
         self.btn_signIn.setGeometry(QtCore.QRect(0, 250, 401, 41))
@@ -195,6 +196,7 @@ class Ui_MainWindow(object):
 "\n"
 "")
         self.LEdit_password_register.setText("")
+        self.LEdit_password_register.setEchoMode(QtWidgets.QLineEdit.Password)
         self.LEdit_password_register.setObjectName("LEdit_password_register")
         self.label_8 = QtWidgets.QLabel(self.page_2)
         self.label_8.setGeometry(QtCore.QRect(0, 260, 391, 16))
@@ -215,6 +217,7 @@ class Ui_MainWindow(object):
 "\n"
 "")
         self.LEdit_confirm.setText("")
+        self.LEdit_confirm.setEchoMode(QtWidgets.QLineEdit.Password)
         self.LEdit_confirm.setObjectName("LEdit_confirm")
         self.label_9 = QtWidgets.QLabel(self.page_2)
         self.label_9.setGeometry(QtCore.QRect(0, 350, 391, 16))
@@ -278,7 +281,8 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         self.stackedWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
+        self.btn_exit.clicked.connect(self.closeEvent)
+                
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -301,13 +305,17 @@ class Ui_MainWindow(object):
         self.LEdit_phone.setPlaceholderText(_translate("MainWindow", "Phone Number"))
         self.btn_register.setText(_translate("MainWindow", "Register"))
         self.btn_login.setText(_translate("MainWindow", "Login"))
+        #hide window hint
+    def closeEvent(self):
+            self.close()
+
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
+    ui = Login()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
