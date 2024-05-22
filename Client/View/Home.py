@@ -2,7 +2,7 @@
 import os
 import sys
 
-# Form implementation generated from reading ui file 'UI_V5.ui'
+# Form implementation generated from reading ui file 'Home.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.10
 #
