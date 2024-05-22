@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1251</width>
-    <height>796</height>
+    <width>1279</width>
+    <height>800</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -157,7 +157,7 @@ border-radius : 10px</string>
                    <string/>
                   </property>
                   <property name="pixmap">
-                   <pixmap>C:/Users/ADMIN/Downloads/Fox.png</pixmap>
+                   <pixmap>Image/Fox.png</pixmap>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignCenter</set>
@@ -203,6 +203,12 @@ border-radius : 10px</string>
              </property>
              <item>
               <widget class="QPushButton" name="btn_substract">
+               <property name="minimumSize">
+                <size>
+                 <width>50</width>
+                 <height>50</height>
+                </size>
+               </property>
                <property name="styleSheet">
                 <string notr="true">background-color: rgba(255, 255, 255, 0);
 background-color:rgba(255,255,255,0);box-shadow:0,0,0,0}
@@ -217,12 +223,24 @@ background-color:rgb(0,160,255);
                </property>
                <property name="icon">
                 <iconset>
-                 <normaloff>C:/Users/ADMIN/Downloads/subtract-1--button-delete-buttons-subtract-horizontal-remove-line-add-mathematics-math-minus (1).png</normaloff>C:/Users/ADMIN/Downloads/subtract-1--button-delete-buttons-subtract-horizontal-remove-line-add-mathematics-math-minus (1).png</iconset>
+                 <normaloff>Image/subtract-1--button-delete-buttons-subtract-horizontal-remove-line-add-mathematics-math-minus (1).png</normaloff>Image/subtract-1--button-delete-buttons-subtract-horizontal-remove-line-add-mathematics-math-minus (1).png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>42</width>
+                 <height>29</height>
+                </size>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QPushButton" name="btn_pile_stack">
+               <property name="minimumSize">
+                <size>
+                 <width>50</width>
+                 <height>50</height>
+                </size>
+               </property>
                <property name="styleSheet">
                 <string notr="true">background-color: rgba(255, 255, 255, 0);
 background-color:rgba(255,255,255,0);box-shadow:0,0,0,0}
@@ -235,7 +253,13 @@ background-color:rgb(0,160,255);
                </property>
                <property name="icon">
                 <iconset>
-                 <normaloff>C:/Users/ADMIN/Downloads/layers-2--design-layer-layers-pile-stack-align (1).png</normaloff>C:/Users/ADMIN/Downloads/layers-2--design-layer-layers-pile-stack-align (1).png</iconset>
+                 <normaloff>Image/layers-2--design-layer-layers-pile-stack-align (1).png</normaloff>Image/layers-2--design-layer-layers-pile-stack-align (1).png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>23</width>
+                 <height>27</height>
+                </size>
                </property>
               </widget>
              </item>
@@ -252,7 +276,7 @@ background-color:rgb(0,160,255);
 background-color:rgba(255,255,255,0);
 }
 #btn_exit:hover{
-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(3, 134, 253), stop:1 rgb(1, 81, 255));
+background-color: rgb(0,160,255);
 border-top-right-radius: 10px;
 }</string>
                </property>
@@ -261,7 +285,13 @@ border-top-right-radius: 10px;
                </property>
                <property name="icon">
                 <iconset>
-                 <normaloff>C:/Users/ADMIN/Downloads/delete-1--remove-add-button-buttons-delete-cross-x-mathematics-multiply-math.png</normaloff>C:/Users/ADMIN/Downloads/delete-1--remove-add-button-buttons-delete-cross-x-mathematics-multiply-math.png</iconset>
+                 <normaloff>Image/delete-1--remove-add-button-buttons-delete-cross-x-mathematics-multiply-math.png</normaloff>Image/delete-1--remove-add-button-buttons-delete-cross-x-mathematics-multiply-math.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>20</width>
+                 <height>28</height>
+                </size>
                </property>
               </widget>
              </item>
@@ -375,7 +405,7 @@ QPushButton:hover {
                   </property>
                   <property name="icon">
                    <iconset>
-                    <normaloff>C:/Users/ADMIN/Downloads/icons8-home-30.png</normaloff>C:/Users/ADMIN/Downloads/icons8-home-30.png</iconset>
+                    <normaloff>Image/icons8-home-30.png</normaloff>Image/icons8-home-30.png</iconset>
                   </property>
                   <property name="iconSize">
                    <size>
@@ -415,7 +445,7 @@ QPushButton:hover {
                   </property>
                   <property name="icon">
                    <iconset>
-                    <normaloff>C:/Users/ADMIN/Downloads/icons8-video-camera-50 (1).png</normaloff>C:/Users/ADMIN/Downloads/icons8-video-camera-50 (1).png</iconset>
+                    <normaloff>Image/icons8-account-50.png</normaloff>Image/icons8-account-50.png</iconset>
                   </property>
                   <property name="iconSize">
                    <size>
@@ -454,7 +484,7 @@ QPushButton:hover {
                   </property>
                   <property name="icon">
                    <iconset>
-                    <normaloff>C:/Users/ADMIN/Downloads/icons8-account-50.png</normaloff>C:/Users/ADMIN/Downloads/icons8-account-50.png</iconset>
+                    <normaloff>Image/icons8-video-camera-50.png</normaloff>Image/icons8-video-camera-50.png</iconset>
                   </property>
                   <property name="iconSize">
                    <size>
@@ -510,7 +540,13 @@ border-right : none
 </string>
                   </property>
                   <property name="text">
-                   <string>avatar</string>
+                   <string/>
+                  </property>
+                  <property name="pixmap">
+                   <pixmap>Image/avatar.jpg</pixmap>
+                  </property>
+                  <property name="scaledContents">
+                   <bool>true</bool>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignCenter</set>
@@ -530,7 +566,7 @@ border-right : none
 </string>
             </property>
             <property name="currentIndex">
-             <number>0</number>
+             <number>2</number>
             </property>
             <widget class="QWidget" name="page_learning">
              <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -581,7 +617,7 @@ border-right : none
                  </property>
                  <property name="icon">
                   <iconset>
-                   <normaloff>C:/Users/ADMIN/Downloads/Group 4.png</normaloff>C:/Users/ADMIN/Downloads/Group 4.png</iconset>
+                   <normaloff>Image/Group 4.png</normaloff>Image/Group 4.png</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -767,7 +803,7 @@ border-radius : 15px;
                              <string/>
                             </property>
                             <property name="pixmap">
-                             <pixmap>C:/Users/ADMIN/Downloads/z5461290588979_692bf1a21a79b202b016a475ef95d80d.jpg</pixmap>
+                             <pixmap>Image/z5461290588979_692bf1a21a79b202b016a475ef95d80d.jpg</pixmap>
                             </property>
                             <property name="scaledContents">
                              <bool>true</bool>
@@ -903,7 +939,7 @@ color : rgb(255, 255, 255)</string>
                              <string/>
                             </property>
                             <property name="pixmap">
-                             <pixmap>C:/Users/ADMIN/Downloads/z5461290588979_692bf1a21a79b202b016a475ef95d80d.jpg</pixmap>
+                             <pixmap>Image/z5461290588979_692bf1a21a79b202b016a475ef95d80d.jpg</pixmap>
                             </property>
                             <property name="scaledContents">
                              <bool>true</bool>
@@ -961,7 +997,7 @@ color : rgb(255, 255, 255)</string>
                                 <string/>
                                </property>
                                <property name="pixmap">
-                                <pixmap>C:/Users/ADMIN/Downloads/Group 7.png</pixmap>
+                                <pixmap>Image/Group 7.png</pixmap>
                                </property>
                               </widget>
                              </item>
@@ -1078,7 +1114,10 @@ border-radius : 10px</string>
                            </size>
                           </property>
                           <property name="text">
-                           <string>Icon</string>
+                           <string/>
+                          </property>
+                          <property name="pixmap">
+                           <pixmap>Image/bi_volume-down-fill.png</pixmap>
                           </property>
                          </widget>
                          <widget class="QSlider" name="horizontalSlider">
@@ -1261,7 +1300,7 @@ QPushButton:hover {
                  </property>
                  <property name="icon">
                   <iconset>
-                   <normaloff>C:/Users/ADMIN/Downloads/Group 4.png</normaloff>C:/Users/ADMIN/Downloads/Group 4.png</iconset>
+                   <normaloff>Image/Group 4.png</normaloff>Image/Group 4.png</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1463,7 +1502,7 @@ border-radius : 15px</string>
                                    <string/>
                                   </property>
                                   <property name="pixmap">
-                                   <pixmap>C:/Users/ADMIN/Downloads/Vector_2.png</pixmap>
+                                   <pixmap>Image/Vector_2.png</pixmap>
                                   </property>
                                   <property name="alignment">
                                    <set>Qt::AlignCenter</set>
@@ -1757,7 +1796,7 @@ border-radius : 15px</string>
                                 <string/>
                                </property>
                                <property name="pixmap">
-                                <pixmap>C:/Users/ADMIN/Downloads/startup--shop-rocket-launch-startup.png</pixmap>
+                                <pixmap>Image/startup--shop-rocket-launch-startup.png</pixmap>
                                </property>
                                <property name="alignment">
                                 <set>Qt::AlignCenter</set>
@@ -2192,7 +2231,7 @@ border-radius : 15px</string>
                              <string/>
                             </property>
                             <property name="pixmap">
-                             <pixmap>C:/Users/ADMIN/Downloads/image 1 (1).png</pixmap>
+                             <pixmap>Image/image 1.png</pixmap>
                             </property>
                             <property name="margin">
                              <number>2</number>
@@ -2343,7 +2382,7 @@ border-radius : 15px</string>
                        </property>
                        <property name="icon">
                         <iconset>
-                         <normaloff>C:/Users/ADMIN/Downloads/Group 4.png</normaloff>C:/Users/ADMIN/Downloads/Group 4.png</iconset>
+                         <normaloff>Image/Group 4.png</normaloff>Image/Group 4.png</iconset>
                        </property>
                        <property name="iconSize">
                         <size>
