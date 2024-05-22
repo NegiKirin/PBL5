@@ -21,11 +21,11 @@ class Login(object):
         self.verticalLayout.setObjectName("verticalLayout")
         self.widget = QtWidgets.QWidget(self.centralwidget)
         self.widget.setStyleSheet("#widget{\n"
-"    background-color: qlineargradient(x1: 0, x2: 1,stop: 0 rgb(23, 42, 162), stop: 0.40 rgb(50, 140, 199),stop:0.60 rgb(50, 140, 199),stop: 1 rgb(23, 42, 162));\n"
-"    border-top-left-radius: 150px;  \n"
-"     border-bottom-right-radius: 150px;\n"
-"}\n"
-"")
+                                  "    background-color: qlineargradient(x1: 0, x2: 1,stop: 0 rgb(23, 42, 162), stop: 0.40 rgb(50, 140, 199),stop:0.60 rgb(50, 140, 199),stop: 1 rgb(23, 42, 162));\n"
+                                  "    border-top-left-radius: 150px;  \n"
+                                  "     border-bottom-right-radius: 150px;\n"
+                                  "}\n"
+                                  "")
         self.widget.setObjectName("widget")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.widget)
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
@@ -37,12 +37,14 @@ class Login(object):
         self.btn_exit = QtWidgets.QPushButton(self.widget_2)
         self.btn_exit.setGeometry(QtCore.QRect(460, 0, 35, 28))
         self.btn_exit.setStyleSheet("#btn_exit{background-color: rgba(255, 255, 255, 10)}\n"
-"#btn_exit:hover{\n"
-"background-color : rgb(0, 0, 127)\n"
-"}")
+                                    "#btn_exit:hover{\n"
+                                    "background-color : rgb(0, 0, 127)\n"
+                                    "}")
         self.btn_exit.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../Client/View/Image/delete-1--remove-add-button-buttons-delete-cross-x-mathematics-multiply-math.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(
+            "../Client/View/Image/delete-1--remove-add-button-buttons-delete-cross-x-mathematics-multiply-math.png"),
+                       QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_exit.setIcon(icon)
         self.btn_exit.setObjectName("btn_exit")
         self.verticalLayout_2.addWidget(self.widget_2)
@@ -66,7 +68,7 @@ class Login(object):
         font.setWeight(75)
         self.label.setFont(font)
         self.label.setStyleSheet("color: rgb(255, 255, 255);\n"
-"")
+                                 "")
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(self.page_1)
         self.label_2.setGeometry(QtCore.QRect(0, 70, 391, 16))
@@ -76,16 +78,16 @@ class Login(object):
         font.setWeight(75)
         self.label_2.setFont(font)
         self.label_2.setStyleSheet("color :rgb(255, 255, 255);\n"
-"")
+                                   "")
         self.label_2.setObjectName("label_2")
         self.LEdit_email_signin = QtWidgets.QLineEdit(self.page_1)
         self.LEdit_email_signin.setGeometry(QtCore.QRect(0, 100, 401, 41))
         self.LEdit_email_signin.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"border-radius : 10px ;\n"
-"color: rgba(0, 0, 0, 128);\n"
-"padding-left : 20px;\n"
-"\n"
-"")
+                                              "border-radius : 10px ;\n"
+                                              "color: rgba(0, 0, 0, 128);\n"
+                                              "padding-left : 20px;\n"
+                                              "\n"
+                                              "")
         self.LEdit_email_signin.setText("")
         self.LEdit_email_signin.setObjectName("LEdit_email_signin")
         self.label_3 = QtWidgets.QLabel(self.page_1)
@@ -96,15 +98,15 @@ class Login(object):
         font.setWeight(75)
         self.label_3.setFont(font)
         self.label_3.setStyleSheet("color :rgb(255, 255, 255);\n"
-"")
+                                   "")
         self.label_3.setObjectName("label_3")
         self.LEdit_password_signin = QtWidgets.QLineEdit(self.page_1)
         self.LEdit_password_signin.setGeometry(QtCore.QRect(0, 190, 401, 41))
         self.LEdit_password_signin.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"border-radius : 10px;\n"
-"color: rgba(0, 0, 0, 128);\n"
-"padding-left : 20px;\n"
-"")
+                                                 "border-radius : 10px;\n"
+                                                 "color: rgba(0, 0, 0, 128);\n"
+                                                 "padding-left : 20px;\n"
+                                                 "")
         self.LEdit_password_signin.setText("")
         self.LEdit_password_signin.setEchoMode(QtWidgets.QLineEdit.Password)
         self.LEdit_password_signin.setObjectName("LEdit_password_signin")
@@ -117,11 +119,11 @@ class Login(object):
         self.btn_signIn.setFont(font)
         self.btn_signIn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.btn_signIn.setStyleSheet("#btn_signIn{background-color: rgb(0, 0, 112);\n"
-"border-radius : 10px;\n"
-"color :rgb(255, 255, 255);}\n"
-"#btn_signIn:hover{\n"
-"background-color : rgb(0, 85, 127)\n"
-"}")
+                                      "border-radius : 10px;\n"
+                                      "color :rgb(255, 255, 255);}\n"
+                                      "#btn_signIn:hover{\n"
+                                      "background-color : rgb(0, 85, 127)\n"
+                                      "}")
         self.btn_signIn.setObjectName("btn_signIn")
         self.label_4 = QtWidgets.QLabel(self.page_1)
         self.label_4.setGeometry(QtCore.QRect(0, 310, 201, 31))
@@ -131,7 +133,7 @@ class Login(object):
         font.setWeight(75)
         self.label_4.setFont(font)
         self.label_4.setStyleSheet("color :rgb(255, 255, 255);\n"
-"")
+                                   "")
         self.label_4.setObjectName("label_4")
         self.btn_change_page = QtWidgets.QPushButton(self.page_1)
         self.btn_change_page.setGeometry(QtCore.QRect(210, 310, 151, 28))
@@ -142,7 +144,7 @@ class Login(object):
         self.btn_change_page.setFont(font)
         self.btn_change_page.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.btn_change_page.setStyleSheet("color :rgb(255, 255, 255);\n"
-"")
+                                           "")
         self.btn_change_page.setObjectName("btn_change_page")
         self.stackedWidget.addWidget(self.page_1)
         self.page_2 = QtWidgets.QWidget()
@@ -155,7 +157,7 @@ class Login(object):
         font.setWeight(75)
         self.label_5.setFont(font)
         self.label_5.setStyleSheet("color: rgb(255, 255, 255);\n"
-"")
+                                   "")
         self.label_5.setObjectName("label_5")
         self.label_6 = QtWidgets.QLabel(self.page_2)
         self.label_6.setGeometry(QtCore.QRect(0, 70, 391, 16))
@@ -165,15 +167,15 @@ class Login(object):
         font.setWeight(75)
         self.label_6.setFont(font)
         self.label_6.setStyleSheet("color :rgb(255, 255, 255);\n"
-"")
+                                   "")
         self.label_6.setObjectName("label_6")
         self.LEdit_email_register = QtWidgets.QLineEdit(self.page_2)
         self.LEdit_email_register.setGeometry(QtCore.QRect(0, 100, 401, 41))
         self.LEdit_email_register.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"border-radius : 10px ;\n"
-"color: rgba(0, 0, 0, 128);\n"
-"padding-left : 20px;\n"
-"")
+                                                "border-radius : 10px ;\n"
+                                                "color: rgba(0, 0, 0, 128);\n"
+                                                "padding-left : 20px;\n"
+                                                "")
         self.LEdit_email_register.setText("")
         self.LEdit_email_register.setObjectName("LEdit_email_register")
         self.label_7 = QtWidgets.QLabel(self.page_2)
@@ -184,17 +186,17 @@ class Login(object):
         font.setWeight(75)
         self.label_7.setFont(font)
         self.label_7.setStyleSheet("color :rgb(255, 255, 255);\n"
-"")
+                                   "")
         self.label_7.setObjectName("label_7")
         self.LEdit_password_register = QtWidgets.QLineEdit(self.page_2)
         self.LEdit_password_register.setGeometry(QtCore.QRect(0, 200, 401, 41))
         self.LEdit_password_register.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"border-radius : 10px ;\n"
-"color: rgba(0, 0, 0, 128);\n"
-"padding-left : 20px;\n"
-"LEdit_password_register.setEchoMode(Password)\n"
-"\n"
-"")
+                                                   "border-radius : 10px ;\n"
+                                                   "color: rgba(0, 0, 0, 128);\n"
+                                                   "padding-left : 20px;\n"
+                                                   "LEdit_password_register.setEchoMode(Password)\n"
+                                                   "\n"
+                                                   "")
         self.LEdit_password_register.setText("")
         self.LEdit_password_register.setEchoMode(QtWidgets.QLineEdit.Password)
         self.LEdit_password_register.setObjectName("LEdit_password_register")
@@ -206,16 +208,16 @@ class Login(object):
         font.setWeight(75)
         self.label_8.setFont(font)
         self.label_8.setStyleSheet("color :rgb(255, 255, 255);\n"
-"")
+                                   "")
         self.label_8.setObjectName("label_8")
         self.LEdit_confirm = QtWidgets.QLineEdit(self.page_2)
         self.LEdit_confirm.setGeometry(QtCore.QRect(0, 290, 401, 41))
         self.LEdit_confirm.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"border-radius : 10px ;\n"
-"color: rgba(0, 0, 0, 128);\n"
-"padding-left : 20px;\n"
-"\n"
-"")
+                                         "border-radius : 10px ;\n"
+                                         "color: rgba(0, 0, 0, 128);\n"
+                                         "padding-left : 20px;\n"
+                                         "\n"
+                                         "")
         self.LEdit_confirm.setText("")
         self.LEdit_confirm.setEchoMode(QtWidgets.QLineEdit.Password)
         self.LEdit_confirm.setObjectName("LEdit_confirm")
@@ -227,16 +229,16 @@ class Login(object):
         font.setWeight(75)
         self.label_9.setFont(font)
         self.label_9.setStyleSheet("color :rgb(255, 255, 255);\n"
-"")
+                                   "")
         self.label_9.setObjectName("label_9")
         self.LEdit_phone = QtWidgets.QLineEdit(self.page_2)
         self.LEdit_phone.setGeometry(QtCore.QRect(0, 380, 401, 41))
         self.LEdit_phone.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"border-radius : 10px ;\n"
-"color: rgba(0, 0, 0, 128);\n"
-"padding-left : 20px;\n"
-"\n"
-"")
+                                       "border-radius : 10px ;\n"
+                                       "color: rgba(0, 0, 0, 128);\n"
+                                       "padding-left : 20px;\n"
+                                       "\n"
+                                       "")
         self.LEdit_phone.setText("")
         self.LEdit_phone.setObjectName("LEdit_phone")
         self.btn_register = QtWidgets.QPushButton(self.page_2)
@@ -248,11 +250,11 @@ class Login(object):
         self.btn_register.setFont(font)
         self.btn_register.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.btn_register.setStyleSheet("#btn_register{background-color: rgb(0, 0, 112);\n"
-"border-radius : 10px;\n"
-"color :rgb(255, 255, 255);}\n"
-"#btn_register:hover{\n"
-"background-color:rgb(0, 0, 59)\n"
-"}")
+                                        "border-radius : 10px;\n"
+                                        "color :rgb(255, 255, 255);}\n"
+                                        "#btn_register:hover{\n"
+                                        "background-color:rgb(0, 0, 59)\n"
+                                        "}")
         self.btn_register.setObjectName("btn_register")
         self.btn_login = QtWidgets.QPushButton(self.page_2)
         self.btn_login.setGeometry(QtCore.QRect(0, 480, 401, 41))
@@ -261,9 +263,9 @@ class Login(object):
         self.btn_login.setFont(font)
         self.btn_login.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.btn_login.setStyleSheet("#btn_login{color:rgb(255, 255, 255);\n"
-"border-radius : 10px;\n"
-"}\n"
-"")
+                                     "border-radius : 10px;\n"
+                                     "}\n"
+                                     "")
         self.btn_login.setObjectName("btn_login")
         self.stackedWidget.addWidget(self.page_2)
         self.horizontalLayout.addWidget(self.stackedWidget)
@@ -282,7 +284,7 @@ class Login(object):
         self.stackedWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         self.btn_exit.clicked.connect(self.closeEvent)
-                
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -305,14 +307,15 @@ class Login(object):
         self.LEdit_phone.setPlaceholderText(_translate("MainWindow", "Phone Number"))
         self.btn_register.setText(_translate("MainWindow", "Register"))
         self.btn_login.setText(_translate("MainWindow", "Login"))
-        #hide window hint
-    def closeEvent(self):
-            self.close()
+        # hide window hint
 
+    def closeEvent(self):
+        self.close()
 
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Login()
