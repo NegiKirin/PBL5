@@ -16,7 +16,7 @@ from PyQt5.QtWidgets import QMainWindow
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(900, 800)
+        MainWindow.resize(1200, 800)
         # MainWindow.hide()
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -94,12 +94,13 @@ class Ui_MainWindow(object):
                                          "\n"
                                          "")
         self.btn_substract.setText("")
+        self.btn_substract.clicked.connect(MainWindow.window().showMinimized)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(
-            "../Client/View/Image/subtract-1--button-delete-buttons-subtract-horizontal-remove-line-add-mathematics-math-minus (1).png"),
+            "../Client/View/Image/icons8-reduce-50.png"),
             QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_substract.setIcon(icon)
-        self.btn_substract.setIconSize(QtCore.QSize(42, 29))
+        self.btn_substract.setIconSize(QtCore.QSize(23, 29))
         self.btn_substract.setObjectName("btn_substract")
         self.horizontalLayout_3.addWidget(self.btn_substract)
         self.btn_pile_stack = QtWidgets.QPushButton(self.widget_4)
@@ -111,13 +112,32 @@ class Ui_MainWindow(object):
                                           "")
         self.btn_pile_stack.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../Client/View/Image/layers-2--design-layer-layers-pile-stack-align (1).png"),
+        icon1.addPixmap(QtGui.QPixmap("../Client/View/Image/icons8-restore-window-50.png"),
                         QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_pile_stack.setIcon(icon1)
         self.btn_pile_stack.setIconSize(QtCore.QSize(23, 27))
         self.btn_pile_stack.setObjectName("btn_pile_stack")
-        self.btn_pile_stack.clicked.connect(MainWindow.window().showFullScreen)
+        self.btn_pile_stack.clicked.connect(MainWindow.window().showNormal)
+        self.btn_pile_stack.setVisible(False)
+
         self.horizontalLayout_3.addWidget(self.btn_pile_stack)
+        self.btn_maximize = QtWidgets.QPushButton(self.widget_4)
+        self.btn_maximize.setMinimumSize(QtCore.QSize(50, 50))
+        self.btn_maximize.setStyleSheet("background-color: rgba(255, 255, 255, 0);\n"
+                                          "background-color:rgba(255,255,255,0);box-shadow:0,0,0,0}\n"
+                                          "#btn_maximize:hover{\n"
+                                          "background-color:rgb(0,160,255);\n"
+                                          "")
+        self.btn_maximize.setText("")
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap("../Client/View/Image/icons8-maximize-window-50.png"),
+                        QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.btn_maximize.setIcon(icon1)
+        self.btn_maximize.setIconSize(QtCore.QSize(23, 27))
+        self.btn_maximize.setObjectName("btn_maximize")
+        self.btn_maximize.clicked.connect(MainWindow.window().showMaximized)
+        self.horizontalLayout_3.addWidget(self.btn_maximize)
+
         self.btn_exit = QtWidgets.QPushButton(self.widget_4)
         self.btn_exit.setMinimumSize(QtCore.QSize(50, 50))
         self.btn_exit.setStyleSheet("#btn_exit{background-color: rgba(255, 255, 255, 0);\n"
@@ -132,10 +152,10 @@ class Ui_MainWindow(object):
         icon2 = QtGui.QIcon()
         icon2.addPixmap(
             QtGui.QPixmap(
-                "../Client/View/Image/delete-1--remove-add-button-buttons-delete-cross-x-mathematics-multiply-math.png"),
+                "../Client/View/Image/icons8-close-window-50.png"),
             QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_exit.setIcon(icon2)
-        self.btn_exit.setIconSize(QtCore.QSize(20, 28))
+        self.btn_exit.setIconSize(QtCore.QSize(23, 28))
         self.btn_exit.setObjectName("btn_exit")
         self.horizontalLayout_3.addWidget(self.btn_exit)
         self.horizontalLayout_2.addWidget(self.widget_4)
