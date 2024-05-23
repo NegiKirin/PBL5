@@ -9,30 +9,49 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 from Client.View.Login import Login
 class ControllerLogin(QMainWindow):
-    def __init__(self):
+    def __init__(self, sender = None):
         super().__init__()
-        self.uic = Login()
-        self.uic.setupUi(self)
 
+        self.uic = Login()
+        self.sender = sender
+        self.uic.setupUi(self)
         # setup event
         # change page register
         self.uic.btn_change_page.clicked.connect(self.show_register)
+        self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
+        self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
+        self.uic.label_10.hide()
         # change page login
         self.uic.btn_login.clicked.connect(self.show_login)
         # close window
         self.uic.btn_exit.clicked.connect(self.closeEvent)
-
+        #checklogin
+        self.uic.btn_signIn.clicked.connect(self.Check_Login)
 
     def show_register(self):
         self.uic.stackedWidget.setCurrentWidget(self.uic.page_2)
     def show_login(self):
         self.uic.stackedWidget.setCurrentWidget(self.uic.page_1)
 
-    def closeEvent(self):
+    def closeEvent(self,event):
         self.close()
+    def setError(self):
+        self.uic.label_10.setText("username or password error")
+        self.uic.label_10.show()
+    def Check_Login(self):
+        username = self.uic.LEdit_email_signin.text()
+        print(username)
+        password = self.uic.LEdit_password_signin.text()
+        print(password)
+        self.sender.sendUsernameAndPassword(username, password)
+        print("sendSucced")
+
+
+
 
 if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    main = ControllerLogin()
-    main.show()
-    sys.exit(app.exec_())
+    pass
+    # app = QApplication(sys.argv)
+    # main = ControllerLogin(soc)
+    # main.show()
+    # sys.exit(app.exec_())

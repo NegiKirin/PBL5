@@ -1,0 +1,78 @@
+import os
+import pickle
+import sys
+import threading
+import socket
+import cv2
+
+
+current_directory = os.path.dirname(os.path.abspath(__file__)) + '\\'
+sys.path.append(current_directory)
+from ..Util.Command import Command
+from ..DAO.UserDAO import UserDAO
+
+BUFF_SIZE = 65536
+HEADERSIZE = 10
+COMMANDSIZE = 3
+
+class Receiver:
+    def __init__(self, conn, sender):
+        self.socket = conn
+        self.sender = sender
+        self.active = True
+
+        t = threading.Thread(target=self.run, args=())
+        # t.setDaemon = True
+        t.start()
+
+    def getCommand(self, data):
+        command = int(data[:COMMANDSIZE])
+        return command
+    def getSize(self, data):
+        size = int(data[COMMANDSIZE:HEADERSIZE])
+        return size
+
+    def receiveUsernameAndPassword(self, data):
+        try:
+            # Todo:
+            size = self.getSize(data)
+            print(size)
+            print(data)
+            main_data = None
+            full_msg = b''
+            new_msg = True
+            while True:
+                msg = self.socket.recv(1024)
+                if new_msg:
+                    msg = data + msg
+                    new_msg = False
+                full_msg += msg
+                print(full_msg)
+                if len(full_msg) - HEADERSIZE - COMMANDSIZE == size:
+                    main_data = pickle.loads(full_msg[HEADERSIZE+COMMANDSIZE:])
+                    print(main_data)
+                    break
+            user = UserDAO().findByUsernameAndPassword(main_data)
+            print(user)
+            self.sender.sendUser(user)
+        except Exception as e:
+            print(e)
+
+    def run(self):
+        while True:
+            try:
+                print('wait command')
+                data = self.socket.recv(13)
+                cm = self.getCommand(data)
+                print('new command', cm)
+                if cm == Command.USERNAME_AND_PASSWORD.value:
+                    self.receiveUsernameAndPassword(data)
+
+            except socket.error as error:
+                print(error)
+                self.active = False
+                break
+            except Exception as e:
+                print(str(e))
+                self.active = False
+                break

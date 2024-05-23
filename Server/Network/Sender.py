@@ -1,0 +1,29 @@
+import os
+import pickle
+import socket
+import sys
+
+current_directory = os.path.dirname(os.path.abspath(__file__)) + '\\'
+sys.path.append(current_directory)
+from ..Util.Command import Command
+
+HEADERSIZE = 10
+COMMANDSIZE = 3
+class Sender:
+    def __init__(self, conn):
+        self.socket = conn
+        self.active = True
+
+    def sendUser(self, user):
+        try:
+            command = Command.USER.value
+            data = {
+                'user': user,
+            }
+            data = pickle.dumps(data)
+            data = bytes(f'{command:<{COMMANDSIZE}}', 'utf-8') + bytes(f"{len(data):<{HEADERSIZE}}", 'utf-8') + data
+            self.socket.sendall(data)
+            return True
+        except Exception as e:
+            print(e)
+            return False
