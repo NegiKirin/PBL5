@@ -1,5 +1,5 @@
 import sys
-<<<<<<< HEAD
+
 import pickle
 import socket
 import threading
@@ -37,8 +37,8 @@ class Client():
         self.host = "127.0.0.1"
         self.port = 9999
 
-        self.create_socket()
-        self.connect_socket()
+       # self.create_socket()
+        #self.connect_socket()
 
         self.sender = Sender(self.soc)
 
@@ -47,8 +47,9 @@ class Client():
         # draw gui
         app = QApplication(sys.argv)
         self.controller = Controller(self.sender)
-        self.controller.controllerLogin.show()
-        self.receiver = Receiver(self.soc, self.sender, self.controller)
+        #self.controller.controllerLogin.show()
+        self.controller.ManagerUser.show()
+        #self.receiver = Receiver(self.soc, self.sender, self.controller)
         # self.detector.load_data()
         # t1 = threading.Thread(target=self.detector.face_detection, args=[main_win])
         # t1.setDaemon = True
@@ -87,13 +88,10 @@ class Client():
 
 if __name__ == "__main__":
     c = Client()
-=======
 
-from PyQt5.QtWidgets import QApplication
 
-from Controller.ControllerLogin import ControllerLogin
-from Controller.ManagerUser import ManagerUser
 
+''''
 class Client:
     def __init__(self):
         # socket
@@ -107,4 +105,4 @@ class Client:
 
 if __name__ == "__main__":
     Client()
->>>>>>> d40f260d798dedcaeb6eb52611c1e47372bac8fe
+'''''
