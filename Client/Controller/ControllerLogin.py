@@ -45,7 +45,16 @@ class ControllerLogin(QMainWindow):
         print(password)
         self.sender.sendUsernameAndPassword(username, password)
         print("sendSucced")
-
+    def SendInforRegister(self):
+        username = self.uic.LEdit_email_signin.text()
+        password = self.uic.LEdit_password_signin.text()
+        confirm_password = self.uic.LEdit_confirm.text()
+        phone = self.uic.LEdit_phone.text()
+        if confirm_password != password:
+            self.uic.label_11.setText("confirm_password error is not same password")
+            self.uic.label_11.show()
+        else:
+            self.sender.sendInforRegister(username, password, phone)
 
 
 

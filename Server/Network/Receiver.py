@@ -58,6 +58,32 @@ class Receiver:
         except Exception as e:
             print(e)
 
+    def receiverInforRegister(self, data):
+        try:
+            # Todo:
+            size = self.getSize(data)
+            print(size)
+            print(data)
+            main_data = None
+            full_msg = b''
+            new_msg = True
+            while True:
+                msg = self.socket.recv(1024)
+                if new_msg:
+                    msg = data + msg
+                    new_msg = False
+                full_msg += msg
+                print(full_msg)
+                if len(full_msg) - HEADERSIZE - COMMANDSIZE == size:
+                    main_data = pickle.loads(full_msg[HEADERSIZE+COMMANDSIZE:])
+                    print(main_data)
+                    break
+            user = UserDAO().insertNewUser(main_data)
+            print(user)
+            self.sender.sendUser(user)
+        except Exception as e:
+            print(e)
+
     def run(self):
         while True:
             try:
@@ -67,7 +93,8 @@ class Receiver:
                 print('new command', cm)
                 if cm == Command.USERNAME_AND_PASSWORD.value:
                     self.receiveUsernameAndPassword(data)
-
+                if cm == Command.SEND_SERVER_REGISTER.value:
+                    self.receiverInforRegister(data)
             except socket.error as error:
                 print(error)
                 self.active = False

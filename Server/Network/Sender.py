@@ -27,3 +27,17 @@ class Sender:
         except Exception as e:
             print(e)
             return False
+
+    def sendInforRegister(self, user):
+        try:
+            command = Command.SEND_CLIENT_REGISTER.value
+            data = {
+                'user': user,
+            }
+            data = pickle.dumps(data)
+            data = bytes(f'{command:<{COMMANDSIZE}}', 'utf-8') + bytes(f"{len(data):<{HEADERSIZE}}", 'utf-8') + data
+            self.socket.sendall(data)
+            return True
+        except Exception as e:
+            print(e)
+            return False

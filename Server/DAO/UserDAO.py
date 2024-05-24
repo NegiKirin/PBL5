@@ -14,8 +14,29 @@ class UserDAO:
             result = self.myCursor.fetchall()
             # item = result[0]
             # user = User(item[0], item[1], item[2])
-            user = User(1, "phuc", "123", "123", "123", "1312", "123")
+            user = User(result[0], result[1], result[2],result[3],result[4],result[5],result[6])
             return user
         except Exception as e:
             print(e)
             return {}
+
+    def insertNewUser(self,dic):
+        try:
+            sql_check_username = 'SELECT * FROM account WHERE username = %s'
+            self.myCursor.execute(sql_check_username, [dic['username']])
+            result = self.myCursor.fetchall()
+            if result == None:
+                sql = 'INSERT INTO account (username, password,phone) VALUES ( %s, %s, %s)'
+                self.myCursor.execute(sql, [dic['username'],dict['password'], dict['phone']])
+                self.connect.commit()
+
+                get_Infor = 'SELECT * FROM account WHERE username = %s'
+                self.myCursor.execute(get_Infor, [dic['username']])
+                result = self.myCursor.fetchall()
+                return result
+            else:
+                msg = "username already exists"
+                return msg
+        except Exception as e:
+            print(e)
+

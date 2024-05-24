@@ -1,6 +1,10 @@
 import pickle
+import sys
 import threading
 import socket
+
+from PyQt5.QtWidgets import QApplication
+
 import Client.Model.User
 from Client.Util.Command import Command
 
@@ -45,14 +49,46 @@ class Receiver:
                     print(main_data)
                     break
 
-            if main_data is {}:
+            if main_data['user'] == []:
                 # Todo: print error
                 self.controller.controllerLogin.setError()
                 print()
             else:
-                # Todo: change page
-                print()
+                app = QApplication(sys.argv)
+                self.controller.managerUser.show()
+                sys.exit(app.exec())
+        except Exception as e:
+            print(e)
 
+    def receiveUser(self, data):
+        # Todo: Receive User
+        try:
+            size = self.getSize(data)
+            print(size)
+            print(data)
+            main_data = None
+            full_msg = b''
+            new_msg = True
+            while True:
+                msg = self.socket.recv(1024)
+                if new_msg:
+                    msg = data + msg
+                    new_msg = False
+                full_msg += msg
+                print(full_msg)
+                if len(full_msg) - HEADERSIZE - COMMANDSIZE == size:
+                    main_data = pickle.loads(full_msg[HEADERSIZE + COMMANDSIZE:])
+                    print(main_data)
+                    break
+
+            if main_data['user'] == []:
+                # Todo: print error
+                self.controller.controllerLogin.setError()
+                print()
+            else:
+                app = QApplication(sys.argv)
+                self.controller.managerUser.show()
+                sys.exit(app.exec())
         except Exception as e:
             print(e)
 

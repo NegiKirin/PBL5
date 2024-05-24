@@ -33,7 +33,7 @@ class Client():
     #     self.soc.connect(server_address)
     def __init__(self):
         self.soc = None
-        self.host = "127.0.0.1"
+        self.host = "192.168.1.6"
         self.port = 9999
 
         self.create_socket()

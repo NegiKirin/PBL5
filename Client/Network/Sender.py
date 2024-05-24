@@ -33,3 +33,21 @@ class Sender:
         except Exception as e:
             print(e)
             return False
+
+
+    def sendInforRegister(self, username, password,phone):
+        # Todo:
+        try:
+            command = Command.SEND_SERVER_REGISTER.value
+            data = {
+                'username': username,
+                'password': password,
+                'phone': phone,
+            }
+            data = pickle.dumps(data)
+            data = bytes(f'{command:<{COMMANDSIZE}}', 'utf-8') + bytes(f"{len(data):<{HEADERSIZE}}", 'utf-8') + data
+            self.socket.sendall(data)
+            return True
+        except Exception as e:
+            print(e)
+            return False
