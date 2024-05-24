@@ -80,7 +80,7 @@ class Receiver:
                     break
             user = UserDAO().insertNewUser(main_data)
             print(user)
-            self.sender.sendUser(user)
+            self.sender.sendInforRegister(user)
         except Exception as e:
             print(e)
 
