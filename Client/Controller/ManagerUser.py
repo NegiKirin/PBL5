@@ -3,7 +3,7 @@ from PyQt5.QtCore import Qt, QEvent
 from Client.Model.User import User
 from Client.View.Home import Home
 from PyQt5.QtWidgets import QMainWindow, QWidget, QDialog, QFileDialog
-
+hh
 # btn_max
 ''''
        self.btn_maximize = QtWidgets.QPushButton(self.widget_4)
