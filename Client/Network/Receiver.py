@@ -54,10 +54,12 @@ class Receiver:
                 self.controller.controllerLogin.setError()
                 print()
             else:
-                self.controller.managerUser.receiveDataUser(main_data)
-                app = QApplication(sys.argv)
+                self.controller.controllerLogin.hide()
+                # app = QApplication(sys.argv)
+                # self.controller.managerUser.receiveDataUser(main_data)
                 self.controller.managerUser.show()
-                sys.exit(app.exec())
+                # sys.exit(app.exec())
+
         except Exception as e:
             print(e)
 
@@ -88,6 +90,7 @@ class Receiver:
             else:
                 self.controller.managerUser.receiveDataUser(main_data)
                 # app = QApplication(sys.argv)
+                self.controller.controllerLogin.hide()
                 self.controller.managerUser.show()
                 # sys.exit(app.exec())
         except Exception as e:

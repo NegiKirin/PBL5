@@ -137,10 +137,14 @@ class ManagerUser(QMainWindow):
         self.button = [self.ui.pushButton_4, self.ui.pushButton_2, self.ui.pushButton, self.ui.pushButton_8,
                        self.ui.pushButton_7, self.ui.pushButton_5, self.ui.pushButton_9, self.ui.pushButton_10,
                        self.ui.pushButton_11]
-        for i in self.button:
-            i.clicked.connect(self.show_video)
-        self.username = None
+        #for i in self.button:
+           # i.clicked.connect(self.show_video)
+        self.firstname = None
+        self.lastname = None
+        self.gender = None
         self.phone = None
+        self.email = None
+        self.avatar = None
         # self.ui.btn_profile.clicked.connect(self.read_user)
 
     def back_to_profile(self):
@@ -245,4 +249,4 @@ class ManagerUser(QMainWindow):
         super().mouseReleaseEvent(event)
         event.accept()
 
-   
+
