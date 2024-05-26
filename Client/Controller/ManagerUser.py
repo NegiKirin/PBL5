@@ -245,11 +245,4 @@ class ManagerUser(QMainWindow):
         super().mouseReleaseEvent(event)
         event.accept()
 
-    def Edit_Infor_User(self):
-        edit_fullname = self.ui.lineEdit.text()
-        edit_nickname = self.ui.lineEdit_2.text()
-        edit_gender = self.ui.lineEdit_3.text()
-        edit_firstname = self.ui.lineEdit_10.text()
-        edit_phone = self.ui.lineEdit_11.text()
-        edit_email = self.ui.lineEdit_12.text()
-        self.sender.sendInforToEdit(edit_fullname, edit_phone)
+   
