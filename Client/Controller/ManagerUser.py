@@ -133,13 +133,7 @@ class ManagerUser(QMainWindow):
         self.ui.label.setPixmap(QtGui.QPixmap("../Client/View/Image/Fox.png"))
         self.ui.label.setAlignment(QtCore.Qt.AlignCenter)
         self.ui.btn_Next.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        user = User('minhvulqd2003@gmail.com', '12345')
-        self.ui.lineEdit.setText(user.fullname)
-        self.ui.lineEdit_2.setText(user.nickname)
-        self.ui.lineEdit_3.setText(user.gender)
-        self.ui.lineEdit_10.setText(user.firstName)
-        self.ui.lineEdit_11.setText(user.phoneNumbers)
-        self.ui.lineEdit_12.setText(user.email)
+
         self.button = [self.ui.pushButton_4, self.ui.pushButton_2, self.ui.pushButton, self.ui.pushButton_8,
                        self.ui.pushButton_7, self.ui.pushButton_5, self.ui.pushButton_9, self.ui.pushButton_10,
                        self.ui.pushButton_11]
