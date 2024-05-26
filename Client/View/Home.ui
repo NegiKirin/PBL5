@@ -157,7 +157,7 @@ border-radius : 10px</string>
                    <string/>
                   </property>
                   <property name="pixmap">
-                   <pixmap>../pythonProject/PBL5/Client/View/Image/Fox.png</pixmap>
+                   <pixmap>Image/Fox.png</pixmap>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignCenter</set>
@@ -226,7 +226,7 @@ background-color:rgb(0,160,255);
                </property>
                <property name="icon">
                 <iconset>
-                 <normaloff>../pythonProject/PBL5/Client/View/Image/icons8-reduce-24.png</normaloff>../pythonProject/PBL5/Client/View/Image/icons8-reduce-24.png</iconset>
+                 <normaloff>Image/icons8-reduce-24.png</normaloff>Image/icons8-reduce-24.png</iconset>
                </property>
                <property name="iconSize">
                 <size>
@@ -259,7 +259,7 @@ background-color:rgb(0,160,255);
                </property>
                <property name="icon">
                 <iconset>
-                 <normaloff>../pythonProject/PBL5/Client/View/Image/icons8-maximize-window-50.png</normaloff>../pythonProject/PBL5/Client/View/Image/icons8-maximize-window-50.png</iconset>
+                 <normaloff>Image/icons8-restore-window-50.png</normaloff>Image/icons8-restore-window-50.png</iconset>
                </property>
                <property name="iconSize">
                 <size>
@@ -294,7 +294,7 @@ border-top-right-radius: 10px;
                </property>
                <property name="icon">
                 <iconset>
-                 <normaloff>../pythonProject/PBL5/Client/View/Image/icons8-close-window-50.png</normaloff>../pythonProject/PBL5/Client/View/Image/icons8-close-window-50.png</iconset>
+                 <normaloff>Image/icons8-close-window-50.png</normaloff>Image/icons8-close-window-50.png</iconset>
                </property>
                <property name="iconSize">
                 <size>
@@ -432,7 +432,7 @@ QPushButton:hover {
                   </property>
                   <property name="icon">
                    <iconset>
-                    <normaloff>../pythonProject/PBL5/Client/View/Image/icons8-home-30.png</normaloff>../pythonProject/PBL5/Client/View/Image/icons8-home-30.png</iconset>
+                    <normaloff>Image/icons8-home-30.png</normaloff>Image/icons8-home-30.png</iconset>
                   </property>
                   <property name="iconSize">
                    <size>
@@ -475,7 +475,7 @@ QPushButton:hover {
                   </property>
                   <property name="icon">
                    <iconset>
-                    <normaloff>../pythonProject/PBL5/Client/View/Image/icons8-account-50.png</normaloff>../pythonProject/PBL5/Client/View/Image/icons8-account-50.png</iconset>
+                    <normaloff>Image/icons8-account-50.png</normaloff>Image/icons8-account-50.png</iconset>
                   </property>
                   <property name="iconSize">
                    <size>
@@ -517,7 +517,7 @@ QPushButton:hover {
                   </property>
                   <property name="icon">
                    <iconset>
-                    <normaloff>../pythonProject/PBL5/Client/View/Image/icons8-video-camera-50.png</normaloff>../pythonProject/PBL5/Client/View/Image/icons8-video-camera-50.png</iconset>
+                    <normaloff>Image/icons8-video-camera-50.png</normaloff>Image/icons8-video-camera-50.png</iconset>
                   </property>
                   <property name="iconSize">
                    <size>
@@ -576,7 +576,7 @@ border-right : none
                    <string/>
                   </property>
                   <property name="pixmap">
-                   <pixmap>../pythonProject/PBL5/Client/View/Image/Ellipse 10.png</pixmap>
+                   <pixmap>Image/Ellipse 10.png</pixmap>
                   </property>
                   <property name="scaledContents">
                    <bool>true</bool>
@@ -599,7 +599,7 @@ border-right : none
 </string>
             </property>
             <property name="currentIndex">
-             <number>1</number>
+             <number>3</number>
             </property>
             <widget class="QWidget" name="page_learning">
              <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -653,7 +653,7 @@ border-right : none
                  </property>
                  <property name="icon">
                   <iconset>
-                   <normaloff>../pythonProject/PBL5/Client/View/Image/Group 4.png</normaloff>../pythonProject/PBL5/Client/View/Image/Group 4.png</iconset>
+                   <normaloff>Image/Group 4.png</normaloff>Image/Group 4.png</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -839,7 +839,7 @@ border-radius : 15px;
                              <string/>
                             </property>
                             <property name="pixmap">
-                             <pixmap>../pythonProject/PBL5/Client/View/Image/z5461290588979_692bf1a21a79b202b016a475ef95d80d.jpg</pixmap>
+                             <pixmap>Image/z5461290588979_692bf1a21a79b202b016a475ef95d80d.jpg</pixmap>
                             </property>
                             <property name="scaledContents">
                              <bool>true</bool>
@@ -975,7 +975,7 @@ color : rgb(255, 255, 255)</string>
                              <string/>
                             </property>
                             <property name="pixmap">
-                             <pixmap>../pythonProject/PBL5/Client/View/Image/z5461290588979_692bf1a21a79b202b016a475ef95d80d.jpg</pixmap>
+                             <pixmap>Image/z5461290588979_692bf1a21a79b202b016a475ef95d80d.jpg</pixmap>
                             </property>
                             <property name="scaledContents">
                              <bool>true</bool>
@@ -1033,7 +1033,7 @@ color : rgb(255, 255, 255)</string>
                                 <string/>
                                </property>
                                <property name="pixmap">
-                                <pixmap>../pythonProject/PBL5/Client/View/Image/Group 37.png</pixmap>
+                                <pixmap>Image/Group 37.png</pixmap>
                                </property>
                               </widget>
                              </item>
@@ -1153,7 +1153,7 @@ border-radius : 10px</string>
                            <string/>
                           </property>
                           <property name="pixmap">
-                           <pixmap>../pythonProject/PBL5/Client/View/Image/bi_volume-down-fill.png</pixmap>
+                           <pixmap>Image/bi_volume-down-fill.png</pixmap>
                           </property>
                          </widget>
                          <widget class="QSlider" name="horizontalSlider">
@@ -1342,7 +1342,7 @@ QPushButton:hover {
                  </property>
                  <property name="icon">
                   <iconset>
-                   <normaloff>../pythonProject/PBL5/Client/View/Image/Group 4.png</normaloff>../pythonProject/PBL5/Client/View/Image/Group 4.png</iconset>
+                   <normaloff>Image/Group 4.png</normaloff>Image/Group 4.png</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1838,7 +1838,7 @@ border-radius : 15px</string>
                                 <string/>
                                </property>
                                <property name="pixmap">
-                                <pixmap>../pythonProject/PBL5/Client/View/Image/startup--shop-rocket-launch-startup.png</pixmap>
+                                <pixmap>Image/startup--shop-rocket-launch-startup.png</pixmap>
                                </property>
                                <property name="alignment">
                                 <set>Qt::AlignCenter</set>
@@ -2225,7 +2225,7 @@ border-radius : 15px</string>
                              <string/>
                             </property>
                             <property name="pixmap">
-                             <pixmap>../pythonProject/PBL5/Client/View/Image/icons8-rank-48.png</pixmap>
+                             <pixmap>Image/icons8-rank-48.png</pixmap>
                             </property>
                             <property name="scaledContents">
                              <bool>true</bool>
@@ -2516,7 +2516,7 @@ border-radius:12px;}</string>
                             </property>
                             <property name="icon">
                              <iconset>
-                              <normaloff>../pythonProject/PBL5/Client/View/Image/Ellipse 11.png</normaloff>../pythonProject/PBL5/Client/View/Image/Ellipse 11.png</iconset>
+                              <normaloff>Image/Ellipse 11.png</normaloff>Image/Ellipse 11.png</iconset>
                             </property>
                             <property name="iconSize">
                              <size>
@@ -3203,7 +3203,7 @@ background-color : rgb(255, 255, 255)</string>
                        </property>
                        <property name="icon">
                         <iconset>
-                         <normaloff>../pythonProject/PBL5/Client/View/Image/Group 4.png</normaloff>../pythonProject/PBL5/Client/View/Image/Group 4.png</iconset>
+                         <normaloff>Image/Group 4.png</normaloff>Image/Group 4.png</iconset>
                        </property>
                        <property name="iconSize">
                         <size>
@@ -3249,6 +3249,62 @@ background-color : rgb(255, 255, 255)</string>
                     </size>
                    </property>
                    <layout class="QHBoxLayout" name="horizontalLayout_21">
+                    <item>
+                     <widget class="QWidget" name="widget_40" native="true">
+                      <layout class="QHBoxLayout" name="horizontalLayout_22">
+                       <item>
+                        <widget class="QLabel" name="label_3">
+                         <property name="text">
+                          <string>TextLabel</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_4">
+                         <property name="text">
+                          <string>TextLabel</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_13">
+                         <property name="text">
+                          <string>TextLabel</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_14">
+                         <property name="text">
+                          <string>TextLabel</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_16">
+                         <property name="text">
+                          <string>TextLabel</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
                     <item>
                      <spacer name="horizontalSpacer_12">
                       <property name="orientation">
@@ -3315,6 +3371,8 @@ border-radius:12px;}</string>
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="hello.qrc"/>
+ </resources>
  <connections/>
 </ui>

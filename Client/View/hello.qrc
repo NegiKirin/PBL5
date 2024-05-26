@@ -1,0 +1,31 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>Image/avatar.jpg</file>
+    <file>Image/bi_volume-down-fill.png</file>
+    <file>Image/class_diagram.jpg</file>
+    <file>Image/delete-1--remove-add-button-buttons-delete-cross-x-mathematics-multiply-math.png</file>
+    <file>Image/Ellipse 10.png</file>
+    <file>Image/Ellipse 11.png</file>
+    <file>Image/Fox.png</file>
+    <file>Image/Group 4.png</file>
+    <file>Image/Group 37.png</file>
+    <file>Image/Group 39.png</file>
+    <file>Image/icons8-account-50.png</file>
+    <file>Image/icons8-back-64.png</file>
+    <file>Image/icons8-close-window-50.png</file>
+    <file>Image/icons8-home-30.png</file>
+    <file>Image/icons8-maximize-window-50.png</file>
+    <file>Image/icons8-rank-48.png</file>
+    <file>Image/icons8-reduce-24.png</file>
+    <file>Image/icons8-reduce-50.png</file>
+    <file>Image/icons8-restore-window-50.png</file>
+    <file>Image/icons8-video-camera-50 (1).png</file>
+    <file>Image/icons8-video-camera-50.png</file>
+    <file>Image/Rectangle 1.png</file>
+    <file>Image/startup--shop-rocket-launch-startup.png</file>
+    <file>Image/Vector 4.png</file>
+    <file>Image/Vector 5.png</file>
+    <file>Image/Vector_2.png</file>
+    <file>Image/z5461290588979_692bf1a21a79b202b016a475ef95d80d.jpg</file>
+  </qresource>
+</RCC>
