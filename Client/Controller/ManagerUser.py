@@ -31,7 +31,7 @@ class ManagerUser(QMainWindow):
         self.ui.setupUi(self)
         self.setWindowFlag(Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
-        self.ui.btn_edit.clicked.connect(self.update_user)
+        self.ui.btn_edit.clicked.connect(self.Edit_Infor_User)
         self.ui.btn_home.clicked.connect(self.move_to_page_home)
         self.ui.btn_learning.clicked.connect(self.move_to_page_learning)
         self.ui.btn_profile.clicked.connect(self.move_to_page_profile)
