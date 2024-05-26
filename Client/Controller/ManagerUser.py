@@ -3,7 +3,7 @@ import logging
 from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtCore import Qt, QEvent
 from Client.Model.User import User
-from Client.View.Home import Home
+from Client.View.Home import Ui_MainWindow
 from PyQt5.QtWidgets import QMainWindow, QWidget, QDialog, QFileDialog
 
 # btn_max
@@ -20,14 +20,20 @@ from PyQt5.QtWidgets import QMainWindow, QWidget, QDialog, QFileDialog
        self.btn_maximize.setObjectName("btn_maximize")
 
        self.horizontalLayout_3.addWidget(self.btn_maximize)
-       '''''
+       icon1 = QtGui.QIcon()
+       icon1.addPixmap(QtGui.QPixmap("../Client/View/Image/icons8-maximize-window-50.png"),
+                        QtGui.QIcon.Normal, QtGui.QIcon.Off)
+       self.btn_maximize.setIcon(icon1)
+       self.btn_maximize.setIconSize(QtCore.QSize(23, 27))
+       self.btn_maximize.setVisible(False)
+    '''''
 
 
 class ManagerUser(QMainWindow):
     def __init__(self, sender=None):
         super().__init__()
         self.sender = sender
-        self.ui = Home()
+        self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.setWindowFlag(Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
@@ -40,31 +46,10 @@ class ManagerUser(QMainWindow):
         self.ui.pushButton_6.clicked.connect(self.back_to_home)
         self.ui.btn_back.clicked.connect(self.back_to_profile)
         self.ui.pushButton_3.clicked.connect(self.back_to_learning)
-        self.ui.btn_edit.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+
         self.ui.btn_substract.clicked.connect(self.window().showMinimized)
-        self.ui.btn_substract.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(
-            "../Client/View/Image/icons8-reduce-50.png"),
-            QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.ui.btn_substract.setIcon(icon)
-        self.ui.btn_substract.setIconSize(QtCore.QSize(23, 29))
 
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../Client/View/Image/icons8-restore-window-50.png"),
-                        QtGui.QIcon.Normal, QtGui.QIcon.Off)
-
-        self.ui.btn_pile_stack.setIcon(icon1)
-        self.ui.btn_pile_stack.setIconSize(QtCore.QSize(23, 27))
         self.ui.btn_pile_stack.clicked.connect(self.window().showNormal)
-        self.ui.btn_pile_stack.setVisible(False)
-        self.ui.btn_pile_stack.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.ui.btn_pile_stack.setVisible(False)
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../Client/View/Image/icons8-maximize-window-50.png"),
-                        QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.ui.btn_maximize.setIcon(icon1)
-        self.ui.btn_maximize.setIconSize(QtCore.QSize(23, 27))
 
         self.ui.btn_maximize.clicked.connect(self.window().showMaximized)
         self.ui.btn_maximize.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
@@ -137,11 +122,9 @@ class ManagerUser(QMainWindow):
         self.button = [self.ui.pushButton_4, self.ui.pushButton_2, self.ui.pushButton, self.ui.pushButton_8,
                        self.ui.pushButton_7, self.ui.pushButton_5, self.ui.pushButton_9, self.ui.pushButton_10,
                        self.ui.pushButton_11]
-        #for i in self.button:
-           # i.clicked.connect(self.show_video)
-        self.firstname = None
-        self.lastname = None
-        self.gender = None
+        for i in self.button:
+            i.clicked.connect(self.show_video)
+        self.username = None
         self.phone = None
         self.email = None
         self.avatar = None
@@ -161,6 +144,7 @@ class ManagerUser(QMainWindow):
         edit_phone = self.ui.lineEdit_11.text()
         edit_email = self.ui.lineEdit_12.text()
         self.sender.sendInforToEdit(edit_fullname, edit_phone)
+
     def back_to_home(self):
         user = User("minhvulqd2003@gmail.com", "12345")
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_profile)
@@ -191,7 +175,6 @@ class ManagerUser(QMainWindow):
         self.ui.btn_avatar.setIconSize(QtCore.QSize(60, 66))
         user.set_image(filename)
 
-
     def move_to_page_home(self):
         try:
             self.ui.stackedWidget.setCurrentWidget(self.ui.page_profile)
@@ -209,10 +192,10 @@ class ManagerUser(QMainWindow):
             print(f"An error occurred: {e}")
 
     def move_to_page_profile(self):
-         try:
-             self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
-         except Exception as e:
-             print(e)
+        try:
+            self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
+        except Exception as e:
+            print(e)
 
     def changeEvent(self, event):
         if event.type() == QEvent.Type.WindowStateChange:
@@ -238,15 +221,17 @@ class ManagerUser(QMainWindow):
             )
         super().mouseMoveEvent(event)
         event.accept()
+
     def receiveDataUser(self, data):
         self.username = data['user'].username
         self.phone = data['user'].phone
         # self.username = data['user'][0][2]
         # self.phone = data['user'][0][4]
         # self.test()
+
     def mouseReleaseEvent(self, event):
         self.initial_pos = None
         super().mouseReleaseEvent(event)
         event.accept()
 
-
+   
