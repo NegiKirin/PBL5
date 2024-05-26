@@ -1,3 +1,5 @@
+import logging
+
 from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtCore import Qt, QEvent
 from Client.Model.User import User
@@ -143,6 +145,8 @@ class ManagerUser(QMainWindow):
                        self.ui.pushButton_11]
         for i in self.button:
             i.clicked.connect(self.show_video)
+        self.username = None
+        self.phone = None
         # self.ui.btn_profile.clicked.connect(self.read_user)
 
     def back_to_profile(self):
@@ -151,6 +155,14 @@ class ManagerUser(QMainWindow):
     def back_to_learning(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_learning)
 
+    def Edit_Infor_User(self):
+        edit_fullname = self.ui.lineEdit.text()
+        edit_nickname = self.ui.lineEdit_2.text()
+        edit_gender = self.ui.lineEdit_3.text()
+        edit_firstname = self.ui.lineEdit_10.text()
+        edit_phone = self.ui.lineEdit_11.text()
+        edit_email = self.ui.lineEdit_12.text()
+        self.sender.sendInforToEdit(edit_fullname, edit_phone)
     def back_to_home(self):
         user = User("minhvulqd2003@gmail.com", "12345")
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_profile)
@@ -181,38 +193,28 @@ class ManagerUser(QMainWindow):
         self.ui.btn_avatar.setIconSize(QtCore.QSize(60, 66))
         user.set_image(filename)
 
-    def update_user(self):
-
-        email = self.ui.lineEdit_12.text()
-        fullname = self.ui.lineEdit.text()
-        nickname = self.ui.lineEdit_2.text()
-        phonenumber = self.ui.lineEdit_11.text()
-        gender = self.ui.lineEdit_3.text()
-        firtstName = self.ui.lineEdit_10.text()
-
-        user = User('minhvulqd2003@gmail.com', '12345')
-        user.set_firstName(firtstName)
-        user.set_email(email)
-        user.set_gender(gender)
-        user.set_fullname(fullname)
-        user.set_nickname(nickname)
-        user.set_phoneNumbers(phonenumber)
 
     def move_to_page_home(self):
-        self.ui.stackedWidget.setCurrentWidget(self.ui.page_profile)
+        try:
+            self.ui.stackedWidget.setCurrentWidget(self.ui.page_profile)
+            # self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
+        except Exception as e:
+            logging.error("An error occurred", exc_info=True)
+            print(e)
 
     def move_to_page_learning(self):
-        self.ui.stackedWidget.setCurrentWidget(self.ui.page_learning)
+        try:
+            # self.ui.lineEdit.setText(str(self.username))
+            # self.ui.lineEdit_11.setText(str(self.phone))
+            self.ui.stackedWidget.setCurrentWidget(self.ui.page_learning)
+        except Exception as e:
+            print(f"An error occurred: {e}")
 
     def move_to_page_profile(self):
-        self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
-        user = User('minhvulqd2003@gmail.com', '12345')
-        self.ui.lineEdit.setText(user.fullname)
-        self.ui.lineEdit_2.setText(user.nickname)
-        self.ui.lineEdit_3.setText(user.gender)
-        self.ui.lineEdit_10.setText(user.firstName)
-        self.ui.lineEdit_11.setText(user.phoneNumbers)
-        self.ui.lineEdit_12.setText(user.email)
+         try:
+             self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
+         except Exception as e:
+             print(e)
 
     def changeEvent(self, event):
         if event.type() == QEvent.Type.WindowStateChange:
@@ -238,8 +240,22 @@ class ManagerUser(QMainWindow):
             )
         super().mouseMoveEvent(event)
         event.accept()
-
+    def receiveDataUser(self, data):
+        self.username = data['user'].username
+        self.phone = data['user'].phone
+        # self.username = data['user'][0][2]
+        # self.phone = data['user'][0][4]
+        # self.test()
     def mouseReleaseEvent(self, event):
         self.initial_pos = None
         super().mouseReleaseEvent(event)
         event.accept()
+
+    def Edit_Infor_User(self):
+        edit_fullname = self.ui.lineEdit.text()
+        edit_nickname = self.ui.lineEdit_2.text()
+        edit_gender = self.ui.lineEdit_3.text()
+        edit_firstname = self.ui.lineEdit_10.text()
+        edit_phone = self.ui.lineEdit_11.text()
+        edit_email = self.ui.lineEdit_12.text()
+        self.sender.sendInforToEdit(edit_fullname, edit_phone)
