@@ -33,7 +33,7 @@ class Client():
     #     self.soc.connect(server_address)
     def __init__(self):
         self.soc = None
-        self.host = "172.26.206.127"
+        self.host = "localhost"
         self.port = 9999
 
         self.create_socket()
@@ -47,6 +47,8 @@ class Client():
         app = QApplication(sys.argv)
         self.controller = Controller(self.sender)
         self.controller.controllerLogin.show()
+        self.controller.managerUser.show()
+        self.controller.managerUser.hide()
         self.receiver = Receiver(self.soc, self.sender, self.controller)
         # self.detector.load_data()
         # t1 = threading.Thread(target=self.detector.face_detection, args=[main_win])
