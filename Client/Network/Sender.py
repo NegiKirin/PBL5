@@ -47,6 +47,23 @@ class Sender:
             data = pickle.dumps(data)
             data = bytes(f'{command:<{COMMANDSIZE}}', 'utf-8') + bytes(f"{len(data):<{HEADERSIZE}}", 'utf-8') + data
             self.socket.sendall(data)
+            print("send succeed")
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def sendInforToEdit(self,username,phone):
+        try:
+            command = Command.SEND_SERVER_EDIT.value
+            data = {
+                'username': username,
+                'phone': phone,
+            }
+            data = pickle.dumps(data)
+            data = bytes(f'{command:<{COMMANDSIZE}}', 'utf-8') + bytes(f"{len(data):<{HEADERSIZE}}", 'utf-8') + data
+            self.socket.sendall(data)
+            print("send succeed")
             return True
         except Exception as e:
             print(e)

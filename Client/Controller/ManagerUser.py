@@ -1,3 +1,5 @@
+import logging
+logging.basicConfig(level=logging.DEBUG)
 from PyQt5 import QtCore
 from PyQt5.QtCore import Qt, QEvent
 from Client.Model import User
@@ -6,41 +8,65 @@ from PyQt5.QtWidgets import QMainWindow
 
 
 class ManagerUser(QMainWindow):
-    def __init__(self):
+    def __init__(self,sender = None):
         super().__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.setWindowFlag(Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
-        self.ui.btn_edit.clicked.connect(self.update_user)
         self.ui.btn_home.clicked.connect(self.move_to_page_home)
         self.ui.btn_learning.clicked.connect(self.move_to_page_learning)
+        self.ui.btn_edit.clicked.connect(self.Edit_Infor_User)
         self.ui.btn_profile.clicked.connect(self.move_to_page_profile)
         self.ui.horizontalSlider.valueChanged.connect(self.change_Volume)
         self.ui.btn_exit.clicked.connect(self.exit)
+        self.username = None
+        self.phone = None
+        self.sender = sender
+
 
 
     def change_Volume(self):
         pass
 
-    def update_user(self):
-        email = self.ui.lineEdit_12.text()
-        fullname = self.ui.lineEdit.text()
-        nickname = self.ui.lineEdit_2.text()
-        phonenumber = self.ui.lineEdit_11.text()
-        gender = self.ui.lineEdit_3.text()
-        age = self.ui.lineEdit_10.text()
-        user = User(email, fullname, nickname, phonenumber, gender, age)
+    def receiveDataUser(self, data):
+        self.username = data['user'].username
+        self.phone = data['user'].phone
+        # self.username = data['user'][0][2]
+        # self.phone = data['user'][0][4]
+        # self.test()
+
+    def Edit_Infor_User(self):
+        edit_fullname = self.ui.lineEdit.text()
+        edit_nickname = self.ui.lineEdit_2.text()
+        edit_gender = self.ui.lineEdit_3.text()
+        edit_firstname = self.ui.lineEdit_10.text()
+        edit_phone = self.ui.lineEdit_11.text()
+        edit_email = self.ui.lineEdit_12.text()
+        self.sender.sendInforToEdit(edit_fullname,edit_phone)
+
+
 
     def move_to_page_home(self):
-        self.ui.stackedWidget.setCurrentWidget(self.ui.page_learning)
-
+        try:
+            self.ui.stackedWidget.setCurrentWidget(self.ui.page_learning)
+            # self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
+        except Exception as e:
+            logging.error("An error occurred", exc_info=True)
+            print(e)
     def move_to_page_learning(self):
-        self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
+        try:
+            # self.ui.lineEdit.setText(str(self.username))
+            # self.ui.lineEdit_11.setText(str(self.phone))
+            self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
+        except Exception as e:
+            print(f"An error occurred: {e}")
 
     def move_to_page_profile(self):
-        self.ui.stackedWidget.setCurrentWidget(self.ui.page_profile)
-
+        try:
+            self.ui.stackedWidget.setCurrentWidget(self.ui.page_profile)
+        except Exception as e:
+            print(e)
     def changeEvent(self, event):
         if event.type() == QEvent.Type.WindowStateChange:
             self.window_state_changed(self.windowState())

@@ -21,12 +21,16 @@ class ControllerLogin(QMainWindow):
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
         self.uic.label_10.hide()
+        self.uic.label_11.hide()
+        self.uic.label_12.hide()
+
         # change page login
         self.uic.btn_login.clicked.connect(self.show_login)
         # close window
         self.uic.btn_exit.clicked.connect(self.closeEvent)
         #checklogin
         self.uic.btn_signIn.clicked.connect(self.Check_Login)
+        self.uic.btn_register.clicked.connect(self.SendInforRegister)
 
     def show_register(self):
         self.uic.stackedWidget.setCurrentWidget(self.uic.page_2)
@@ -46,13 +50,13 @@ class ControllerLogin(QMainWindow):
         self.sender.sendUsernameAndPassword(username, password)
         print("sendSucced")
     def SendInforRegister(self):
-        username = self.uic.LEdit_email_signin.text()
-        password = self.uic.LEdit_password_signin.text()
+        username = self.uic.LEdit_email_register.text()
+        password = self.uic.LEdit_password_register.text()
         confirm_password = self.uic.LEdit_confirm.text()
         phone = self.uic.LEdit_phone.text()
         if confirm_password != password:
-            self.uic.label_11.setText("confirm_password error is not same password")
-            self.uic.label_11.show()
+            self.uic.label_12.setText("confirm_password error is not same password")
+            self.uic.label_12.show()
         else:
             self.sender.sendInforRegister(username, password, phone)
 

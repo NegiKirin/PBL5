@@ -46,7 +46,7 @@ class Server:
         self.soc = None
         self.soc_UDP = None
         self.face_names = []
-        self.host = "192.168.1.6"
+        self.host = "172.26.206.127"
         self.port = 9999
 
         self.create_socket()

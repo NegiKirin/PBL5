@@ -5,4 +5,4 @@ class Controller:
     def __init__(self, sender):
         self.sender = sender
         self.controllerLogin = ControllerLogin(self.sender)
-        self.managerUser = ManagerUser()
+        self.managerUser = ManagerUser(self.sender)
