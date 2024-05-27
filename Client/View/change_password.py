@@ -15,7 +15,7 @@ from PyQt5.QtWidgets import QMainWindow
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(454, 709)
+        MainWindow.resize(454, 708)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.centralwidget)
@@ -63,7 +63,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.label = QtWidgets.QLabel(self.page_1)
         self.label.setMinimumSize(QtCore.QSize(0, 50))
-        self.label.setMaximumSize(QtCore.QSize(300, 50))
+        self.label.setMaximumSize(QtCore.QSize(100, 50))
         font = QtGui.QFont()
         font.setPointSize(20)
         font.setBold(True)
@@ -272,10 +272,10 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.btn_change.setFont(font)
         self.btn_change.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.btn_change.setStyleSheet("#btn_change{background-color: rgb(0, 0, 112);\n"
+        self.btn_change.setStyleSheet("#btn_register{background-color: rgb(0, 0, 112);\n"
                                       "border-radius : 10px;\n"
                                       "color :rgb(255, 255, 255);}\n"
-                                      "#btn_change:hover{\n"
+                                      "#btn_register:hover{\n"
                                       "background-color:rgb(0, 0, 59)\n"
                                       "}")
         self.btn_change.setObjectName("btn_change")
@@ -300,7 +300,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label.setText(_translate("MainWindow", "Chane Password"))
+        self.label.setText(_translate("MainWindow", "Login"))
         self.label_2.setText(_translate("MainWindow", "Email"))
         self.LEdit_email_signin.setPlaceholderText(_translate("MainWindow", "username@gmail.com"))
         self.label_3.setText(_translate("MainWindow", "Password"))
@@ -311,17 +311,16 @@ class Ui_MainWindow(object):
         self.btn_change_page.setText(_translate("MainWindow", "Register for free"))
         self.label_5.setText(_translate("MainWindow", "Change Password"))
         self.label_6.setText(_translate("MainWindow", "Current Password"))
-        self.LEdit_email_register.setPlaceholderText(_translate("MainWindow", "Current Password"))
+        self.LEdit_email_register.setPlaceholderText(_translate("MainWindow", "Username@gmail.com"))
         self.label_7.setText(_translate("MainWindow", "New Password"))
-        self.LEdit_password_register.setPlaceholderText(_translate("MainWindow", "New Password"))
-        self.label_8.setText(_translate("MainWindow", "Re-Confirm New Password"))
-        self.LEdit_confirm.setPlaceholderText(_translate("MainWindow", "Re-Confirm New Password"))
-        self.btn_change.setText(_translate("MainWindow", "Change"))
+        self.LEdit_password_register.setPlaceholderText(_translate("MainWindow", "Password"))
+        self.label_8.setText(_translate("MainWindow", "Re-cofirm Password"))
+        self.LEdit_confirm.setPlaceholderText(_translate("MainWindow", "Confirm Password"))
+        self.btn_change.setText(_translate("MainWindow", "Change "))
 
 
 class window(QMainWindow):
     def __init__(self):
-
         super().__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)

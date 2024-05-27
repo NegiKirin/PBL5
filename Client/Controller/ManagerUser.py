@@ -33,6 +33,7 @@ from Client.View.change_password import window
 class ManagerUser(QMainWindow):
     def __init__(self, sender=None):
         super().__init__()
+        self.w = None
         self.sender = sender
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
@@ -42,11 +43,14 @@ class ManagerUser(QMainWindow):
         self.ui.btn_home.clicked.connect(self.move_to_page_home)
         self.ui.btn_learning.clicked.connect(self.move_to_page_learning)
         self.ui.btn_profile.clicked.connect(self.move_to_page_profile)
+        self.ui.pushButton_6.clicked.connect(self.show_page)
+
         self.ui.btn_avatar.clicked.connect(self.upload_image)
         self.ui.btn_exit.clicked.connect(self.exit)
-        self.ui.pushButton_6.clicked.connect(self.back_to_home)
+        self.ui.pushButton_14.clicked.connect(self.back_to_home)
         self.ui.btn_back.clicked.connect(self.back_to_profile)
         self.ui.pushButton_3.clicked.connect(self.back_to_manangement)
+        self.ui.pushButton_12.clicked.connect(self.back_to_learning)
 
         self.ui.btn_substract.clicked.connect(self.window().showMinimized)
 
@@ -54,7 +58,7 @@ class ManagerUser(QMainWindow):
 
         self.ui.btn_maximize.clicked.connect(self.window().showMaximized)
 
-        self.ui.btn_back_2.clicked.connect(self.back_to_learning)
+
 
 
 
@@ -66,7 +70,7 @@ class ManagerUser(QMainWindow):
 
         # self.ui.btn_profile.clicked.connect(self.read_user)
         self.ui.pushButton_13.clicked.connect(self.show_change_password)
-        self.ui.pushButton_14.clicked.connect(self.show_page)
+
 
     def back_to_manangement(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page)
@@ -75,8 +79,8 @@ class ManagerUser(QMainWindow):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page)
 
     def show_change_password(self):
-        w = window()
-        w.show()
+        self.w = window()
+        self.w.show()
 
     def back_to_profile(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
@@ -94,12 +98,9 @@ class ManagerUser(QMainWindow):
         self.sender.sendInforToEdit(edit_fullname, edit_phone)
 
     def back_to_home(self):
-        user = User("minhvulqd2003@gmail.com", "12345")
+        #user = User("minhvulqd2003@gmail.com", "12345")
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_profile)
-        lst = user.get_stack_word()
 
-        for i in range(len(lst)):
-            self.button[i].setText(lst[i])
 
     def exit(self):
         # os.system(cmd)
@@ -114,14 +115,13 @@ class ManagerUser(QMainWindow):
             self.ui.btn_pile_stack.setVisible(False)
 
     def upload_image(self):
-        user = User('minhvulqd2003@gmail.com', '12345')
 
         filename, _ = QFileDialog.getOpenFileName(self, "Open Image")
         icon7 = QtGui.QIcon()
         icon7.addPixmap(QtGui.QPixmap(filename), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.ui.btn_avatar.setIcon(icon7)
         self.ui.btn_avatar.setIconSize(QtCore.QSize(60, 66))
-        user.set_image(filename)
+
 
     def move_to_page_home(self):
         try:

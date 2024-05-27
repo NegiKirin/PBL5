@@ -528,6 +528,48 @@ QPushButton:hover {
                  </widget>
                 </item>
                 <item>
+                 <widget class="QPushButton" name="pushButton_6">
+                  <property name="minimumSize">
+                   <size>
+                    <width>50</width>
+                    <height>50</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>41</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">#pushButton_6{
+border-radius : 15px;
+border-right : none
+
+}
+#pushButton_6:hover {
+                background-color: rgb(117, 129, 143); 
+            }</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset>
+                    <normaloff>Image/icons8-management-50.png</normaloff>Image/icons8-management-50.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>40</width>
+                    <height>35</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+                <item>
                  <spacer name="verticalSpacer_2">
                   <property name="orientation">
                    <enum>Qt::Vertical</enum>
@@ -599,7 +641,7 @@ border-right : none
 </string>
             </property>
             <property name="currentIndex">
-             <number>3</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="page_learning">
              <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -2365,35 +2407,6 @@ border-radius : 15px</string>
                        <string notr="true">background-color: rgba(255, 255, 255, 0)
 </string>
                       </property>
-                      <widget class="QPushButton" name="pushButton_6">
-                       <property name="geometry">
-                        <rect>
-                         <x>40</x>
-                         <y>0</y>
-                         <width>30</width>
-                         <height>30</height>
-                        </rect>
-                       </property>
-                       <property name="cursor">
-                        <cursorShape>PointingHandCursor</cursorShape>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true"/>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                       <property name="icon">
-                        <iconset>
-                         <normaloff>../pythonProject/PBL5/Client/View/Image/Group 4.png</normaloff>../pythonProject/PBL5/Client/View/Image/Group 4.png</iconset>
-                       </property>
-                       <property name="iconSize">
-                        <size>
-                         <width>30</width>
-                         <height>30</height>
-                        </size>
-                       </property>
-                      </widget>
                       <widget class="QLabel" name="label_105">
                        <property name="geometry">
                         <rect>
@@ -2415,6 +2428,35 @@ border-radius : 15px</string>
                        </property>
                        <property name="text">
                         <string>Profile</string>
+                       </property>
+                      </widget>
+                      <widget class="QPushButton" name="pushButton_14">
+                       <property name="geometry">
+                        <rect>
+                         <x>40</x>
+                         <y>0</y>
+                         <width>30</width>
+                         <height>30</height>
+                        </rect>
+                       </property>
+                       <property name="cursor">
+                        <cursorShape>PointingHandCursor</cursorShape>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true"/>
+                       </property>
+                       <property name="text">
+                        <string/>
+                       </property>
+                       <property name="icon">
+                        <iconset>
+                         <normaloff>Image/Group 4.png</normaloff>Image/Group 4.png</iconset>
+                       </property>
+                       <property name="iconSize">
+                        <size>
+                         <width>30</width>
+                         <height>30</height>
+                        </size>
                        </property>
                       </widget>
                      </widget>
@@ -2716,7 +2758,7 @@ border-radius:9px;</string>
                                          </font>
                                         </property>
                                         <property name="text">
-                                         <string>Full Name</string>
+                                         <string>Last Name</string>
                                         </property>
                                        </widget>
                                       </item>
@@ -2740,7 +2782,7 @@ background-color : rgb(255, 255, 255);
 padding-left:18px;</string>
                                         </property>
                                         <property name="placeholderText">
-                                         <string>Your Full Name</string>
+                                         <string>Your Last Name</string>
                                         </property>
                                        </widget>
                                       </item>
@@ -2777,7 +2819,7 @@ padding-left:18px;</string>
                                          </font>
                                         </property>
                                         <property name="text">
-                                         <string>Nick Name</string>
+                                         <string>First Name</string>
                                         </property>
                                        </widget>
                                       </item>
@@ -2797,13 +2839,14 @@ padding-left:18px;</string>
                                         </property>
                                         <property name="styleSheet">
                                          <string notr="true">border-radius:8px;
-background-color : rgb(255, 255, 255)</string>
+background-color : rgb(255, 255, 255);
+padding-left:18px;</string>
                                         </property>
                                         <property name="maxLength">
                                          <number>32761</number>
                                         </property>
                                         <property name="placeholderText">
-                                         <string>    Your Nick Name</string>
+                                         <string>Yout First Name</string>
                                         </property>
                                         <property name="clearButtonEnabled">
                                          <bool>false</bool>
@@ -2905,7 +2948,7 @@ background-color :rgb(255, 255, 255)</string>
                                          </font>
                                         </property>
                                         <property name="text">
-                                         <string>First Name</string>
+                                         <string>Phone Numbers</string>
                                         </property>
                                        </widget>
                                       </item>
@@ -2919,10 +2962,11 @@ background-color :rgb(255, 255, 255)</string>
                                         </property>
                                         <property name="styleSheet">
                                          <string notr="true">border-radius:8px;
-background-color : rgb(255, 255, 255)</string>
+background-color : rgb(255, 255, 255);
+padding-left:18px;</string>
                                         </property>
                                         <property name="placeholderText">
-                                         <string>    Your First Name</string>
+                                         <string>Your Phone Numbers</string>
                                         </property>
                                        </widget>
                                       </item>
@@ -2967,7 +3011,7 @@ background-color : rgb(255, 255, 255)</string>
                                          </font>
                                         </property>
                                         <property name="text">
-                                         <string>Phone numbers</string>
+                                         <string>Email</string>
                                         </property>
                                        </widget>
                                       </item>
@@ -2984,7 +3028,7 @@ background-color : rgb(255, 255, 255)</string>
 background-color : rgb(255, 255, 255)</string>
                                         </property>
                                         <property name="placeholderText">
-                                         <string>    Your phone numbers</string>
+                                         <string>    Your Email</string>
                                         </property>
                                        </widget>
                                       </item>
@@ -3012,33 +3056,25 @@ background-color : rgb(255, 255, 255)</string>
                                        <height>0</height>
                                       </size>
                                      </property>
-                                     <layout class="QVBoxLayout" name="verticalLayout_29">
+                                     <layout class="QHBoxLayout" name="horizontalLayout_22">
                                       <item>
-                                       <widget class="QLabel" name="label_15">
-                                        <property name="font">
-                                         <font>
-                                          <pointsize>10</pointsize>
-                                         </font>
-                                        </property>
-                                        <property name="text">
-                                         <string>Email</string>
-                                        </property>
-                                       </widget>
-                                      </item>
-                                      <item>
-                                       <widget class="QLineEdit" name="lineEdit_12">
-                                        <property name="minimumSize">
+                                       <widget class="QPushButton" name="pushButton_13">
+                                        <property name="maximumSize">
                                          <size>
-                                          <width>0</width>
-                                          <height>38</height>
+                                          <width>103</width>
+                                          <height>36</height>
                                          </size>
                                         </property>
-                                        <property name="styleSheet">
-                                         <string notr="true">border-radius:8px;
-background-color : rgb(255, 255, 255)</string>
+                                        <property name="cursor">
+                                         <cursorShape>PointingHandCursor</cursorShape>
                                         </property>
-                                        <property name="placeholderText">
-                                         <string>    Your Email</string>
+                                        <property name="styleSheet">
+                                         <string notr="true">background-color: rgb(65, 130, 249);
+color: rgb(255, 255, 255);
+border-radius:9px;</string>
+                                        </property>
+                                        <property name="text">
+                                         <string>Change Password</string>
                                         </property>
                                        </widget>
                                       </item>
@@ -3194,6 +3230,9 @@ background-color : rgb(255, 255, 255)</string>
                          <width>30</width>
                          <height>30</height>
                         </rect>
+                       </property>
+                       <property name="cursor">
+                        <cursorShape>PointingHandCursor</cursorShape>
                        </property>
                        <property name="styleSheet">
                         <string notr="true"/>
