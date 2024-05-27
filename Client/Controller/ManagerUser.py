@@ -5,7 +5,7 @@ from PyQt5.QtCore import Qt, QEvent
 from PBL5.Client.Model.User import User
 from PBL5.Client.View.Home import Ui_MainWindow
 from PyQt5.QtWidgets import QMainWindow, QWidget, QDialog, QFileDialog
-from PBL5.Client.View.test_change_password import window
+from PBL5.Client.View.change_password import window
 
 # btn_max
 ''''
