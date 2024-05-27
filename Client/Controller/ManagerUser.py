@@ -2,9 +2,10 @@ import logging
 
 from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtCore import Qt, QEvent
-from Client.Model.User import User
-from Client.View.Home import Ui_MainWindow
+from PBL5.Client.Model.User import User
+from PBL5.Client.View.Home import Ui_MainWindow
 from PyQt5.QtWidgets import QMainWindow, QWidget, QDialog, QFileDialog
+from PBL5.Client.View.test_change_password import window
 
 # btn_max
 ''''
@@ -45,17 +46,30 @@ class ManagerUser(QMainWindow):
         self.ui.btn_exit.clicked.connect(self.exit)
         self.ui.pushButton_6.clicked.connect(self.back_to_home)
         self.ui.btn_back.clicked.connect(self.back_to_profile)
-        self.ui.pushButton_3.clicked.connect(self.back_to_learning)
+        self.ui.pushButton_3.clicked.connect(self.back_to_manangement)
 
         self.ui.btn_substract.clicked.connect(self.window().showMinimized)
 
         self.ui.btn_pile_stack.clicked.connect(self.window().showNormal)
 
         self.ui.btn_maximize.clicked.connect(self.window().showMaximized)
-
+        self.ui.btn_back_2.clicked.connect(self.back_to_learning)
         self.username = None
         self.phone = None
+
         # self.ui.btn_profile.clicked.connect(self.read_user)
+        self.ui.pushButton_13.clicked.connect(self.show_change_password)
+        self.ui.pushButton_14.clicked.connect(self.show_page)
+
+    def back_to_manange(self):
+        self.ui.stackedWidget.setCurrentWidget(self.ui.page)
+
+    def show_page(self):
+        self.ui.stackedWidget.setCurrentWidget(self.ui.page)
+
+    def show_change_password(self):
+        w = window()
+        w.show()
 
     def back_to_profile(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
