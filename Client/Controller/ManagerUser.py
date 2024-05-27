@@ -68,7 +68,7 @@ class ManagerUser(QMainWindow):
         self.ui.pushButton_13.clicked.connect(self.show_change_password)
         self.ui.pushButton_14.clicked.connect(self.show_page)
 
-    def back_to_manange(self):
+    def back_to_manangement(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page)
 
     def show_page(self):

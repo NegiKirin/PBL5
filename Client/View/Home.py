@@ -1244,7 +1244,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout.addWidget(self.widget)
         MainWindow.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(MainWindow)
+
         self.stackedWidget.setCurrentIndex(3)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -1369,6 +1369,7 @@ class Ui_MainWindow(object):
         self.listWidget.addItem(self.newItem)
         self.listWidget.setItemWidget(self.newItem, self.widget__1)
 
+        self.retranslateUi(MainWindow)
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
