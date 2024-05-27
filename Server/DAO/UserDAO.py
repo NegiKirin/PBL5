@@ -9,14 +9,14 @@ class UserDAO:
 
     def findByUsernameAndPassword(self, dic):
         try:
-            sql = 'SELECT * FROM account WHERE username = %s AND password = %s'
+            sql = 'SELECT * FROM user WHERE username = %s AND password = %s'
             self.myCursor.execute(sql, [dic['username'], dic['password']])
             result = self.myCursor.fetchall()
             # item = result[0]
             user = []
             # user = User(item[0], item[1], item[2])
             for item in result:
-                user = User(item[0], item[1], item[2],item[3],item[4],item[5],item[6])
+                user = User(item[0], item[1], item[2],item[3],item[4],item[5],item[6],item[7],item[8],item[9])
             return user
         except Exception as e:
             print(e)
@@ -24,17 +24,17 @@ class UserDAO:
 
     def insertNewUser(self,dic):
         try:
-            sql_check_username = 'SELECT * FROM account WHERE username = %s'
+            sql_check_username = 'SELECT * FROM user WHERE username = %s'
             self.myCursor.execute(sql_check_username, [dic['username']])
             result = self.myCursor.fetchall()
             if result == []:
-                sql = 'INSERT INTO account (username, password,phone) VALUES ( %s, %s, %s)'
+                sql = 'INSERT INTO user (username, password,phone,id_role) VALUES ( %s, %s, %s,1)'
                 self.myCursor.execute(sql, [dic['username'],dic['password'], dic['phone']])
                 self.connect.commit()
-                get_Infor = 'SELECT * FROM account WHERE username = %s'
+                get_Infor = 'SELECT * FROM user WHERE username = %s'
                 self.myCursor.execute(get_Infor, [dic['username']])
                 result = self.myCursor.fetchall()
-                user = User(result[0][0],result[0][1],result[0][2],result[0][3],result[0][4],result[0][5],result[0][6])
+                user = User(result[0][0],result[0][1],result[0][2],result[0][3],result[0][4],result[0][5],result[0][6],result[0][7],result[0][8],result[0][9])
                 print(user)
                 return user
             else:
@@ -45,7 +45,7 @@ class UserDAO:
 
     def UpdateUser(self,dic):
         try:
-            sql = 'UPDATE account SET username = %s, phone = %s'
+            sql = 'UPDATE user SET username = %s, phone = %s'
             self.myCursor.execute(sql, [dic['username'],dic['phone']])
             self.connect.commit()
         except Exception as e:

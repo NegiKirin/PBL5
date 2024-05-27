@@ -1,12 +1,15 @@
 class User:
-    def __init__(self, id, name, username, password, phone, email, image):
+    def __init__(self, id, lastname, firstname, email, username, password, gender, id_role, avatar,phone):
         self.id = id
-        self.name = name
+        self.lastname = lastname
+        self.firstname = firstname
+        self.email = email
         self.username = username
         self.password = password
+        self.gender = gender
+        self.id_role = id_role
+        self.avatar = avatar
         self.phone = phone
-        self.email = email
-        self.image = image
 
     def __str__(self):
         return self.name

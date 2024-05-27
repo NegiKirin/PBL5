@@ -53,9 +53,16 @@ class ManagerUser(QMainWindow):
         self.ui.btn_pile_stack.clicked.connect(self.window().showNormal)
 
         self.ui.btn_maximize.clicked.connect(self.window().showMaximized)
+
         self.ui.btn_back_2.clicked.connect(self.back_to_learning)
+
+
+
+
         self.username = None
         self.phone = None
+        self.email = None
+        self.avatar = None
 
         # self.ui.btn_profile.clicked.connect(self.read_user)
         self.ui.pushButton_13.clicked.connect(self.show_change_password)
@@ -174,3 +181,5 @@ class ManagerUser(QMainWindow):
         self.initial_pos = None
         super().mouseReleaseEvent(event)
         event.accept()
+
+   
