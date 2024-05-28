@@ -641,7 +641,7 @@ border-right : none
 </string>
             </property>
             <property name="currentIndex">
-             <number>1</number>
+             <number>2</number>
             </property>
             <widget class="QWidget" name="page_learning">
              <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -2908,10 +2908,12 @@ padding-left:18px;</string>
                                         </property>
                                         <property name="styleSheet">
                                          <string notr="true">border-radius:8px;
-background-color :rgb(255, 255, 255)</string>
+background-color :rgb(255, 255, 255);
+padding-left:18px;
+</string>
                                         </property>
                                         <property name="placeholderText">
-                                         <string>    Your Gender</string>
+                                         <string>Your Gender</string>
                                         </property>
                                        </widget>
                                       </item>
@@ -3025,10 +3027,11 @@ padding-left:18px;</string>
                                         </property>
                                         <property name="styleSheet">
                                          <string notr="true">border-radius:8px;
-background-color : rgb(255, 255, 255)</string>
+background-color : rgb(255, 255, 255);
+padding-left:18px;</string>
                                         </property>
                                         <property name="placeholderText">
-                                         <string>    Your Email</string>
+                                         <string>Your Email</string>
                                         </property>
                                        </widget>
                                       </item>
@@ -3061,8 +3064,8 @@ background-color : rgb(255, 255, 255)</string>
                                        <widget class="QPushButton" name="pushButton_13">
                                         <property name="maximumSize">
                                          <size>
-                                          <width>103</width>
-                                          <height>36</height>
+                                          <width>114</width>
+                                          <height>37</height>
                                          </size>
                                         </property>
                                         <property name="cursor">

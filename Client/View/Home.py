@@ -115,6 +115,7 @@ class Ui_MainWindow(object):
         self.btn_pile_stack.setIconSize(QtCore.QSize(23, 27))
         self.btn_pile_stack.setObjectName("btn_pile_stack")
         self.horizontalLayout_3.addWidget(self.btn_pile_stack)
+        self.btn_pile_stack.setVisible(False)
         self.btn_maximize = QtWidgets.QPushButton(self.widget_4)
         self.btn_maximize.setMinimumSize(QtCore.QSize(50, 50))
         self.btn_maximize.setStyleSheet("background-color: rgba(255, 255, 255, 0);\n"
@@ -132,7 +133,8 @@ class Ui_MainWindow(object):
                         QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_maximize.setIcon(icon1)
         self.btn_maximize.setIconSize(QtCore.QSize(23, 27))
-        self.btn_maximize.setVisible(False)
+        self.btn_maximize.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+
         self.btn_exit = QtWidgets.QPushButton(self.widget_4)
         self.btn_exit.setMinimumSize(QtCore.QSize(50, 50))
         self.btn_exit.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
@@ -1008,6 +1010,7 @@ class Ui_MainWindow(object):
         self.widget_29 = QtWidgets.QWidget(self.widget_27)
         self.widget_29.setMinimumSize(QtCore.QSize(0, 200))
         self.widget_29.setObjectName("widget_29")
+        self.widget_29.setStyleSheet("font: 12pt MS Shell Dlg 2;")
         self.verticalLayout_13 = QtWidgets.QVBoxLayout(self.widget_29)
         self.verticalLayout_13.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_13.setSpacing(0)
@@ -1093,7 +1096,8 @@ class Ui_MainWindow(object):
         self.lineEdit_3 = QtWidgets.QLineEdit(self.widget_35)
         self.lineEdit_3.setMinimumSize(QtCore.QSize(0, 38))
         self.lineEdit_3.setStyleSheet("border-radius:8px;\n"
-                                      "background-color :rgb(255, 255, 255)")
+                                      "background-color :rgb(255, 255, 255);\n"
+                                      "padding-left:18px;\n")
         self.lineEdit_3.setObjectName("lineEdit_3")
         self.verticalLayout_26.addWidget(self.lineEdit_3)
         self.horizontalLayout_16.addWidget(self.widget_35)
@@ -1139,7 +1143,8 @@ class Ui_MainWindow(object):
         self.lineEdit_11 = QtWidgets.QLineEdit(self.widget_38)
         self.lineEdit_11.setMinimumSize(QtCore.QSize(0, 38))
         self.lineEdit_11.setStyleSheet("border-radius:8px;\n"
-                                       "background-color : rgb(255, 255, 255)")
+                                       "background-color : rgb(255, 255, 255);\n"
+                                       "padding-left:18px;\n")
         self.lineEdit_11.setObjectName("lineEdit_11")
         self.verticalLayout_28.addWidget(self.lineEdit_11)
         self.horizontalLayout_17.addWidget(self.widget_38)
@@ -1151,7 +1156,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_22 = QtWidgets.QHBoxLayout(self.widget_39)
         self.horizontalLayout_22.setObjectName("horizontalLayout_22")
         self.pushButton_13 = QtWidgets.QPushButton(self.widget_39)
-        self.pushButton_13.setMaximumSize(QtCore.QSize(103, 36))
+        self.pushButton_13.setMaximumSize(QtCore.QSize(154, 37))
         self.pushButton_13.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.pushButton_13.setStyleSheet("background-color: rgb(65, 130, 249);\n"
                                          "color: rgb(255, 255, 255);\n"
@@ -1284,8 +1289,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_22.addWidget(self.label__33)
         self.label__1 = QtWidgets.QLabel(self.widget__)
         self.label__1.setText("")
-        self.label__1.setPixmap(QtGui.QPixmap("../Client/View/Image/Ellipse 10.png"))
-        self.label__1.setScaledContents(True)
+        self.label__1.setPixmap(QtGui.QPixmap("../Client/View/Image/Vector_2.png"))
+        self.label__1.setScaledContents(False)
         self.label__1.setAlignment(QtCore.Qt.AlignCenter)
         self.label__1.setObjectName("label__1")
         self.horizontalLayout_22.addWidget(self.label__1)
@@ -1332,7 +1337,7 @@ class Ui_MainWindow(object):
         self.listWidget_2.setItemWidget(self.newItem, self.widget__40)
 
         self.newItem = QListWidgetItem()
-        self.newItem.setSizeHint(QSize(1, 100))
+        self.newItem.setSizeHint(QSize(1, 80))
         self.listWidget_2.addItem(self.newItem)
         self.listWidget_2.setItemWidget(self.newItem, self.widget__)
 
@@ -1347,14 +1352,14 @@ class Ui_MainWindow(object):
         self.label___5 = QtWidgets.QLabel(self.widget____)
         self.label___5.setText("")
         self.label___5.setPixmap(QtGui.QPixmap("../Client/View/Image/image 2.png"))
-        self.label___5.setScaledContents(False)
+
         self.label___5.setAlignment(QtCore.Qt.AlignCenter)
         self.label___5.setObjectName("label___5")
         self.horizontalLayout_22.addWidget(self.label___5)
         self.label___1 = QtWidgets.QLabel(self.widget____)
         self.label___1.setText("")
         self.label___1.setPixmap(QtGui.QPixmap("../Client/View/Image/Ellipse 10.png"))
-        self.label___1.setScaledContents(False)
+
         self.label___1.setAlignment(QtCore.Qt.AlignCenter)
         self.label___1.setObjectName("label___1")
         self.horizontalLayout_22.addWidget(self.label___1)
@@ -1368,12 +1373,12 @@ class Ui_MainWindow(object):
         self.horizontalLayout_22.addWidget(self.label___2)
 
         self.newItem = QListWidgetItem()
-        self.newItem.setSizeHint(QSize(1, 100))
+        self.newItem.setSizeHint(QSize(1, 80))
         self.listWidget.addItem(self.newItem)
         self.listWidget.setItemWidget(self.newItem, self.widget____)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -1409,7 +1414,7 @@ class Ui_MainWindow(object):
         self.label_9.setText(_translate("MainWindow", "First Name"))
         self.lineEdit_2.setPlaceholderText(_translate("MainWindow", "Yout First Name"))
         self.label_10.setText(_translate("MainWindow", "Gender"))
-        self.lineEdit_3.setPlaceholderText(_translate("MainWindow", "    Your Gender"))
+        self.lineEdit_3.setPlaceholderText(_translate("MainWindow", "Your Gender"))
         self.label_11.setText(_translate("MainWindow", "Phone Numbers"))
         self.lineEdit_10.setPlaceholderText(_translate("MainWindow", "Your Phone Numbers"))
         self.label_12.setText(_translate("MainWindow", "Email"))

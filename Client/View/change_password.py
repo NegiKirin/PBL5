@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QMainWindow
 
 
@@ -35,17 +36,33 @@ class Ui_MainWindow(object):
         self.widget_2 = QtWidgets.QWidget(self.widget)
         self.widget_2.setMinimumSize(QtCore.QSize(0, 80))
         self.widget_2.setObjectName("widget_2")
-        self.btn_exit = QtWidgets.QPushButton(self.widget_2)
-        self.btn_exit.setGeometry(QtCore.QRect(460, 0, 35, 28))
-        self.btn_exit.setStyleSheet("#btn_exit{background-color: rgba(255, 255, 255, 10)}\n"
-                                    "#btn_exit:hover{\n"
-                                    "background-color : rgb(0, 0, 127)\n"
-                                    "}")
-        self.btn_exit.setText("")
+        self.widget_6 = QtWidgets.QWidget(self.widget_2)
+        self.widget_6.setGeometry(QtCore.QRect(353, 0, 81, 41))
+        self.widget_6.setObjectName("widget_6")
+        self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.widget_6)
+        self.horizontalLayout_4.setContentsMargins(0, 0, 0, 18)
+        self.horizontalLayout_4.setSpacing(0)
+        self.horizontalLayout_4.setObjectName("horizontalLayout_4")
+        self.pushButton_2 = QtWidgets.QPushButton(self.widget_6)
+        self.pushButton_2.setStyleSheet("#pushButton_2{background-color:rgb(0,0,255,10);}\n"
+                                        "#pushButton_2:hover{background-color:rgb(0,0,255);}\n"
+                                        "")
+        self.pushButton_2.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/icons/images/icons/cil-x.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.btn_exit.setIcon(icon)
-        self.btn_exit.setObjectName("btn_exit")
+        icon.addPixmap(QtGui.QPixmap("../Client/View/Image/icons8-reduce-50.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButton_2.setIcon(icon)
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.horizontalLayout_4.addWidget(self.pushButton_2)
+        self.pushButton = QtWidgets.QPushButton(self.widget_6)
+        self.pushButton.setStyleSheet("#pushButton{background-color:rgb(0,0,255,10);}\n"
+                                      "#pushButton:hover{background-color:rgb(0,0,255);}\n"
+                                      "")
+        self.pushButton.setText("")
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap("../Client/View/Image/icons8-close-window-50.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButton.setIcon(icon1)
+        self.pushButton.setObjectName("pushButton")
+        self.horizontalLayout_4.addWidget(self.pushButton)
         self.verticalLayout_2.addWidget(self.widget_2)
         self.widget_3 = QtWidgets.QWidget(self.widget)
         self.widget_3.setObjectName("widget_3")
@@ -272,10 +289,10 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.btn_change.setFont(font)
         self.btn_change.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.btn_change.setStyleSheet("#btn_register{background-color: rgb(0, 0, 112);\n"
+        self.btn_change.setStyleSheet("#btn_change{background-color: rgb(0, 0, 112);\n"
                                       "border-radius : 10px;\n"
                                       "color :rgb(255, 255, 255);}\n"
-                                      "#btn_register:hover{\n"
+                                      "#btn_change:hover{\n"
                                       "background-color:rgb(0, 0, 59)\n"
                                       "}")
         self.btn_change.setObjectName("btn_change")
@@ -292,7 +309,6 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.addWidget(self.widget_4)
         self.horizontalLayout_3.addWidget(self.widget)
         MainWindow.setCentralWidget(self.centralwidget)
-
         self.retranslateUi(MainWindow)
         self.stackedWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -324,3 +340,8 @@ class window(QMainWindow):
         super().__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.setWindowFlag(Qt.FramelessWindowHint)
+        self.setAttribute(Qt.WA_TranslucentBackground)
+        self.ui.pushButton.clicked.connect(self.window().close)
+        self.ui.pushButton_2.clicked.connect(self.window().showMinimized)
+

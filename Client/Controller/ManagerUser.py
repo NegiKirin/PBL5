@@ -1,7 +1,9 @@
 import logging
 
 from PyQt5 import QtGui, QtCore, QtWidgets
-from PyQt5.QtCore import Qt, QEvent
+from PyQt5.QtCore import Qt, QEvent, QRect
+from PyQt5.QtGui import QBrush, QWindow, QPixmap, QImage, QPainter
+
 from Client.Model.User import User
 from Client.View.Home import Ui_MainWindow
 from PyQt5.QtWidgets import QMainWindow, QWidget, QDialog, QFileDialog
@@ -31,6 +33,58 @@ from Client.View.change_password import window
        self.btn_maximize.setVisible(False)
     '''''
 
+
+def mask_image(imgdata, imgtype='png', size=64):
+    # Load image
+    image = QImage.fromData(imgdata, imgtype)
+
+    # convert image to 32-bit ARGB (adds an alpha
+    # channel ie transparency factor):
+    image.convertToFormat(QImage.Format_ARGB32)
+
+    # Crop image to a square:
+    imgsize = min(image.width(), image.height())
+    rect = QRect(
+        (image.width() - imgsize) / 2,
+        (image.height() - imgsize) / 2,
+        imgsize,
+        imgsize,
+    )
+
+    image = image.copy(rect)
+
+    # Create the output image with the same dimensions
+    # and an alpha channel and make it completely transparent:
+    out_img = QImage(imgsize, imgsize, QImage.Format_ARGB32)
+    out_img.fill(Qt.transparent)
+
+    # Create a texture brush and paint a circle
+    # with the original image onto the output image:
+    brush = QBrush(image)
+
+    # Paint the output image
+    painter = QPainter(out_img)
+    painter.setBrush(brush)
+
+    # Don't draw an outline
+    painter.setPen(Qt.NoPen)
+
+    # drawing circle
+    painter.drawEllipse(0, 0, imgsize, imgsize)
+
+    # closing painter event
+    painter.end()
+
+    # Convert the image to a pixmap and rescale it.
+    pr = QWindow().devicePixelRatio()
+    pm = QPixmap.fromImage(out_img)
+    pm.setDevicePixelRatio(pr)
+    size *= pr
+    pm = pm.scaled(size, size, Qt.KeepAspectRatio,
+                   Qt.SmoothTransformation)
+
+    # return back the pixmap data
+    return pm
 
 class ManagerUser(QMainWindow):
     def __init__(self, sender=None):
@@ -71,6 +125,24 @@ class ManagerUser(QMainWindow):
 
         # self.ui.btn_profile.clicked.connect(self.read_user)
         self.ui.pushButton_13.clicked.connect(self.show_change_password)
+
+        imgpath = "../Client/View/Image/Ellipse 10.png"
+
+        # loading image
+        imgdata = open(imgpath, 'rb').read()
+
+        # calling the function
+        pixmap = mask_image(imgdata)
+        self.ui.label___1.setPixmap(pixmap)
+
+        imgpath = "../Client/View/Image/Rectangle 1.png"
+
+        # loading image
+        imgdata = open(imgpath, 'rb').read()
+
+        # calling the function
+        pixmap = mask_image(imgdata)
+        self.ui.label__1.setPixmap(pixmap)
 
 
     def back_to_manangement(self):
