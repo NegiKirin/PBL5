@@ -107,10 +107,33 @@ class Receiver:
                     break
             user = UserDAO().UpdateUser(main_data)
             print(user)
-            self.sender.sendInforRegister(user)
+            self.sender.sendInforEdit(user)
         except Exception as e:
             print(e)
 
+    def Change_Password(self, data):
+        try:
+            # Todo:
+            size = self.getSize(data)
+            print(size)
+            print(data)
+            main_data = None
+            full_msg = b''
+            new_msg = True
+            while True:
+                msg = self.socket.recv(1024)
+                if new_msg:
+                    msg = data + msg
+                    new_msg = False
+                full_msg += msg
+                print(full_msg)
+                if len(full_msg) - HEADERSIZE - COMMANDSIZE == size:
+                    main_data = pickle.loads(full_msg[HEADERSIZE+COMMANDSIZE:])
+                    print(main_data)
+                    break
+            user = UserDAO().Change_Password(main_data)
+        except Exception as e:
+            print(e)
 
     def run(self):
         while True:
@@ -125,6 +148,8 @@ class Receiver:
                     self.receiverInforRegister(data)
                 if cm == Command.SEND_SERVER_EDIT.value:
                     self.receiverInforEdit(data)
+                if cm == Command.SEND_CHANGE_PASSWORD.value:
+                    self.Change_Password(data)
             except socket.error as error:
                 print(error)
                 self.active = False

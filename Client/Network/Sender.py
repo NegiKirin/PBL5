@@ -72,3 +72,19 @@ class Sender:
         except Exception as e:
             print(e)
             return False
+
+    def change_password(self,username,password):
+        try:
+            command = Command.SEND_CHANGE_PASSWORD.value
+            data = {
+                'username' : username,
+                'password': password,
+            }
+            data = pickle.dumps(data)
+            data = bytes(f'{command:<{COMMANDSIZE}}', 'utf-8') + bytes(f"{len(data):<{HEADERSIZE}}", 'utf-8') + data
+            self.socket.sendall(data)
+            print("send succeed")
+            return True
+        except Exception as e:
+            print(e)
+            return False

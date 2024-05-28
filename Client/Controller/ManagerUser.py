@@ -6,7 +6,9 @@ from Client.Model.User import User
 from Client.View.Home import Ui_MainWindow
 from PyQt5.QtWidgets import QMainWindow, QWidget, QDialog, QFileDialog
 from Client.View.change_password import window
-
+# them label vao duoi confirm password trong change_password
+# set padding trong cac line edit o Profile
+# doi username@gmail.com trong change_password
 # btn_max
 ''''
        self.btn_maximize = QtWidgets.QPushButton(self.widget_4)
@@ -55,14 +57,17 @@ class ManagerUser(QMainWindow):
         self.ui.btn_substract.clicked.connect(self.window().showMinimized)
 
         self.ui.btn_pile_stack.clicked.connect(self.window().showNormal)
-
+        # self.ui.btn_avatar.clicked.connect(self.openImageDialog)
         self.ui.btn_maximize.clicked.connect(self.window().showMaximized)
+
         self.username = None
         self.lastname = None
         self.firstname = None
         self.gender = None
         self.phone = None
         self.email = None
+        self.password = None
+        self.fileNameImage = None
 
         # self.ui.btn_profile.clicked.connect(self.read_user)
         self.ui.pushButton_13.clicked.connect(self.show_change_password)
@@ -77,7 +82,14 @@ class ManagerUser(QMainWindow):
     def show_change_password(self):
         self.w = window()
         self.w.show()
+        self.w.ui.btn_change.clicked.connect(self.change_password)
 
+    def change_password(self):
+        if (self.password == self.w.ui.LEdit_email_register.text()):
+            if (self.w.ui.LEdit_password_register.text() == self.w.ui.LEdit_confirm.text()):
+                password = self.w.ui.LEdit_password_register.text()
+                self.sender.change_password(self.username,password)
+                self.w.hide()
     def back_to_profile(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
 
@@ -114,6 +126,7 @@ class ManagerUser(QMainWindow):
 
         filename, _ = QFileDialog.getOpenFileName(self, "Open Image")
         icon7 = QtGui.QIcon()
+        print(filename)
         icon7.addPixmap(QtGui.QPixmap(filename), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.ui.btn_avatar.setIcon(icon7)
         self.ui.btn_avatar.setIconSize(QtCore.QSize(60, 66))
@@ -174,10 +187,11 @@ class ManagerUser(QMainWindow):
     def receiveDataUser(self, data):
         self.username = data['user'].username
         self.lastname = data['user'].lastname
-        self.phone = data['user'].firstname
-        self.username = data['user'].gender
+        self.firstname = data['user'].firstname
         self.phone = data['user'].phone
         self.email = data['user'].email
+        self.gender = data['user'].gender
+        self.password = data['user'].password
 
     def mouseReleaseEvent(self, event):
         self.initial_pos = None

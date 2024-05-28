@@ -54,6 +54,7 @@ class Receiver:
                 self.controller.controllerLogin.setError()
                 print()
             else:
+
                 self.controller.managerUser.receiveDataUser(main_data)
                 self.controller.controllerLogin.hide()
                 # app = QApplication(sys.argv)
@@ -97,6 +98,30 @@ class Receiver:
         except Exception as e:
             print(e)
 
+    def receiverInforAfterEdit(self, data):
+        # Todo: Receive User
+        try:
+            size = self.getSize(data)
+            print(size)
+            print(data)
+            main_data = None
+            full_msg = b''
+            new_msg = True
+            while True:
+                msg = self.socket.recv(1024)
+                if new_msg:
+                    msg = data + msg
+                    new_msg = False
+                full_msg += msg
+                print(full_msg)
+                if len(full_msg) - HEADERSIZE - COMMANDSIZE == size:
+                    main_data = pickle.loads(full_msg[HEADERSIZE + COMMANDSIZE:])
+                    print(main_data)
+                    break
+            self.controller.managerUser.receiveDataUser(main_data)
+        except Exception as e:
+            print(e)
+
     def run(self):
         while True:
             print("Waiting command")
@@ -109,6 +134,8 @@ class Receiver:
                     self.receiveUser(data)
                 if cm == Command.SEND_CLIENT_REGISTER.value:
                     self.receiverInforUser(data)
+                if cm == Command.SEND_CLIENT_EDIT.value:
+                    self.receiverInforAfterEdit(data)
             except socket.error as error:
                 print(error)
                 print("Receiver error")
