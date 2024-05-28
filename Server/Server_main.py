@@ -91,19 +91,9 @@ class Server:
     def accept_socket(self):
         while True:
             try:
+                print("checked")
                 conn, address = self.soc.accept()
                 print('Establish connection with IP = ' + str(address[0]) + " | PORT = " + str(address[1]))
-                # 0: device checkin / 1: client
-                # index = conn.recv(1024).decode('utf8')
-
-                # if index == '1':
-                #     # create client
-                #
-                #     print("client connected")
-                # elif index == '0':
-                #     # create device
-                #     self.handlerDevice.appendDevice(conn)
-                #     print("device connected")
 
                 self.handlerClient.appendClient(conn)
                 print("client connected")
@@ -124,13 +114,6 @@ class Server:
         except socket.error as msg:
             print(str(msg) + ' Trying to close socket...')
             # self.close_socket()
-
-    def drawGUI(self):
-        app = QApplication(sys.argv)
-        main_win = MainWindow()
-        main_win.show()
-        # main_win.start_capture_video()
-        sys.exit(app.exec_())
 
 if __name__ == '__main__':
     s = Server()

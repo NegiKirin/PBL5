@@ -24,9 +24,7 @@ class HandlerClient:
         # Todo: add client receiver
         sender_client = Sender(conn)
         receiver_client = Receiver(conn, sender_client)
-
         self.devices.append(receiver_client)
-
 
     def removeDevice(self, device):
         self.devices.remove(device)

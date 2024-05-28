@@ -58,11 +58,6 @@ class ManagerUser(QMainWindow):
 
         self.ui.btn_maximize.clicked.connect(self.window().showMaximized)
 
-
-
-
-
-
         self.username = None
         self.phone = None
         self.email = None
