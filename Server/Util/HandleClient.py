@@ -12,7 +12,6 @@ from Server.Network.Receiver import Receiver
 from Server.Network.Sender import Sender
 # from Server.Controller.DeviceReciver import DeviceReceiver
 
-
 class HandlerClient:
     def __init__(self):
         self.devices = []

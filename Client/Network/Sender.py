@@ -53,11 +53,15 @@ class Sender:
             print(e)
             return False
 
-    def sendInforToEdit(self,username,phone):
+    def sendInforToEdit(self,username,lastname,firstname,email,gender,phone):
         try:
             command = Command.SEND_SERVER_EDIT.value
             data = {
-                'username': username,
+                'username' : username,
+                'lastname' : lastname,
+                'firstname' : firstname,
+                'email' : email,
+                'gender' : gender,
                 'phone': phone,
             }
             data = pickle.dumps(data)

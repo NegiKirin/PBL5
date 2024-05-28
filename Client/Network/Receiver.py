@@ -54,6 +54,7 @@ class Receiver:
                 self.controller.controllerLogin.setError()
                 print()
             else:
+                self.controller.managerUser.receiveDataUser(main_data)
                 self.controller.controllerLogin.hide()
                 # app = QApplication(sys.argv)
                 # self.controller.managerUser.receiveDataUser(main_data)

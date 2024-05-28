@@ -45,8 +45,8 @@ class UserDAO:
 
     def UpdateUser(self,dic):
         try:
-            sql = 'UPDATE user SET username = %s, phone = %s'
-            self.myCursor.execute(sql, [dic['username'],dic['phone']])
+            sql = 'UPDATE user SET  lastname = %s ,firstname = %s ,email = %s, gender = %s , phone = %s WHERE username = %s'
+            self.myCursor.execute(sql, [dic['lastname'],dic['firstname'],dic['email'],dic['gender'],dic['phone'],dic['username']])
             self.connect.commit()
         except Exception as e:
             print(e)

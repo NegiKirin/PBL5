@@ -57,11 +57,12 @@ class ManagerUser(QMainWindow):
         self.ui.btn_pile_stack.clicked.connect(self.window().showNormal)
 
         self.ui.btn_maximize.clicked.connect(self.window().showMaximized)
-
         self.username = None
+        self.lastname = None
+        self.firstname = None
+        self.gender = None
         self.phone = None
         self.email = None
-        self.avatar = None
 
         # self.ui.btn_profile.clicked.connect(self.read_user)
         self.ui.pushButton_13.clicked.connect(self.show_change_password)
@@ -80,17 +81,17 @@ class ManagerUser(QMainWindow):
     def back_to_profile(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
 
+
     def back_to_learning(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_learning)
 
     def Edit_Infor_User(self):
-        edit_fullname = self.ui.lineEdit.text()
-        edit_nickname = self.ui.lineEdit_2.text()
+        edit_lastname = self.ui.lineEdit.text()
+        edit_firstname = self.ui.lineEdit_2.text()
         edit_gender = self.ui.lineEdit_3.text()
-        edit_firstname = self.ui.lineEdit_10.text()
-        edit_phone = self.ui.lineEdit_11.text()
-        edit_email = self.ui.lineEdit_12.text()
-        self.sender.sendInforToEdit(edit_fullname, edit_phone)
+        edit_phone = self.ui.lineEdit_10.text()
+        edit_email = self.ui.lineEdit_11.text()
+        self.sender.sendInforToEdit(self.username,edit_lastname,edit_firstname,edit_email,edit_gender,edit_phone)
 
     def back_to_home(self):
         #user = User("minhvulqd2003@gmail.com", "12345")
@@ -136,6 +137,11 @@ class ManagerUser(QMainWindow):
 
     def move_to_page_profile(self):
         try:
+            self.ui.lineEdit.setText(str(self.lastname))
+            self.ui.lineEdit_2.setText(str(self.firstname))
+            self.ui.lineEdit_3.setText(str(self.gender))
+            self.ui.lineEdit_10.setText(str(self.phone))
+            self.ui.lineEdit_11.setText(str(self.email))
             self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
         except Exception as e:
             print(e)
@@ -167,10 +173,11 @@ class ManagerUser(QMainWindow):
 
     def receiveDataUser(self, data):
         self.username = data['user'].username
+        self.lastname = data['user'].lastname
+        self.phone = data['user'].firstname
+        self.username = data['user'].gender
         self.phone = data['user'].phone
-        # self.username = data['user'][0][2]
-        # self.phone = data['user'][0][4]
-        # self.test()
+        self.email = data['user'].email
 
     def mouseReleaseEvent(self, event):
         self.initial_pos = None
