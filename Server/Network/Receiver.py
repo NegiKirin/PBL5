@@ -105,8 +105,13 @@ class Receiver:
                     main_data = pickle.loads(full_msg[HEADERSIZE+COMMANDSIZE:])
                     print(main_data)
                     break
+            print(main_data['dataImage'])
+            username = main_data['username']
+            path = 'E:/PBL_2/PBL5/Server/DB/'+ username + '.png'
+            with open(path,'wb') as f:
+                f.write(main_data['dataImage'])
+            main_data['dataImage'] = path
             user = UserDAO().UpdateUser(main_data)
-            print(user)
             self.sender.sendInforEdit(user)
         except Exception as e:
             print(e)

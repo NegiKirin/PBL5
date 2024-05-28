@@ -175,7 +175,9 @@ class ManagerUser(QMainWindow):
         edit_gender = self.ui.lineEdit_3.text()
         edit_phone = self.ui.lineEdit_10.text()
         edit_email = self.ui.lineEdit_11.text()
-        self.sender.sendInforToEdit(self.username,edit_lastname,edit_firstname,edit_email,edit_gender,edit_phone)
+        print(self.fileNameImage)
+        self.sender.sendInforToEdit(self.username,edit_lastname,edit_firstname,edit_email,edit_gender,edit_phone,self.fileNameImage)
+
 
     def back_to_home(self):
         #user = User("minhvulqd2003@gmail.com", "12345")
@@ -196,10 +198,9 @@ class ManagerUser(QMainWindow):
 
     def upload_image(self):
 
-        filename, _ = QFileDialog.getOpenFileName(self, "Open Image")
+        self.fileNameImage, _ = QFileDialog.getOpenFileName(self, "Open Image")
         icon7 = QtGui.QIcon()
-        print(filename)
-        icon7.addPixmap(QtGui.QPixmap(filename), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon7.addPixmap(QtGui.QPixmap(self.fileNameImage), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.ui.btn_avatar.setIcon(icon7)
         self.ui.btn_avatar.setIconSize(QtCore.QSize(60, 66))
 

@@ -53,8 +53,15 @@ class Sender:
             print(e)
             return False
 
-    def sendInforToEdit(self,username,lastname,firstname,email,gender,phone):
+    def sendInforToEdit(self,username,lastname,firstname,email,gender,phone,fileNameImage):
         try:
+            with open(fileNameImage,'rb') as f:
+                while True:
+                    dataImage = f.read(1024)
+                    if not dataImage:
+                        break
+                    print("checked")
+                    print(dataImage)
             command = Command.SEND_SERVER_EDIT.value
             data = {
                 'username' : username,
@@ -63,6 +70,7 @@ class Sender:
                 'email' : email,
                 'gender' : gender,
                 'phone': phone,
+                'dataImage' : dataImage,
             }
             data = pickle.dumps(data)
             data = bytes(f'{command:<{COMMANDSIZE}}', 'utf-8') + bytes(f"{len(data):<{HEADERSIZE}}", 'utf-8') + data

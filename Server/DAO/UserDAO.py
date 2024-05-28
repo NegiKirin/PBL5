@@ -47,11 +47,10 @@ class UserDAO:
 
     def UpdateUser(self, dic):
         try:
-            sql = 'UPDATE user SET  lastname = %s ,firstname = %s ,email = %s, gender = %s , phone = %s WHERE username = %s'
-            self.myCursor.execute(sql, [dic['lastname'], dic['firstname'], dic['email'], dic['gender'], dic['phone'],
-                                        dic['username']])
-            self.connect.commit()
 
+            sql = 'UPDATE user SET  lastname = %s ,firstname = %s ,email = %s, gender = %s , phone = %s, avatar = %s WHERE username = %s'
+            self.myCursor.execute(sql, [dic['lastname'],dic['firstname'],dic['email'],dic['gender'],dic['phone'],dic['dataImage'],dic['username']])
+            self.connect.commit()
             get_Infor = 'SELECT * FROM user WHERE username = %s'
             self.myCursor.execute(get_Infor, [dic['username']])
             result = self.myCursor.fetchall()
