@@ -56,12 +56,15 @@ class Receiver:
                 self.controller.controllerLogin.setError()
                 print()
             else:
-                self.controller.managerUser.receiveDataUser(main_data)
-                self.controller.controllerLogin.hide()
-                # app = QApplication(sys.argv)
-                # self.controller.managerUser.receiveDataUser(main_data)
-                self.controller.managerUser.show()
-                # sys.exit(app.exec())
+                if(main_data['user'].id_role) == 1:
+                    self.controller.managerUser.receiveDataUser(main_data)
+                    self.controller.managerUser.ui.pushButton_6.hide()
+                    self.controller.controllerLogin.hide()
+                    self.controller.managerUser.show()
+                else:
+                    self.controller.managerUser.receiveDataUser(main_data)
+                    self.controller.controllerLogin.hide()
+                    self.controller.managerUser.show()
 
         except Exception as e:
             print(e)
@@ -91,11 +94,15 @@ class Receiver:
                 self.controller.controllerLogin.setError()
                 print()
             else:
-                self.controller.managerUser.receiveDataUser(main_data)
-                # app = QApplication(sys.argv)
-                self.controller.controllerLogin.hide()
-                self.controller.managerUser.show()
-                # sys.exit(app.exec())
+                if (main_data['user'].id_role) == 1:
+                    self.controller.managerUser.receiveDataUser(main_data)
+                    self.controller.managerUser.ui.pushButton_6.hide()
+                    self.controller.controllerLogin.hide()
+                    self.controller.managerUser.show()
+                else:
+                    self.controller.managerUser.receiveDataUser(main_data)
+                    self.controller.controllerLogin.hide()
+                    self.controller.managerUser.show()
         except Exception as e:
             print(e)
 

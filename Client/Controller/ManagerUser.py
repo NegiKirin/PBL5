@@ -152,6 +152,10 @@ class ManagerUser(QMainWindow):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page)
 
     def show_page(self):
+        pixmap = self.display_image(cv2.cvtColor(self.img, cv2.COLOR_BGR2RGB))
+        icon = QIcon(pixmap)
+        self.ui..setIcon(icon)
+        self.ui.btn_avatar.setIconSize(pixmap.rect().size())
         self.ui.stackedWidget.setCurrentWidget(self.ui.page)
 
     def show_change_password(self):
