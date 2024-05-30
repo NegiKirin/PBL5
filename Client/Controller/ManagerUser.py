@@ -1,8 +1,10 @@
 import logging
 
+import cv2
+import numpy as np
 from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtCore import Qt, QEvent, QRect
-from PyQt5.QtGui import QBrush, QWindow, QPixmap, QImage, QPainter
+from PyQt5.QtGui import QBrush, QWindow, QPixmap, QImage, QPainter, QIcon
 
 from Client.Model.User import User
 from Client.View.Home import Ui_MainWindow
@@ -122,6 +124,7 @@ class ManagerUser(QMainWindow):
         self.email = None
         self.password = None
         self.fileNameImage = None
+        self.img = None
 
         # self.ui.btn_profile.clicked.connect(self.read_user)
         self.ui.pushButton_13.clicked.connect(self.show_change_password)
@@ -228,7 +231,13 @@ class ManagerUser(QMainWindow):
             self.ui.lineEdit_3.setText(str(self.gender))
             self.ui.lineEdit_10.setText(str(self.phone))
             self.ui.lineEdit_11.setText(str(self.email))
+            pixmap = self.display_image(cv2.cvtColor(self.img, cv2.COLOR_BGR2RGB))
+            icon = QIcon(pixmap)
+            self.ui.btn_avatar.setIcon(icon)
+            self.ui.btn_avatar.setIconSize(pixmap.rect().size())
+
             self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
+
         except Exception as e:
             print(e)
 
@@ -258,6 +267,11 @@ class ManagerUser(QMainWindow):
         event.accept()
 
     def receiveDataUser(self, data):
+        dataImg = bytearray()
+        dataImg.extend(data['user'].dataImage)
+        nparr = np.frombuffer(dataImg, np.uint8)
+        self.img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+
         self.username = data['user'].username
         self.lastname = data['user'].lastname
         self.firstname = data['user'].firstname
@@ -265,10 +279,18 @@ class ManagerUser(QMainWindow):
         self.email = data['user'].email
         self.gender = data['user'].gender
         self.password = data['user'].password
+        pixmap = self.display_image(cv2.cvtColor(self.img, cv2.COLOR_BGR2RGB))
+        self.ui.label_avatar.setPixmap(pixmap)
 
     def mouseReleaseEvent(self, event):
         self.initial_pos = None
         super().mouseReleaseEvent(event)
         event.accept()
 
+    def display_image(self, img):
+        height, width, channel = img.shape
+        bytes_per_line = 3 * width
+        q_img = QImage(img.data, width, height, bytes_per_line, QImage.Format_RGB888)
+        pixmap = QPixmap.fromImage(q_img)
+        return pixmap
    

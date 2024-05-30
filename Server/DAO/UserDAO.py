@@ -1,3 +1,5 @@
+import cv2
+
 from Server.Model.User import User
 from Server.Util import Connection
 
@@ -9,6 +11,7 @@ class UserDAO:
 
     def findByUsernameAndPassword(self, dic):
         try:
+
             sql = 'SELECT * FROM user WHERE username = %s AND password = %s'
             self.myCursor.execute(sql, [dic['username'], dic['password']])
             result = self.myCursor.fetchall()
@@ -16,8 +19,12 @@ class UserDAO:
             user = []
             # user = User(item[0], item[1], item[2])
             for item in result:
-                user = User(item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8], item[9])
-
+                user = User(item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8], item[9],0)
+            img = cv2.imread(user.avatar)
+            _, img_encoded = cv2.imencode('.jpg', img)
+            dataImg = img_encoded.tobytes()
+            user.dataImage = dataImg
+            print(user.dataImage)
             return user
         except Exception as e:
             print(e)
@@ -35,8 +42,15 @@ class UserDAO:
                 get_Infor = 'SELECT * FROM user WHERE username = %s'
                 self.myCursor.execute(get_Infor, [dic['username']])
                 result = self.myCursor.fetchall()
-                user = User(result[0][0], result[0][1], result[0][2], result[0][3], result[0][4], result[0][5],
-                            result[0][6], result[0][7], result[0][8], result[0][9])
+                user = []
+                # user = User(item[0], item[1], item[2])
+                for item in result:
+                    user = User(item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8],
+                                item[9])
+                img = cv2.imread(user['avatar'])
+                _, img_encoded = cv2.imencode('.jpg', img)
+                dataImage = img_encoded.tobytes()
+                user['dataImage'] = dataImage
                 print(user)
                 return user
             else:
@@ -54,8 +68,15 @@ class UserDAO:
             get_Infor = 'SELECT * FROM user WHERE username = %s'
             self.myCursor.execute(get_Infor, [dic['username']])
             result = self.myCursor.fetchall()
-            user = User(result[0][0], result[0][1], result[0][2], result[0][3], result[0][4], result[0][5],
-                        result[0][6], result[0][7], result[0][8], result[0][9])
+            user = []
+            # user = User(item[0], item[1], item[2])
+            for item in result:
+                user = User(item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8], item[9])
+            img = cv2.imread(user.avatar)
+            _, img_encoded = cv2.imencode('.jpg', img)
+            dataImg = img_encoded.tobytes()
+            user.dataImage = dataImg
+            print(user)
             return user
         except Exception as e:
             print(e)

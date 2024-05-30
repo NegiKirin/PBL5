@@ -3,6 +3,8 @@ import sys
 import threading
 import socket
 
+import cv2
+import numpy as np
 from PyQt5.QtWidgets import QApplication
 
 import Client.Model.User
@@ -46,7 +48,7 @@ class Receiver:
                 print(full_msg)
                 if len(full_msg) - HEADERSIZE - COMMANDSIZE == size:
                     main_data = pickle.loads(full_msg[HEADERSIZE + COMMANDSIZE:])
-                    print(main_data)
+                    print(main_data['user'].dataImage)
                     break
 
             if main_data['user'] == []:
@@ -54,7 +56,6 @@ class Receiver:
                 self.controller.controllerLogin.setError()
                 print()
             else:
-
                 self.controller.managerUser.receiveDataUser(main_data)
                 self.controller.controllerLogin.hide()
                 # app = QApplication(sys.argv)

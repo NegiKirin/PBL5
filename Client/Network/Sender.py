@@ -55,13 +55,10 @@ class Sender:
 
     def sendInforToEdit(self,username,lastname,firstname,email,gender,phone,fileNameImage):
         try:
-            with open(fileNameImage,'rb') as f:
-                while True:
-                    dataImage = f.read(1024)
-                    if not dataImage:
-                        break
-                    print("checked")
-                    print(dataImage)
+            img = cv2.imread(fileNameImage)
+            _, img_encoded = cv2.imencode('.jpg', img)
+            dataImage = img_encoded.tobytes()
+            print(dataImage)
             command = Command.SEND_SERVER_EDIT.value
             data = {
                 'username' : username,

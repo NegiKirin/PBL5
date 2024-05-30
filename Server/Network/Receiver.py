@@ -4,6 +4,7 @@ import sys
 import threading
 import socket
 import cv2
+import numpy as np
 
 
 current_directory = os.path.dirname(os.path.abspath(__file__)) + '\\'
@@ -105,11 +106,13 @@ class Receiver:
                     main_data = pickle.loads(full_msg[HEADERSIZE+COMMANDSIZE:])
                     print(main_data)
                     break
-            print(main_data['dataImage'])
+            dataImage = bytearray()
+            dataImage.extend(main_data['dataImage'])
+            nparr = np.frombuffer(dataImage, np.uint8)
+            img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
             username = main_data['username']
-            path = 'E:/PBL_2/PBL5/Server/DB/'+ username + '.png'
-            with open(path,'wb') as f:
-                f.write(main_data['dataImage'])
+            path = 'E:/PBL_2/PBL5/Server/DB/' + username + '.png'
+            cv2.imwrite(path, img)
             main_data['dataImage'] = path
             user = UserDAO().UpdateUser(main_data)
             self.sender.sendInforEdit(user)
