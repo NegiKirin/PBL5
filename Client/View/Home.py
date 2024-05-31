@@ -9,9 +9,62 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import QSize
+from PyQt5.QtCore import QSize, Qt, QRect
+from PyQt5.QtGui import QWindow, QPixmap, QImage, QPainter, QBrush
 from PyQt5.QtWidgets import QListWidgetItem
 
+
+def mask_image(imgdata, imgtype='png', size=64):
+    # Load image
+    image = QImage.fromData(imgdata, imgtype)
+
+    # convert image to 32-bit ARGB (adds an alpha
+    # channel ie transparency factor):
+    image.convertToFormat(QImage.Format_ARGB32)
+
+    # Crop image to a square:
+    imgsize = min(image.width(), image.height())
+    rect = QRect(
+        (image.width() - imgsize) / 2,
+        (image.height() - imgsize) / 2,
+        imgsize,
+        imgsize,
+    )
+
+    image = image.copy(rect)
+
+    # Create the output image with the same dimensions
+    # and an alpha channel and make it completely transparent:
+    out_img = QImage(imgsize, imgsize, QImage.Format_ARGB32)
+    out_img.fill(Qt.transparent)
+
+    # Create a texture brush and paint a circle
+    # with the original image onto the output image:
+    brush = QBrush(image)
+
+    # Paint the output image
+    painter = QPainter(out_img)
+    painter.setBrush(brush)
+
+    # Don't draw an outline
+    painter.setPen(Qt.NoPen)
+
+    # drawing circle
+    painter.drawEllipse(0, 0, imgsize, imgsize)
+
+    # closing painter event
+    painter.end()
+
+    # Convert the image to a pixmap and rescale it.
+    pr = QWindow().devicePixelRatio()
+    pm = QPixmap.fromImage(out_img)
+    pm.setDevicePixelRatio(pr)
+    size *= pr
+    pm = pm.scaled(size, size, Qt.KeepAspectRatio,
+                   Qt.SmoothTransformation)
+
+    # return back the pixmap data
+    return pm
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -1250,7 +1303,8 @@ class Ui_MainWindow(object):
 
         self.widget__40 = QtWidgets.QWidget()
         self.widget__40.setObjectName("widget__40")
-        self.horizontalLayout_22 = QtWidgets.QHBoxLayout(self.widget__40)
+        self.horizontalLayout_22 = QtWidgets.QHBoxLayout(
+            self.widget__40)
         self.horizontalLayout_22.setObjectName("horizontalLayout_22")
         self.label__3 = QtWidgets.QLabel(self.widget__40)
         self.label__3.setAlignment(QtCore.Qt.AlignCenter)
@@ -1279,67 +1333,84 @@ class Ui_MainWindow(object):
         self.label__16.setObjectName("label__16")
         self.horizontalLayout_22.addWidget(self.label__16)
 
-        self.widget__ = QtWidgets.QWidget()
-        self.widget__.setObjectName("widget__")
-        self.horizontalLayout_22 = QtWidgets.QHBoxLayout(self.widget__)
-        self.horizontalLayout_22.setObjectName("horizontalLayout_22")
-        self.label__33 = QtWidgets.QLabel(self.widget__)
-        self.label__33.setAlignment(QtCore.Qt.AlignCenter)
-        self.label__33.setObjectName("label__33")
-        self.horizontalLayout_22.addWidget(self.label__33)
-        self.label__1 = QtWidgets.QLabel(self.widget__)
-        self.label__1.setText("")
-        self.label__1.setPixmap(QtGui.QPixmap("../Client/View/Image/Vector_2.png"))
-        self.label__1.setScaledContents(False)
-        self.label__1.setAlignment(QtCore.Qt.AlignCenter)
-        self.label__1.setObjectName("label__1")
-        self.horizontalLayout_22.addWidget(self.label__1)
-        self.label__44 = QtWidgets.QLabel(self.widget__)
-        self.label__44.setAlignment(QtCore.Qt.AlignCenter)
-        self.label__44.setObjectName("label__44")
-        self.horizontalLayout_22.addWidget(self.label__44)
-        self.label__2 = QtWidgets.QLabel(self.widget__)
-        self.label__2.setAlignment(QtCore.Qt.AlignCenter)
-        self.label__2.setObjectName("label__2")
-        self.horizontalLayout_22.addWidget(self.label__2)
-        self.label__5 = QtWidgets.QLabel(self.widget__)
-        self.label__5.setAlignment(QtCore.Qt.AlignCenter)
-        self.label__5.setObjectName("label__5")
-        self.horizontalLayout_22.addWidget(self.label__5)
-        self.widget__2 = QtWidgets.QWidget(self.widget__)
-        self.widget__2.setObjectName("widget__2")
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.widget__2)
-        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.pushButton__ = QtWidgets.QPushButton(self.widget__2)
-        self.pushButton__.setMinimumSize(QtCore.QSize(42, 0))
-        self.pushButton__.setMaximumSize(QtCore.QSize(41, 44))
-        self.pushButton__.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.pushButton__.setStyleSheet("#pushButton__{\n"
-                                        "border-radius : 15px;\n"
-                                        "border-right : none\n"
-                                        "\n"
-                                        "}\n"
-                                        "#pushButton__:hover {\n"
-                                        "                background-color: rgb(255,0,0); \n"
-                                        "            }")
-        self.pushButton__.setText("")
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../Client/View/Image/icons8-delete-trash-50.png"), QtGui.QIcon.Normal,
-                       QtGui.QIcon.Off)
-        self.pushButton__.setIcon(icon)
-        self.pushButton__.setObjectName("pushButton__")
-        self.horizontalLayout_2.addWidget(self.pushButton__)
-        self.horizontalLayout_22.addWidget(self.widget__2)
+
 
         self.newItem = QListWidgetItem()
         self.newItem.setSizeHint(QSize(1, 80))
         self.listWidget_2.addItem(self.newItem)
         self.listWidget_2.setItemWidget(self.newItem, self.widget__40)
 
-        self.newItem = QListWidgetItem()
-        self.newItem.setSizeHint(QSize(1, 80))
-        self.listWidget_2.addItem(self.newItem)
-        self.listWidget_2.setItemWidget(self.newItem, self.widget__)
+        for i in range(10):
+            self.widget__ = QtWidgets.QWidget()
+            self.widget__.setObjectName("widget__")
+            self.horizontalLayout_22 = QtWidgets.QHBoxLayout(self.widget__)
+            self.horizontalLayout_22.setObjectName("horizontalLayout_22")
+            self.label__33 = QtWidgets.QLabel(self.widget__)
+            self.label__33.setAlignment(QtCore.Qt.AlignCenter)
+            self.label__33.setObjectName("label__33")
+            self.horizontalLayout_22.addWidget(self.label__33)
+            self.label__1 = QtWidgets.QLabel(self.widget__)
+            self.label__1.setText("")
+            #self.label__1.setPixmap(QtGui.QPixmap("../Client/View/Image/Vector_2.png"))
+            self.label__1.setScaledContents(False)
+            self.label__1.setAlignment(QtCore.Qt.AlignCenter)
+            self.label__1.setObjectName("label__1")
+            imgpath = "../Client/View/Image/Rectangle 1.png"
+
+            # loading image
+            imgdata = open(imgpath, 'rb').read()
+
+            # calling the function
+            pixmap = mask_image(imgdata)
+            self.label__1.setPixmap(pixmap)
+
+            self.horizontalLayout_22.addWidget(self.label__1)
+            self.label__44 = QtWidgets.QLabel(self.widget__)
+            self.label__44.setAlignment(QtCore.Qt.AlignCenter)
+            self.label__44.setObjectName("label__44")
+            self.horizontalLayout_22.addWidget(self.label__44)
+            self.label__2 = QtWidgets.QLabel(self.widget__)
+            self.label__2.setAlignment(QtCore.Qt.AlignCenter)
+            self.label__2.setObjectName("label__2")
+            self.horizontalLayout_22.addWidget(self.label__2)
+            self.label__5 = QtWidgets.QLabel(self.widget__)
+            self.label__5.setAlignment(QtCore.Qt.AlignCenter)
+            self.label__5.setObjectName("label__5")
+            self.horizontalLayout_22.addWidget(self.label__5)
+            self.widget__2 = QtWidgets.QWidget(self.widget__)
+            self.widget__2.setObjectName("widget__2")
+            self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.widget__2)
+            self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+            self.pushButton__ = QtWidgets.QPushButton(self.widget__2)
+            self.pushButton__.setMinimumSize(QtCore.QSize(42, 0))
+            self.pushButton__.setMaximumSize(QtCore.QSize(41, 44))
+            self.pushButton__.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+            self.pushButton__.setStyleSheet("#pushButton__{\n"
+                                            "border-radius : 15px;\n"
+                                            "border-right : none\n"
+                                            "\n"
+                                            "}\n"
+                                            "#pushButton__:hover {\n"
+                                            "                background-color: rgb(255,0,0); \n"
+                                            "            }")
+            self.pushButton__.setText("")
+            icon = QtGui.QIcon()
+            icon.addPixmap(QtGui.QPixmap("../Client/View/Image/icons8-delete-trash-50.png"), QtGui.QIcon.Normal,
+                           QtGui.QIcon.Off)
+            self.pushButton__.setIcon(icon)
+            self.pushButton__.setObjectName("pushButton__")
+            self.horizontalLayout_2.addWidget(self.pushButton__)
+            self.horizontalLayout_22.addWidget(self.widget__2)
+            _translate = QtCore.QCoreApplication.translate
+
+            self.label__33.setText(_translate("MainWindow", "1"))
+            self.label__44.setText(_translate("MainWindow", "Pham Doan Minh Hieu"))
+            self.label__2.setText(_translate("MainWindow", "abc@gmail.com"))
+            self.label__5.setText(_translate("MainWindow", "0762649422"))
+            self.newItem = QListWidgetItem()
+            self.newItem.setSizeHint(QSize(1, 80))
+            self.listWidget_2.addItem(self.newItem)
+            self.listWidget_2.setItemWidget(self.newItem, self.widget__)
 
         self.widget____ = QtWidgets.QWidget()
         self.widget____.setObjectName("widget____")
@@ -1425,10 +1496,7 @@ class Ui_MainWindow(object):
         self.label__4.setText(_translate("MainWindow", "Name"))
         self.label__13.setText(_translate("MainWindow", "Email"))
         self.label__14.setText(_translate("MainWindow", "Phone Number"))
-        self.label__33.setText(_translate("MainWindow", "1"))
-        self.label__44.setText(_translate("MainWindow", "Pham Doan Minh Hieu"))
-        self.label__2.setText(_translate("MainWindow", "abc@gmail.com"))
-        self.label__5.setText(_translate("MainWindow", "0762649422"))
+
         self.label___33.setText(_translate("MainWindow", "1"))
         self.label___44.setText(_translate("MainWindow", "Pham Doan Minh Hieu"))
         self.label___2.setText(_translate("MainWindow", "100"))
