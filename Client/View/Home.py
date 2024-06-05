@@ -1380,7 +1380,74 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         self.stackedWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+    def addRow(self,st1,st2,st3,st4):
+        self.widget__ = QtWidgets.QWidget()
+        self.widget__.setObjectName("widget__")
+        self.horizontalLayout_22 = QtWidgets.QHBoxLayout(self.widget__)
+        self.horizontalLayout_22.setObjectName("horizontalLayout_22")
+        self.label__33 = QtWidgets.QLabel(self.widget__)
+        self.label__33.setAlignment(QtCore.Qt.AlignCenter)
+        self.label__33.setObjectName("label__33")
+        self.horizontalLayout_22.addWidget(self.label__33)
+        self.label__1 = QtWidgets.QLabel(self.widget__)
+        self.label__1.setText("")
+        # self.label__1.setPixmap(QtGui.QPixmap("../Client/View/Image/Vector_2.png"))
+        self.label__1.setScaledContents(False)
+        self.label__1.setAlignment(QtCore.Qt.AlignCenter)
+        self.label__1.setObjectName("label__1")
+        imgpath = "../Client/View/Image/Rectangle 1.png"
 
+        # loading image
+        imgdata = open(imgpath, 'rb').read()
+
+        # calling the function
+        pixmap = mask_image(imgdata)
+        self.label__1.setPixmap(pixmap)
+
+        self.horizontalLayout_22.addWidget(self.label__1)
+        self.label__44 = QtWidgets.QLabel(self.widget__)
+        self.label__44.setAlignment(QtCore.Qt.AlignCenter)
+        self.label__44.setObjectName("label__44")
+        self.horizontalLayout_22.addWidget(self.label__44)
+        self.label__2 = QtWidgets.QLabel(self.widget__)
+        self.label__2.setAlignment(QtCore.Qt.AlignCenter)
+        self.label__2.setObjectName("label__2")
+        self.horizontalLayout_22.addWidget(self.label__2)
+        self.label__5 = QtWidgets.QLabel(self.widget__)
+        self.label__5.setAlignment(QtCore.Qt.AlignCenter)
+        self.label__5.setObjectName("label__5")
+        self.horizontalLayout_22.addWidget(self.label__5)
+        self.widget__2 = QtWidgets.QWidget(self.widget__)
+        self.widget__2.setObjectName("widget__2")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.widget__2)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.pushButton__ = QtWidgets.QPushButton(self.widget__2)
+        self.pushButton__.setMinimumSize(QtCore.QSize(42, 0))
+        self.pushButton__.setMaximumSize(QtCore.QSize(41, 44))
+        self.pushButton__.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.pushButton__.setStyleSheet("#pushButton__{\n"
+                                        "border-radius : 15px;\n"
+                                        "border-right : none\n"
+                                        "\n"
+                                        "}\n"
+                                        "#pushButton__:hover {\n"
+                                        "                background-color: rgb(255,0,0); \n"
+                                        "            }")
+        self.pushButton__.setText("")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("../Client/View/Image/icons8-delete-trash-50.png"), QtGui.QIcon.Normal,
+                       QtGui.QIcon.Off)
+        self.pushButton__.setIcon(icon)
+        self.pushButton__.setObjectName("pushButton__")
+        self.horizontalLayout_2.addWidget(self.pushButton__)
+        self.horizontalLayout_22.addWidget(self.widget__2)
+        _translate = QtCore.QCoreApplication.translate
+
+        self.label__33.setText(_translate("MainWindow", st1))
+        self.label__44.setText(_translate("MainWindow", st2))
+        self.label__2.setText(_translate("MainWindow", st3))
+        self.label__5.setText(_translate("MainWindow", st4))
+        return self.widget__
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
