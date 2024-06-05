@@ -3,13 +3,14 @@ import logging
 import cv2
 import numpy as np
 from PyQt5 import QtGui, QtCore, QtWidgets
-from PyQt5.QtCore import Qt, QEvent, QRect
+from PyQt5.QtCore import Qt, QEvent, QRect, QSize
 from PyQt5.QtGui import QBrush, QWindow, QPixmap, QImage, QPainter, QIcon
 from Client.View.Home import mask_image
 from Client.Model.User import User
 from Client.View.Home import Ui_MainWindow
-from PyQt5.QtWidgets import QMainWindow, QWidget, QDialog, QFileDialog
+from PyQt5.QtWidgets import QMainWindow, QWidget, QDialog, QFileDialog, QListWidgetItem
 from Client.View.change_password import window
+
 # them label vao duoi confirm password trong change_password
 # set padding trong cac line edit o Profile
 # doi username@gmail.com trong change_password
@@ -34,8 +35,6 @@ from Client.View.change_password import window
        self.btn_maximize.setIconSize(QtCore.QSize(23, 27))
        self.btn_maximize.setVisible(False)
     '''''
-
-
 
 
 class ManagerUser(QMainWindow):
@@ -91,11 +90,77 @@ class ManagerUser(QMainWindow):
         # calling the function
         pixmap = mask_image(imgdata)
         self.ui.label___1.setPixmap(pixmap)
+        for i in range(10):
+            self.widget__ = QtWidgets.QWidget()
+            self.widget__.setObjectName("widget__")
+            self.horizontalLayout_22 = QtWidgets.QHBoxLayout(self.widget__)
+            self.horizontalLayout_22.setObjectName("horizontalLayout_22")
+            self.label__33 = QtWidgets.QLabel(self.widget__)
+            self.label__33.setAlignment(QtCore.Qt.AlignCenter)
+            self.label__33.setObjectName("label__33")
+            self.horizontalLayout_22.addWidget(self.label__33)
+            self.ui.label__1 = QtWidgets.QLabel(self.widget__)
+            self.ui.label__1.setText("")
+            #self.label__1.setPixmap(QtGui.QPixmap("../Client/View/Image/Vector_2.png"))
+            self.ui.label__1.setScaledContents(False)
+            self.ui.label__1.setAlignment(QtCore.Qt.AlignCenter)
+            self.ui.label__1.setObjectName("label__1")
+            imgpath = "../Client/View/Image/Rectangle 1.png"
 
+            # loading image
+            imgdata = open(imgpath, 'rb').read()
 
-      
+            # calling the function
+            pixmap = mask_image(imgdata)
+            self.ui.label__1.setPixmap(pixmap)
 
+            self.horizontalLayout_22.addWidget(self.ui.label__1)
+            self.label__44 = QtWidgets.QLabel(self.widget__)
+            self.label__44.setAlignment(QtCore.Qt.AlignCenter)
+            self.label__44.setObjectName("label__44")
+            self.horizontalLayout_22.addWidget(self.label__44)
+            self.label__2 = QtWidgets.QLabel(self.widget__)
+            self.label__2.setAlignment(QtCore.Qt.AlignCenter)
+            self.label__2.setObjectName("label__2")
+            self.horizontalLayout_22.addWidget(self.label__2)
+            self.label__5 = QtWidgets.QLabel(self.widget__)
+            self.label__5.setAlignment(QtCore.Qt.AlignCenter)
+            self.label__5.setObjectName("label__5")
+            self.horizontalLayout_22.addWidget(self.label__5)
+            self.widget__2 = QtWidgets.QWidget(self.widget__)
+            self.widget__2.setObjectName("widget__2")
+            self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.widget__2)
+            self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+            self.pushButton__ = QtWidgets.QPushButton(self.widget__2)
+            self.pushButton__.setMinimumSize(QtCore.QSize(42, 0))
+            self.pushButton__.setMaximumSize(QtCore.QSize(41, 44))
+            self.pushButton__.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+            self.pushButton__.setStyleSheet("#pushButton__{\n"
+                                            "border-radius : 15px;\n"
+                                            "border-right : none\n"
+                                            "\n"
+                                            "}\n"
+                                            "#pushButton__:hover {\n"
+                                            "                background-color: rgb(255,0,0); \n"
+                                            "            }")
+            self.pushButton__.setText("")
+            icon = QtGui.QIcon()
+            icon.addPixmap(QtGui.QPixmap("../Client/View/Image/icons8-delete-trash-50.png"), QtGui.QIcon.Normal,
+                           QtGui.QIcon.Off)
+            self.pushButton__.setIcon(icon)
+            self.pushButton__.setObjectName("pushButton__")
+            self.horizontalLayout_2.addWidget(self.pushButton__)
+            self.horizontalLayout_22.addWidget(self.widget__2)
+            _translate = QtCore.QCoreApplication.translate
 
+            self.label__33.setText(_translate("MainWindow", str(i)))
+            self.label__44.setText(_translate("MainWindow", "Pham Doan Minh Hieu"))
+            self.label__2.setText(_translate("MainWindow", "abc@gmail.com"))
+            self.label__5.setText(_translate("MainWindow", "0762649422"))
+            self.newItem = QListWidgetItem()
+            self.newItem.setSizeHint(QSize(1, 80))
+            self.ui.listWidget_2.addItem(self.newItem)
+            self.ui.listWidget_2.setItemWidget(self.newItem, self.widget__)
 
     def back_to_manangement(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page)
@@ -103,12 +168,14 @@ class ManagerUser(QMainWindow):
     def deleteUser(self):
         self.sender.deleteUser(self.username)
 
-    def receiverListUser(self,data):
+    def receiverListUser(self, data):
         self.listUser = data
         self.insertAccountToListWidget()
+
     def insertAccountToListWidget(self):
         for item in self.listUser:
             print("hello")
+
     def show_page(self):
         # pixmap = self.display_image(cv2.cvtColor(self.img, cv2.COLOR_BGR2RGB))
         imgpath = self.avatar
@@ -132,11 +199,11 @@ class ManagerUser(QMainWindow):
         if self.password == self.w.ui.LEdit_email_register.text():
             if self.w.ui.LEdit_password_register.text() == self.w.ui.LEdit_confirm.text():
                 password = self.w.ui.LEdit_password_register.text()
-                self.sender.change_password(self.username,password)
+                self.sender.change_password(self.username, password)
                 self.w.hide()
+
     def back_to_profile(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
-
 
     def back_to_learning(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_learning)
@@ -152,11 +219,9 @@ class ManagerUser(QMainWindow):
         self.sender.sendInforToEdit(self.username, edit_lastname, edit_firstname, edit_email, edit_gender, edit_phone,
                                     self.avatar)
 
-
     def back_to_home(self):
-        #user = User("minhvulqd2003@gmail.com", "12345")
+        # user = User("minhvulqd2003@gmail.com", "12345")
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_profile)
-
 
     def exit(self):
         # os.system(cmd)
@@ -181,7 +246,6 @@ class ManagerUser(QMainWindow):
             icon7.addPixmap(pixmap, QtGui.QIcon.Normal, QtGui.QIcon.Off)
             self.ui.btn_avatar.setIcon(icon7)
             self.ui.btn_avatar.setIconSize(QtCore.QSize(60, 70))
-
 
     def move_to_page_home(self):
         try:
@@ -276,4 +340,3 @@ class ManagerUser(QMainWindow):
         q_img = QImage(img.data, width, height, bytes_per_line, QImage.Format_RGB888)
         pixmap = QPixmap.fromImage(q_img)
         return pixmap
-   
