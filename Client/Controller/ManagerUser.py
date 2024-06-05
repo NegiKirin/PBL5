@@ -3,12 +3,12 @@ import logging
 import cv2
 import numpy as np
 from PyQt5 import QtGui, QtCore, QtWidgets
-from PyQt5.QtCore import Qt, QEvent, QRect
+from PyQt5.QtCore import Qt, QEvent, QRect, QSize
 from PyQt5.QtGui import QBrush, QWindow, QPixmap, QImage, QPainter, QIcon
 
 from Client.Model.User import User
 from Client.View.Home import Ui_MainWindow
-from PyQt5.QtWidgets import QMainWindow, QWidget, QDialog, QFileDialog
+from PyQt5.QtWidgets import QMainWindow, QWidget, QDialog, QFileDialog, QListWidgetItem
 from Client.View.change_password import window
 # them label vao duoi confirm password trong change_password
 # set padding trong cac line edit o Profile
@@ -148,7 +148,8 @@ class ManagerUser(QMainWindow):
         # calling the function
         pixmap = mask_image(imgdata)
         self.ui.label__1.setPixmap(pixmap)
-
+        # btn delete in managerment user
+        self.ui.pushButton__.clicked.connect(self.deleteUser)
 
     def back_to_manangement(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page)
@@ -160,15 +161,23 @@ class ManagerUser(QMainWindow):
         self.listUser = data
         self.insertAccountToListWidget()
     def insertAccountToListWidget(self):
+        pass
+    def show_page(self):
+        try:
+            self.sender.getListUser(self.username)
+            self.ui.stackedWidget.setCurrentWidget(self.ui.page)
+        except Exception as e:
+            print(e)
+    def deleteUser(self):
+        self.sender.deleteUser(self.username)
+
+    def receiverListUser(self, data):
+        self.listUser = data
+        self.insertAccountToListWidget()
+
+    def insertAccountToListWidget(self):
         for item in self.listUser:
             print("hello")
-    def show_page(self):
-        pixmap = self.display_image(cv2.cvtColor(self.img, cv2.COLOR_BGR2RGB))
-        self.ui.label__1.setPixmap(pixmap)
-        self.ui.label__1.setScaledContents(True)
-        self.ui.btn_avatar.setIconSize(pixmap.rect().size())
-        self.ui.stackedWidget.setCurrentWidget(self.ui.page)
-
     def show_change_password(self):
         self.w = window()
         self.w.show()
