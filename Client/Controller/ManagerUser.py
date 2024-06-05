@@ -10,7 +10,6 @@ from Client.Model.User import User
 from Client.View.Home import Ui_MainWindow
 from PyQt5.QtWidgets import QMainWindow, QWidget, QDialog, QFileDialog
 from Client.View.change_password import window
-
 # them label vao duoi confirm password trong change_password
 # set padding trong cac line edit o Profile
 # doi username@gmail.com trong change_password
@@ -35,6 +34,8 @@ from Client.View.change_password import window
        self.btn_maximize.setIconSize(QtCore.QSize(23, 27))
        self.btn_maximize.setVisible(False)
     '''''
+
+
 
 
 class ManagerUser(QMainWindow):
@@ -77,6 +78,8 @@ class ManagerUser(QMainWindow):
 
         self.img = None
 
+        self.listUser = []
+
         # self.ui.btn_profile.clicked.connect(self.read_user)
         self.ui.pushButton_13.clicked.connect(self.show_change_password)
 
@@ -89,9 +92,23 @@ class ManagerUser(QMainWindow):
         pixmap = mask_image(imgdata)
         self.ui.label___1.setPixmap(pixmap)
 
+
+      
+
+
+
     def back_to_manangement(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page)
 
+    def deleteUser(self):
+        self.sender.deleteUser(self.username)
+
+    def receiverListUser(self,data):
+        self.listUser = data
+        self.insertAccountToListWidget()
+    def insertAccountToListWidget(self):
+        for item in self.listUser:
+            print("hello")
     def show_page(self):
         # pixmap = self.display_image(cv2.cvtColor(self.img, cv2.COLOR_BGR2RGB))
         imgpath = self.avatar
@@ -115,11 +132,11 @@ class ManagerUser(QMainWindow):
         if self.password == self.w.ui.LEdit_email_register.text():
             if self.w.ui.LEdit_password_register.text() == self.w.ui.LEdit_confirm.text():
                 password = self.w.ui.LEdit_password_register.text()
-                self.sender.change_password(self.username, password)
+                self.sender.change_password(self.username,password)
                 self.w.hide()
-
     def back_to_profile(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
+
 
     def back_to_learning(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_learning)
@@ -130,13 +147,16 @@ class ManagerUser(QMainWindow):
         edit_gender = self.ui.lineEdit_3.text()
         edit_phone = self.ui.lineEdit_10.text()
         edit_email = self.ui.lineEdit_11.text()
+
         # print("hello" + self.fileNameImage)
         self.sender.sendInforToEdit(self.username, edit_lastname, edit_firstname, edit_email, edit_gender, edit_phone,
                                     self.avatar)
 
+
     def back_to_home(self):
-        # user = User("minhvulqd2003@gmail.com", "12345")
+        #user = User("minhvulqd2003@gmail.com", "12345")
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_profile)
+
 
     def exit(self):
         # os.system(cmd)
@@ -161,6 +181,7 @@ class ManagerUser(QMainWindow):
             icon7.addPixmap(pixmap, QtGui.QIcon.Normal, QtGui.QIcon.Off)
             self.ui.btn_avatar.setIcon(icon7)
             self.ui.btn_avatar.setIconSize(QtCore.QSize(60, 70))
+
 
     def move_to_page_home(self):
         try:
@@ -255,3 +276,4 @@ class ManagerUser(QMainWindow):
         q_img = QImage(img.data, width, height, bytes_per_line, QImage.Format_RGB888)
         pixmap = QPixmap.fromImage(q_img)
         return pixmap
+   

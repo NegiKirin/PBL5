@@ -92,3 +92,35 @@ class Sender:
         except Exception as e:
             print(e)
             return False
+
+
+    def deleteUser(self,username):
+        try:
+            command = Command.SEND_DELETE.value
+            data = {
+                'username': username,
+            }
+            data = pickle.dumps(data)
+            data = bytes(f'{command:<{COMMANDSIZE}}', 'utf-8') + bytes(f"{len(data):<{HEADERSIZE}}", 'utf-8') + data
+            self.socket.sendall(data)
+            print("send succeed")
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def getListUser(self,username):
+        try:
+            command = Command.SEND_SERVER_GET_LIST_USER.value
+            data = {
+                'username': username,
+            }
+            data = pickle.dumps(data)
+            data = bytes(f'{command:<{COMMANDSIZE}}', 'utf-8') + bytes(f"{len(data):<{HEADERSIZE}}", 'utf-8') + data
+            self.socket.sendall(data)
+            print("send succeed")
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
