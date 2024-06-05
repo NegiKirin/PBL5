@@ -3,14 +3,15 @@ import logging
 import cv2
 import numpy as np
 from PyQt5 import QtGui, QtCore, QtWidgets
+
 from PyQt5.QtCore import Qt, QEvent, QSize
 from PyQt5.QtGui import QPixmap, QImage
 from PyQt5.QtWidgets import QMainWindow, QFileDialog, QListWidgetItem
 
 from Client.View.Home import Ui_MainWindow
 from Client.View.Home import mask_image
-from Client.View.change_password import window
 
+from Client.View.change_password import window
 # them label vao duoi confirm password trong change_password
 # set padding trong cac line edit o Profile
 # doi username@gmail.com trong change_password
@@ -37,10 +38,61 @@ from Client.View.change_password import window
     '''''
 
 
+def mask_image(imgdata, imgtype='png', size=64):
+    # Load image
+    image = QImage.fromData(imgdata, imgtype)
+
+    # convert image to 32-bit ARGB (adds an alpha
+    # channel ie transparency factor):
+    image.convertToFormat(QImage.Format_ARGB32)
+
+    # Crop image to a square:
+    imgsize = min(image.width(), image.height())
+    rect = QRect(
+        (image.width() - imgsize) / 2,
+        (image.height() - imgsize) / 2,
+        imgsize,
+        imgsize,
+    )
+
+    image = image.copy(rect)
+
+    # Create the output image with the same dimensions
+    # and an alpha channel and make it completely transparent:
+    out_img = QImage(imgsize, imgsize, QImage.Format_ARGB32)
+    out_img.fill(Qt.transparent)
+
+    # Create a texture brush and paint a circle
+    # with the original image onto the output image:
+    brush = QBrush(image)
+
+    # Paint the output image
+    painter = QPainter(out_img)
+    painter.setBrush(brush)
+
+    # Don't draw an outline
+    painter.setPen(Qt.NoPen)
+
+    # drawing circle
+    painter.drawEllipse(0, 0, imgsize, imgsize)
+
+    # closing painter event
+    painter.end()
+
+    # Convert the image to a pixmap and rescale it.
+    pr = QWindow().devicePixelRatio()
+    pm = QPixmap.fromImage(out_img)
+    pm.setDevicePixelRatio(pr)
+    size *= pr
+    pm = pm.scaled(size, size, Qt.KeepAspectRatio,
+                   Qt.SmoothTransformation)
+
+    # return back the pixmap data
+    return pm
+
 class ManagerUser(QMainWindow):
     def __init__(self, sender=None):
         super().__init__()
-        self.avatar = None
         self.w = None
         self.sender = sender
         self.ui = Ui_MainWindow()
@@ -74,7 +126,6 @@ class ManagerUser(QMainWindow):
         self.email = None
         self.password = None
         self.fileNameImage = None
-
         self.img = None
 
         self.listUser = []
@@ -90,6 +141,7 @@ class ManagerUser(QMainWindow):
         # calling the function
         pixmap = mask_image(imgdata)
         self.ui.label___1.setPixmap(pixmap)
+
         for i in range(10):
             self.newItem = QListWidgetItem()
             self.newItem.setSizeHint(QSize(1, 80))
@@ -104,6 +156,20 @@ class ManagerUser(QMainWindow):
     def deleteUser(self):
         self.sender.deleteUser(self.username)
 
+    def receiverListUser(self,data):
+        self.listUser = data
+        self.insertAccountToListWidget()
+    def insertAccountToListWidget(self):
+        pass
+    def show_page(self):
+        try:
+            self.sender.getListUser(self.username)
+            self.ui.stackedWidget.setCurrentWidget(self.ui.page)
+        except Exception as e:
+            print(e)
+    def deleteUser(self):
+        self.sender.deleteUser(self.username)
+
     def receiverListUser(self, data):
         self.listUser = data
         self.insertAccountToListWidget()
@@ -111,19 +177,11 @@ class ManagerUser(QMainWindow):
     def insertAccountToListWidget(self):
         for item in self.listUser:
             print("hello")
-
     def show_page(self):
-        # pixmap = self.display_image(cv2.cvtColor(self.img, cv2.COLOR_BGR2RGB))
-        imgpath = self.avatar
-
-        # loading image
-        imgdata = open(imgpath, 'rb').read()
-
-        # calling the function
-        pixmap = mask_image(imgdata, 'jpg')
+        pixmap = self.display_image(cv2.cvtColor(self.img, cv2.COLOR_BGR2RGB))
         self.ui.label__1.setPixmap(pixmap)
-        self.ui.label__1.setScaledContents(False)
-        # self.ui.btn_avatar.setIconSize(pixmap.rect().size())
+        self.ui.label__1.setScaledContents(True)
+        self.ui.btn_avatar.setIconSize(pixmap.rect().size())
         self.ui.stackedWidget.setCurrentWidget(self.ui.page)
 
     def show_change_password(self):
@@ -132,14 +190,14 @@ class ManagerUser(QMainWindow):
         self.w.ui.btn_change.clicked.connect(self.change_password)
 
     def change_password(self):
-        if self.password == self.w.ui.LEdit_email_register.text():
-            if self.w.ui.LEdit_password_register.text() == self.w.ui.LEdit_confirm.text():
+        if (self.password == self.w.ui.LEdit_email_register.text()):
+            if (self.w.ui.LEdit_password_register.text() == self.w.ui.LEdit_confirm.text()):
                 password = self.w.ui.LEdit_password_register.text()
-                self.sender.change_password(self.username, password)
+                self.sender.change_password(self.username,password)
                 self.w.hide()
-
     def back_to_profile(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
+
 
     def back_to_learning(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_learning)
@@ -150,14 +208,14 @@ class ManagerUser(QMainWindow):
         edit_gender = self.ui.lineEdit_3.text()
         edit_phone = self.ui.lineEdit_10.text()
         edit_email = self.ui.lineEdit_11.text()
+        print(self.fileNameImage)
+        self.sender.sendInforToEdit(self.username,edit_lastname,edit_firstname,edit_email,edit_gender,edit_phone,self.fileNameImage)
 
-        # print("hello" + self.fileNameImage)
-        self.sender.sendInforToEdit(self.username, edit_lastname, edit_firstname, edit_email, edit_gender, edit_phone,
-                                    self.avatar)
 
     def back_to_home(self):
-        # user = User("minhvulqd2003@gmail.com", "12345")
+        #user = User("minhvulqd2003@gmail.com", "12345")
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_profile)
+
 
     def exit(self):
         # os.system(cmd)
@@ -174,14 +232,11 @@ class ManagerUser(QMainWindow):
     def upload_image(self):
 
         self.fileNameImage, _ = QFileDialog.getOpenFileName(self, "Open Image")
-        if self.fileNameImage != None:
-            icon7 = QtGui.QIcon()
-            image = open(self.fileNameImage, 'rb').read()
-            pixmap = mask_image(image)
-            self.avatar = self.fileNameImage
-            icon7.addPixmap(pixmap, QtGui.QIcon.Normal, QtGui.QIcon.Off)
-            self.ui.btn_avatar.setIcon(icon7)
-            self.ui.btn_avatar.setIconSize(QtCore.QSize(60, 70))
+        icon7 = QtGui.QIcon()
+        icon7.addPixmap(QtGui.QPixmap(self.fileNameImage), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.ui.btn_avatar.setIcon(icon7)
+        self.ui.btn_avatar.setIconSize(QtCore.QSize(60, 66))
+
 
     def move_to_page_home(self):
         try:
@@ -206,6 +261,10 @@ class ManagerUser(QMainWindow):
             self.ui.lineEdit_3.setText(str(self.gender))
             self.ui.lineEdit_10.setText(str(self.phone))
             self.ui.lineEdit_11.setText(str(self.email))
+            pixmap = self.display_image(cv2.cvtColor(self.img, cv2.COLOR_BGR2RGB))
+            icon = QIcon(pixmap)
+            self.ui.btn_avatar.setIcon(icon)
+            self.ui.btn_avatar.setIconSize(pixmap.rect().size())
 
             self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
 
@@ -250,20 +309,8 @@ class ManagerUser(QMainWindow):
         self.email = data['user'].email
         self.gender = data['user'].gender
         self.password = data['user'].password
-        self.avatar = data['user'].avatar
-        imgpath = self.avatar
-
-        # loading image
-        imgdata = open(imgpath, 'rb').read()
-
-        # calling the function
-        pixmap = mask_image(imgdata, 'jpg')
+        pixmap = self.display_image(cv2.cvtColor(self.img, cv2.COLOR_BGR2RGB))
         self.ui.label_avatar.setPixmap(pixmap)
-
-        icon8 = QtGui.QIcon()
-        icon8.addPixmap(QtGui.QPixmap(pixmap), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.ui.btn_avatar.setIcon(icon8)
-        self.ui.btn_avatar.setIconSize(QtCore.QSize(60, 70))
 
     def mouseReleaseEvent(self, event):
         self.initial_pos = None
@@ -276,3 +323,4 @@ class ManagerUser(QMainWindow):
         q_img = QImage(img.data, width, height, bytes_per_line, QImage.Format_RGB888)
         pixmap = QPixmap.fromImage(q_img)
         return pixmap
+   
