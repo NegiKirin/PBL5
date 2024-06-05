@@ -333,7 +333,6 @@ class Ui_MainWindow(object):
                                         "")
         self.label_avatar.setText("")
         self.label_avatar.setPixmap(QtGui.QPixmap("../Client/View/Image/Ellipse 10.png"))
-        self.label_avatar.setScaledContents(True)
         self.label_avatar.setAlignment(QtCore.Qt.AlignCenter)
         self.label_avatar.setObjectName("label_avatar")
         self.horizontalLayout_6.addWidget(self.label_avatar)
@@ -1024,7 +1023,7 @@ class Ui_MainWindow(object):
         icon8 = QtGui.QIcon()
         icon8.addPixmap(QtGui.QPixmap("../Client/View/Image/Ellipse 11.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_avatar.setIcon(icon8)
-        self.btn_avatar.setIconSize(QtCore.QSize(60, 66))
+        self.btn_avatar.setIconSize(QtCore.QSize(60, 70))
         self.btn_avatar.setObjectName("btn_avatar")
         self.horizontalLayout_13.addWidget(self.btn_avatar)
         self.widget_26 = QtWidgets.QWidget(self.widget_25)
@@ -1403,7 +1402,7 @@ class Ui_MainWindow(object):
             self.horizontalLayout_22.addWidget(self.widget__2)
             _translate = QtCore.QCoreApplication.translate
 
-            self.label__33.setText(_translate("MainWindow", "1"))
+            self.label__33.setText(_translate("MainWindow", str(i)))
             self.label__44.setText(_translate("MainWindow", "Pham Doan Minh Hieu"))
             self.label__2.setText(_translate("MainWindow", "abc@gmail.com"))
             self.label__5.setText(_translate("MainWindow", "0762649422"))
@@ -1444,7 +1443,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_22.addWidget(self.label___2)
 
         self.newItem = QListWidgetItem()
-        self.newItem.setSizeHint(QSize(1, 80))
+        self.newItem.setSizeHint(QSize(1, 190))
         self.listWidget.addItem(self.newItem)
         self.listWidget.setItemWidget(self.newItem, self.widget____)
 
