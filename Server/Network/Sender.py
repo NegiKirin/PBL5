@@ -54,3 +54,13 @@ class Sender:
         except Exception as e:
             print(e)
             return False
+    def sendAllUser(self,user):
+        try:
+            command = Command.SEND_CLIENT_GET_LIST_USER.value
+            data = pickle.dumps(user)
+            data = bytes(f'{command:<{COMMANDSIZE}}', 'utf-8') + bytes(f"{len(data):<{HEADERSIZE}}", 'utf-8') + data
+            self.socket.sendall(data)
+            return True
+        except Exception as e:
+            print(e)
+            return False

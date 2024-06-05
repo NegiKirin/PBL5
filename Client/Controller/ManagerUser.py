@@ -3,12 +3,12 @@ import logging
 import cv2
 import numpy as np
 from PyQt5 import QtGui, QtCore, QtWidgets
-from PyQt5.QtCore import Qt, QEvent, QRect
+from PyQt5.QtCore import Qt, QEvent, QRect, QSize
 from PyQt5.QtGui import QBrush, QWindow, QPixmap, QImage, QPainter, QIcon
 
 from Client.Model.User import User
 from Client.View.Home import Ui_MainWindow
-from PyQt5.QtWidgets import QMainWindow, QWidget, QDialog, QFileDialog
+from PyQt5.QtWidgets import QMainWindow, QWidget, QDialog, QFileDialog, QListWidgetItem
 from Client.View.change_password import window
 # them label vao duoi confirm password trong change_password
 # set padding trong cac line edit o Profile
@@ -115,6 +115,8 @@ class ManagerUser(QMainWindow):
         self.ui.btn_pile_stack.clicked.connect(self.window().showNormal)
         # self.ui.btn_avatar.clicked.connect(self.openImageDialog)
         self.ui.btn_maximize.clicked.connect(self.window().showMaximized)
+        #btn delete in managerment user
+        self.ui.pushButton__.clicked.connect(self.deleteUser)
 
         self.username = None
         self.lastname = None
@@ -125,6 +127,8 @@ class ManagerUser(QMainWindow):
         self.password = None
         self.fileNameImage = None
         self.img = None
+
+        self.listUser = []
 
         # self.ui.btn_profile.clicked.connect(self.read_user)
         self.ui.pushButton_13.clicked.connect(self.show_change_password)
@@ -151,12 +155,27 @@ class ManagerUser(QMainWindow):
     def back_to_manangement(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page)
 
+    def deleteUser(self):
+        self.sender.deleteUser(self.username)
+
+    def receiverListUser(self,data):
+        self.listUser = data
+        self.insertAccountToListWidget()
+    def insertAccountToListWidget(self):
+        for item in self.listUser:
+            print("hello")
     def show_page(self):
-        pixmap = self.display_image(cv2.cvtColor(self.img, cv2.COLOR_BGR2RGB))
-        icon = QIcon(pixmap)
-        self.ui..setIcon(icon)
-        self.ui.btn_avatar.setIconSize(pixmap.rect().size())
-        self.ui.stackedWidget.setCurrentWidget(self.ui.page)
+        try:
+            self.sender.getListUser(self.username)
+            for item in self.listUser:
+                self.ui.newItem = QListWidgetItem()
+                self.ui.newItem.setSizeHint(QSize(1, 80))
+                self.ui.listWidget.addItem(self.newItem)
+                self.ui.listWidget.setItemWidget(self.newItem, self.ui.widget____)
+            self.ui.stackedWidget.setCurrentWidget(self.ui.page)
+
+        except Exception as e:
+            print(e)
 
     def show_change_password(self):
         self.w = window()
@@ -285,6 +304,7 @@ class ManagerUser(QMainWindow):
         self.password = data['user'].password
         pixmap = self.display_image(cv2.cvtColor(self.img, cv2.COLOR_BGR2RGB))
         self.ui.label_avatar.setPixmap(pixmap)
+
 
     def mouseReleaseEvent(self, event):
         self.initial_pos = None

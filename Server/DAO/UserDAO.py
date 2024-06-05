@@ -89,3 +89,26 @@ class UserDAO:
             self.connect.commit()
         except Exception as e:
             print(e)
+
+    def Delete_User(self,dic):
+        try:
+            sql = 'DELETE FROM user WHERE username = %s'
+            self.myCursor.execute(sql, dic['username'])
+            self.connect.commit()
+        except Exception as e:
+            print(e)
+    def getAllUser(self):
+        try:
+            sql = 'SELECT * FROM user'
+            self.myCursor.execute(sql)
+            result = self.myCursor.fetchall()
+            # item = result[0]
+            users = []
+            # user = User(item[0], item[1], item[2])
+            for item in result:
+                user = User(item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8], item[9], 0)
+                users.append(user)
+            return users
+        except Exception as e:
+            print(e)
+
