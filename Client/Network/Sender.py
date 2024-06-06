@@ -34,7 +34,8 @@ class Sender:
             print(e)
             return False
 
-    def sendInforRegister(self, username, password, phone):
+
+    def sendInforRegister(self, username, password,phone):
         # Todo:
         try:
             command = Command.SEND_SERVER_REGISTER.value
@@ -52,7 +53,7 @@ class Sender:
             print(e)
             return False
 
-    def sendInforToEdit(self, username, lastname, firstname, email, gender, phone, fileNameImage):
+    def sendInforToEdit(self,username,lastname,firstname,email,gender,phone,fileNameImage):
         try:
             img = cv2.imread(fileNameImage)
             _, img_encoded = cv2.imencode('.jpg', img)
@@ -60,13 +61,13 @@ class Sender:
             print(dataImage)
             command = Command.SEND_SERVER_EDIT.value
             data = {
-                'username': username,
-                'lastname': lastname,
-                'firstname': firstname,
-                'email': email,
-                'gender': gender,
+                'username' : username,
+                'lastname' : lastname,
+                'firstname' : firstname,
+                'email' : email,
+                'gender' : gender,
                 'phone': phone,
-                'dataImage': dataImage,
+                'dataImage' : dataImage,
             }
             data = pickle.dumps(data)
             data = bytes(f'{command:<{COMMANDSIZE}}', 'utf-8') + bytes(f"{len(data):<{HEADERSIZE}}", 'utf-8') + data
@@ -77,11 +78,11 @@ class Sender:
             print(e)
             return False
 
-    def change_password(self, username, password):
+    def change_password(self,username,password):
         try:
             command = Command.SEND_CHANGE_PASSWORD.value
             data = {
-                'username': username,
+                'username' : username,
                 'password': password,
             }
             data = pickle.dumps(data)
@@ -92,7 +93,6 @@ class Sender:
         except Exception as e:
             print(e)
             return False
-
 
     def deleteUser(self,username):
         try:
@@ -123,4 +123,3 @@ class Sender:
         except Exception as e:
             print(e)
             return False
-

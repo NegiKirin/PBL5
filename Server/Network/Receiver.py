@@ -111,12 +111,10 @@ class Receiver:
             nparr = np.frombuffer(dataImage, np.uint8)
             img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
             username = main_data['username']
-            path = '../Server/DB/' + username[:-4] + '.jpg'
-
+            path = 'E:/PBL_2/PBL5/Server/DB/' + username + '.png'
             cv2.imwrite(path, img)
             main_data['dataImage'] = path
             user = UserDAO().UpdateUser(main_data)
-
             self.sender.sendInforEdit(user)
         except Exception as e:
             print(e)

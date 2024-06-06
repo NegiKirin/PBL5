@@ -9,8 +9,7 @@ from Client.Network.Receiver import Receiver
 from Client.Network.Sender import Sender
 from Controller.Controller import Controller
 
-
-class Client:
+class Client():
     # def __init__(self,host="192.168.220.1",port=9999):
     #     # socket
     #     self.host = host
@@ -34,7 +33,7 @@ class Client:
     #     self.soc.connect(server_address)
     def __init__(self):
         self.soc = None
-        self.host = "192.168.1.8"
+        self.host = "localhost"
         self.port = 9999
 
         self.create_socket()
@@ -67,6 +66,7 @@ class Client:
             print(str(msg) + ' .Trying to connecting again...')
             self.create_socket()
 
+
     def connect_socket(self):
         try:
             self.soc.connect((self.host, self.port))
@@ -74,6 +74,7 @@ class Client:
         except socket.error as msg:
             print(str(msg) + ' Trying to connect...')
             self.connect_socket()
+
 
     def close_socket(self):
         if self.soc is not None:

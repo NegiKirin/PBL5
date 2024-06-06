@@ -4,8 +4,8 @@ import cv2
 import numpy as np
 from PyQt5 import QtGui, QtCore, QtWidgets
 
-from PyQt5.QtCore import Qt, QEvent, QSize
-from PyQt5.QtGui import QPixmap, QImage
+from PyQt5.QtCore import Qt, QEvent, QSize, QRect
+from PyQt5.QtGui import QPixmap, QImage, QBrush, QPainter, QWindow, QIcon
 from PyQt5.QtWidgets import QMainWindow, QFileDialog, QListWidgetItem
 
 from Client.View.Home import Ui_MainWindow
@@ -127,8 +127,10 @@ class ManagerUser(QMainWindow):
         self.password = None
         self.fileNameImage = None
         self.img = None
-
         self.listUser = []
+
+        self.list_user_in_user_widget = []
+        self.selected_user_id = None
 
         # self.ui.btn_profile.clicked.connect(self.read_user)
         self.ui.pushButton_13.clicked.connect(self.show_change_password)
@@ -142,48 +144,67 @@ class ManagerUser(QMainWindow):
         pixmap = mask_image(imgdata)
         self.ui.label___1.setPixmap(pixmap)
 
-        for i in range(10):
-            self.newItem = QListWidgetItem()
-            self.newItem.setSizeHint(QSize(1, 80))
-            self.ui.listWidget_2.addItem(self.newItem)
-            self.ui.listWidget_2.setItemWidget(self.newItem,
-                                               self.ui.addRow(str(i), "Pham Doan Minh Hieu", "hieuprobanh@gmail.com",
-                                                              "0762649422"))
+    def eventFilter(self, obj, event):
+        if event.type() == QEvent.Leave:
+            for i in self.list_user_in_user_widget:
+                i[1].hide()
+            # for i in self.list_item_in_list_session:
+            #     i[1].hide()
+
+        elif event.type() == QEvent.Enter:
+            pointer_to_widget = obj
+            for list_item in self.list_user_in_user_widget:
+                if list_item[0] == pointer_to_widget:
+                    list_item[1].show()
+                    self.selected_user_id = list_item[-1]
+                    print(list_item[-1])
+            # for list_item in self.list_item_in_list_session:
+            #     if list_item[0] == pointer_to_widget:
+            #         list_item[1].show()
+            #         self.selected_session_id = list_item[-1].id
+        return super(ManagerUser, self).eventFilter(obj, event)
 
     def back_to_manangement(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page)
 
     def deleteUser(self):
-        self.sender.deleteUser(self.username)
+        # self.sender.deleteUser(self.username)
+        print("delete" + self.selected_user_id)
 
     def receiverListUser(self,data):
         self.listUser = data
-        self.insertAccountToListWidget()
-    def insertAccountToListWidget(self):
-        pass
+
+    def insertListUser(self,):
+        for i, user in enumerate(self.listUser):
+            pixmap = self.display_image(cv2.cvtColor(self.img, cv2.COLOR_BGR2RGB))
+            newItem = QListWidgetItem()
+            newItem.setSizeHint(QSize(1, 80))
+            self.ui.listWidget_2.addItem(newItem)
+            self.row_widget = self.ui.addRow(str(user.id), user.username, user.email,
+                                        str(user.phone),pixmap, self.list_user_in_user_widget)
+            self.ui.listWidget_2.setItemWidget(newItem, self.row_widget)
+            self.list_user_in_user_widget[i][0].installEventFilter(self)
+            # event delete button
+            self.list_user_in_user_widget[i][1].clicked.connect(self.deleteUser)
+
+    # def insertAccountToListWidget(self):
+    #     self.newItem.setSizeHint(QSize(1, 80))
+    #     self.ui.listWidget_2.addItem(self.newItem)
+    #     self.ui.listWidget_2.setItemWidget(self.newItem,
+    #                                        self.ui.addRow(str(1), "Pham Doan Minh Hieu", "hieuprobanh@gmail.com",
+    #                                                       "0762649422"))
     def show_page(self):
         try:
             self.sender.getListUser(self.username)
+
+            while True:
+                if self.listUser != []:
+                    break
+
             self.ui.stackedWidget.setCurrentWidget(self.ui.page)
+            self.insertListUser()
         except Exception as e:
             print(e)
-    def deleteUser(self):
-        self.sender.deleteUser(self.username)
-
-    def receiverListUser(self, data):
-        self.listUser = data
-        self.insertAccountToListWidget()
-
-    def insertAccountToListWidget(self):
-        for item in self.listUser:
-            print("hello")
-    def show_page(self):
-        pixmap = self.display_image(cv2.cvtColor(self.img, cv2.COLOR_BGR2RGB))
-        self.ui.label__1.setPixmap(pixmap)
-        self.ui.label__1.setScaledContents(True)
-        self.ui.btn_avatar.setIconSize(pixmap.rect().size())
-        self.ui.stackedWidget.setCurrentWidget(self.ui.page)
-
     def show_change_password(self):
         self.w = window()
         self.w.show()

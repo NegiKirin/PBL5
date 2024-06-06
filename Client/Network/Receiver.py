@@ -51,12 +51,12 @@ class Receiver:
                     print(main_data['user'].dataImage)
                     break
 
-            if not main_data['user']:
+            if main_data['user'] == []:
                 # Todo: print error
                 self.controller.controllerLogin.setError()
                 print()
             else:
-                if main_data['user'].id_role == 1:
+                if(main_data['user'].id_role) == 1:
                     self.controller.managerUser.receiveDataUser(main_data)
                     self.controller.managerUser.ui.pushButton_6.hide()
                     self.controller.controllerLogin.hide()

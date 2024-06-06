@@ -19,7 +19,7 @@ class UserDAO:
             user = []
             # user = User(item[0], item[1], item[2])
             for item in result:
-                user = User(item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8], item[9], 0)
+                user = User(item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8], item[9],0)
             img = cv2.imread(user.avatar)
             _, img_encoded = cv2.imencode('.jpg', img)
             dataImg = img_encoded.tobytes()
@@ -37,7 +37,7 @@ class UserDAO:
             self.myCursor.execute(sql_check_username, [dic['username']])
             result = self.myCursor.fetchall()
             if result == []:
-                sql = 'INSERT INTO user (username, password,phone,avatar,id_role) VALUES ( %s, %s, %s,"../Server/DB/images.png",1)'
+                sql = 'INSERT INTO user (username, password,phone,avatar,id_role) VALUES ( %s, %s, %s,"E:/PBL_2/PBL5/Server/DB/images.jpg",1)'
                 self.myCursor.execute(sql, [dic['username'], dic['password'], dic['phone']])
                 self.connect.commit()
                 get_Infor = 'SELECT * FROM user WHERE username = %s'
@@ -47,9 +47,9 @@ class UserDAO:
                 # user = User(item[0], item[1], item[2])
                 for item in result:
                     user = User(item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8],
-                                item[9], 0)
+                                item[9],0)
                 img = cv2.imread(user.avatar)
-                _, img_encoded = cv2.imencode('.png', img)
+                _, img_encoded = cv2.imencode('.jpg', img)
                 dataImage = img_encoded.tobytes()
                 user.dataImage = dataImage
                 print(user)
@@ -64,8 +64,7 @@ class UserDAO:
         try:
 
             sql = 'UPDATE user SET  lastname = %s ,firstname = %s ,email = %s, gender = %s , phone = %s, avatar = %s WHERE username = %s'
-            self.myCursor.execute(sql, [dic['lastname'], dic['firstname'], dic['email'], dic['gender'], dic['phone'],
-                                        dic['dataImage'], dic['username']])
+            self.myCursor.execute(sql, [dic['lastname'],dic['firstname'],dic['email'],dic['gender'],dic['phone'],dic['dataImage'],dic['username']])
             self.connect.commit()
             get_Infor = 'SELECT * FROM user WHERE username = %s'
             self.myCursor.execute(get_Infor, [dic['username']])
@@ -73,7 +72,7 @@ class UserDAO:
             user = []
             # user = User(item[0], item[1], item[2])
             for item in result:
-                user = User(item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8], item[9], 0)
+                user = User(item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8], item[9],0)
             img = cv2.imread(user.avatar)
             _, img_encoded = cv2.imencode('.jpg', img)
             dataImg = img_encoded.tobytes()
