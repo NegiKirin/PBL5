@@ -66,6 +66,7 @@ class UserDAO:
             sql = 'UPDATE user SET  lastname = %s ,firstname = %s ,email = %s, gender = %s , phone = %s, avatar = %s WHERE username = %s'
             self.myCursor.execute(sql, [dic['lastname'],dic['firstname'],dic['email'],dic['gender'],dic['phone'],dic['dataImage'],dic['username']])
             self.connect.commit()
+            print("edit succeed")
             get_Infor = 'SELECT * FROM user WHERE username = %s'
             self.myCursor.execute(get_Infor, [dic['username']])
             result = self.myCursor.fetchall()
@@ -92,9 +93,24 @@ class UserDAO:
 
     def Delete_User(self,dic):
         try:
-            sql = 'DELETE FROM user WHERE username = %s'
-            self.myCursor.execute(sql, dic['username'])
+            sql_delete = 'DELETE FROM user WHERE id = %s'
+            self.myCursor.execute(sql_delete, [dic['id']])
             self.connect.commit()
+
+            sql = 'SELECT * FROM user'
+            self.myCursor.execute(sql)
+            result = self.myCursor.fetchall()
+            # item = result[0]
+            users = []
+            # user = User(item[0], item[1], item[2])
+            for item in result:
+                user = User(item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8], item[9], 0)
+                img = cv2.imread(user.avatar)
+                _, img_encoded = cv2.imencode('.jpg', img)
+                dataImg = img_encoded.tobytes()
+                user.dataImage = dataImg
+                users.append(user)
+            return users
         except Exception as e:
             print(e)
     def getAllUser(self):
@@ -107,6 +123,10 @@ class UserDAO:
             # user = User(item[0], item[1], item[2])
             for item in result:
                 user = User(item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8], item[9], 0)
+                img = cv2.imread(user.avatar)
+                _, img_encoded = cv2.imencode('.jpg', img)
+                dataImg = img_encoded.tobytes()
+                user.dataImage = dataImg
                 users.append(user)
             return users
         except Exception as e:

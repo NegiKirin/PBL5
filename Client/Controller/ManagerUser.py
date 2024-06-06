@@ -168,15 +168,22 @@ class ManagerUser(QMainWindow):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page)
 
     def deleteUser(self):
-        # self.sender.deleteUser(self.username)
-        print("delete" + self.selected_user_id)
+        self.sender.deleteUser(self.selected_user_id)
+        # print("delete" + self.selected_user_id)
 
     def receiverListUser(self,data):
         self.listUser = data
 
-    def insertListUser(self,):
-        for i, user in enumerate(self.listUser):
+    def insertListUser(self,data):
+        for i, user in enumerate(data):
+            dataImg = bytearray()
+            print("check error")
+            dataImg.extend(user.dataImage)
+            print("checked error")
+            nparr = np.frombuffer(dataImg, np.uint8)
+            self.img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
             pixmap = self.display_image(cv2.cvtColor(self.img, cv2.COLOR_BGR2RGB))
+
             newItem = QListWidgetItem()
             newItem.setSizeHint(QSize(1, 80))
             self.ui.listWidget_2.addItem(newItem)
@@ -186,7 +193,15 @@ class ManagerUser(QMainWindow):
             self.list_user_in_user_widget[i][0].installEventFilter(self)
             # event delete button
             self.list_user_in_user_widget[i][1].clicked.connect(self.deleteUser)
+            self.ui.pushButton__.clicked.connect(self.remove_item)
 
+    def remove_item(self):
+        try:
+            item = self.ui.listWidget_2.itemClicked()
+            row = self.ui.listWidget_2.row(item)
+            self.ui.listWidget_2.takeItem(row)
+        except Exception as e:
+            print(e)
     # def insertAccountToListWidget(self):
     #     self.newItem.setSizeHint(QSize(1, 80))
     #     self.ui.listWidget_2.addItem(self.newItem)
@@ -202,9 +217,13 @@ class ManagerUser(QMainWindow):
                     break
 
             self.ui.stackedWidget.setCurrentWidget(self.ui.page)
-            self.insertListUser()
+            self.insertListUser(self.listUser)
         except Exception as e:
             print(e)
+
+    # def clearListWidet(self,data):
+    #     self.ui.listWidget_2.clear()
+    #     self.insertListUser(data)
     def show_change_password(self):
         self.w = window()
         self.w.show()

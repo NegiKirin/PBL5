@@ -124,7 +124,6 @@ class Receiver:
                 print(full_msg)
                 if len(full_msg) - HEADERSIZE - COMMANDSIZE == size:
                     main_data = pickle.loads(full_msg[HEADERSIZE + COMMANDSIZE:])
-                    print(main_data)
                     break
             self.controller.managerUser.receiveDataUser(main_data)
         except Exception as e:
@@ -148,12 +147,30 @@ class Receiver:
                 print(full_msg)
                 if len(full_msg) - HEADERSIZE - COMMANDSIZE == size:
                     main_data = pickle.loads(full_msg[HEADERSIZE + COMMANDSIZE:])
-                    print(main_data)
                     break
             self.controller.managerUser.receiverListUser(main_data)
         except Exception as e:
             print(e)
 
+    def receiverUserAfterDelete(self,data):
+        try:
+            size = self.getSize(data)
+            print(size)
+            print(data)
+            main_data = None
+            full_msg = b''
+            new_msg = True
+            while True:
+                msg = self.socket.recv(1024)
+                if new_msg:
+                    msg = data + msg
+                    new_msg = False
+                full_msg += msg
+                if len(full_msg) - HEADERSIZE - COMMANDSIZE == size:
+                    main_data = pickle.loads(full_msg[HEADERSIZE + COMMANDSIZE:])
+                    break
+        except Exception as e:
+            print(e)
     def run(self):
         while True:
             print("Waiting command")
@@ -170,6 +187,8 @@ class Receiver:
                     self.receiverInforAfterEdit(data)
                 if cm == Command.SEND_CLIENT_GET_LIST_USER.value:
                     self.receiverAllUser(data)
+                if cm == Command.SEND_CLIENT_AFTER_DELETE.value:
+                    self.receiverUserAfterDelete(data)
             except socket.error as error:
                 print(error)
                 print("Receiver error")

@@ -162,7 +162,8 @@ class Receiver:
                     main_data = pickle.loads(full_msg[HEADERSIZE+COMMANDSIZE:])
                     print(main_data)
                     break
-            user = UserDAO().Change_Password(main_data)
+            users = UserDAO().Delete_User(main_data)
+            self.sender.sendUserAfterDelete(users)
         except Exception as e:
             print(e)
 
@@ -206,7 +207,7 @@ class Receiver:
                     self.receiverInforEdit(data)
                 if cm == Command.SEND_CHANGE_PASSWORD.value:
                     self.Change_Password(data)
-                if cm == Command.SEND_DELETE.value:
+                if cm == Command.SEND_SERVER_DELETE.value:
                     self.deleteUser(data)
                 if cm == Command.SEND_SERVER_GET_LIST_USER.value:
                     self.getListUser(data)

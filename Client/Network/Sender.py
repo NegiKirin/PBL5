@@ -94,11 +94,11 @@ class Sender:
             print(e)
             return False
 
-    def deleteUser(self,username):
+    def deleteUser(self,id):
         try:
-            command = Command.SEND_DELETE.value
+            command = Command.SEND_SERVER_DELETE.value
             data = {
-                'username': username,
+                'id': id,
             }
             data = pickle.dumps(data)
             data = bytes(f'{command:<{COMMANDSIZE}}', 'utf-8') + bytes(f"{len(data):<{HEADERSIZE}}", 'utf-8') + data
