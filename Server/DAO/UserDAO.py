@@ -1,9 +1,13 @@
+import os
+import sys
+
 import cv2
 
 from Server.Model.User import User
 from Server.Util import Connection
 
-
+current_directory = os.path.dirname(os.path.abspath(__file__)) + '\\'
+# sys.path.append(current_directory)
 class UserDAO:
     def __init__(self):
         self.connect = Connection.getConnect()
@@ -20,7 +24,8 @@ class UserDAO:
             # user = User(item[0], item[1], item[2])
             for item in result:
                 user = User(item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8], item[9],0)
-            img = cv2.imread(user.avatar)
+            # print(current_directory)
+            img = cv2.imread(current_directory + user.avatar)
             _, img_encoded = cv2.imencode('.jpg', img)
             dataImg = img_encoded.tobytes()
             user.dataImage = dataImg
@@ -48,7 +53,8 @@ class UserDAO:
                 for item in result:
                     user = User(item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8],
                                 item[9],0)
-                img = cv2.imread(user.avatar)
+                img = cv2.imread(current_directory + user.avatar)
+
                 _, img_encoded = cv2.imencode('.jpg', img)
                 dataImage = img_encoded.tobytes()
                 user.dataImage = dataImage
@@ -74,7 +80,7 @@ class UserDAO:
             # user = User(item[0], item[1], item[2])
             for item in result:
                 user = User(item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8], item[9],0)
-            img = cv2.imread(user.avatar)
+            img = cv2.imread(current_directory + user.avatar)
             _, img_encoded = cv2.imencode('.jpg', img)
             dataImg = img_encoded.tobytes()
             user.dataImage = dataImg
@@ -105,7 +111,7 @@ class UserDAO:
             # user = User(item[0], item[1], item[2])
             for item in result:
                 user = User(item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8], item[9], 0)
-                img = cv2.imread(user.avatar)
+                img = cv2.imread(current_directory + user.avatar)
                 _, img_encoded = cv2.imencode('.jpg', img)
                 dataImg = img_encoded.tobytes()
                 user.dataImage = dataImg
@@ -123,7 +129,7 @@ class UserDAO:
             # user = User(item[0], item[1], item[2])
             for item in result:
                 user = User(item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8], item[9], 0)
-                img = cv2.imread(user.avatar)
+                img = cv2.imread(current_directory + user.avatar)
                 _, img_encoded = cv2.imencode('.jpg', img)
                 dataImg = img_encoded.tobytes()
                 user.dataImage = dataImg

@@ -8,6 +8,7 @@ from PyQt5.QtCore import Qt, QEvent, QSize, QRect
 from PyQt5.QtGui import QPixmap, QImage, QBrush, QPainter, QWindow, QIcon
 from PyQt5.QtWidgets import QMainWindow, QFileDialog, QListWidgetItem
 
+from Client.Util.round_image import round_image, round_image_icon
 from Client.View.Home import Ui_MainWindow
 from Client.View.Home import mask_image
 
@@ -38,57 +39,57 @@ from Client.View.change_password import window
     '''''
 
 
-def mask_image(imgdata, imgtype='png', size=64):
-    # Load image
-    image = QImage.fromData(imgdata, imgtype)
-
-    # convert image to 32-bit ARGB (adds an alpha
-    # channel ie transparency factor):
-    image.convertToFormat(QImage.Format_ARGB32)
-
-    # Crop image to a square:
-    imgsize = min(image.width(), image.height())
-    rect = QRect(
-        (image.width() - imgsize) / 2,
-        (image.height() - imgsize) / 2,
-        imgsize,
-        imgsize,
-    )
-
-    image = image.copy(rect)
-
-    # Create the output image with the same dimensions
-    # and an alpha channel and make it completely transparent:
-    out_img = QImage(imgsize, imgsize, QImage.Format_ARGB32)
-    out_img.fill(Qt.transparent)
-
-    # Create a texture brush and paint a circle
-    # with the original image onto the output image:
-    brush = QBrush(image)
-
-    # Paint the output image
-    painter = QPainter(out_img)
-    painter.setBrush(brush)
-
-    # Don't draw an outline
-    painter.setPen(Qt.NoPen)
-
-    # drawing circle
-    painter.drawEllipse(0, 0, imgsize, imgsize)
-
-    # closing painter event
-    painter.end()
-
-    # Convert the image to a pixmap and rescale it.
-    pr = QWindow().devicePixelRatio()
-    pm = QPixmap.fromImage(out_img)
-    pm.setDevicePixelRatio(pr)
-    size *= pr
-    pm = pm.scaled(size, size, Qt.KeepAspectRatio,
-                   Qt.SmoothTransformation)
-
-    # return back the pixmap data
-    return pm
+# def mask_image(imgdata, imgtype='png', size=64):
+#     # Load image
+#     image = QImage.fromData(imgdata, imgtype)
+#
+#     # convert image to 32-bit ARGB (adds an alpha
+#     # channel ie transparency factor):
+#     image.convertToFormat(QImage.Format_ARGB32)
+#
+#     # Crop image to a square:
+#     imgsize = min(image.width(), image.height())
+#     rect = QRect(
+#         (image.width() - imgsize) / 2,
+#         (image.height() - imgsize) / 2,
+#         imgsize,
+#         imgsize,
+#     )
+#
+#     image = image.copy(rect)
+#
+#     # Create the output image with the same dimensions
+#     # and an alpha channel and make it completely transparent:
+#     out_img = QImage(imgsize, imgsize, QImage.Format_ARGB32)
+#     out_img.fill(Qt.transparent)
+#
+#     # Create a texture brush and paint a circle
+#     # with the original image onto the output image:
+#     brush = QBrush(image)
+#
+#     # Paint the output image
+#     painter = QPainter(out_img)
+#     painter.setBrush(brush)
+#
+#     # Don't draw an outline
+#     painter.setPen(Qt.NoPen)
+#
+#     # drawing circle
+#     painter.drawEllipse(0, 0, imgsize, imgsize)
+#
+#     # closing painter event
+#     painter.end()
+#
+#     # Convert the image to a pixmap and rescale it.
+#     pr = QWindow().devicePixelRatio()
+#     pm = QPixmap.fromImage(out_img)
+#     pm.setDevicePixelRatio(pr)
+#     size *= pr
+#     pm = pm.scaled(size, size, Qt.KeepAspectRatio,
+#                    Qt.SmoothTransformation)
+#
+#     # return back the pixmap data
+#     return pm
 
 class ManagerUser(QMainWindow):
     def __init__(self, sender=None):
@@ -116,7 +117,7 @@ class ManagerUser(QMainWindow):
 
         self.ui.btn_pile_stack.clicked.connect(self.window().showNormal)
         # self.ui.btn_avatar.clicked.connect(self.openImageDialog)
-        self.ui.btn_maximize.clicked.connect(self.window().showMaximized)
+        # self.ui.btn_maximize.clicked.connect(self.window().showMaximized)
 
         self.username = None
         self.lastname = None
@@ -141,8 +142,8 @@ class ManagerUser(QMainWindow):
         imgdata = open(imgpath, 'rb').read()
 
         # calling the function
-        pixmap = mask_image(imgdata)
-        self.ui.label___1.setPixmap(pixmap)
+        # pixmap = mask_image(imgdata)
+        # self.ui.label___1.setPixmap(pixmap)
 
     def eventFilter(self, obj, event):
         if event.type() == QEvent.Leave:
@@ -175,6 +176,9 @@ class ManagerUser(QMainWindow):
         self.listUser = data
 
     def insertListUser(self,data):
+        # print(data)
+        self.ui.listWidget_2.clear()
+        self.list_user_in_user_widget.clear()
         for i, user in enumerate(data):
             dataImg = bytearray()
             print("check error")
@@ -193,7 +197,7 @@ class ManagerUser(QMainWindow):
             self.list_user_in_user_widget[i][0].installEventFilter(self)
             # event delete button
             self.list_user_in_user_widget[i][1].clicked.connect(self.deleteUser)
-            self.ui.pushButton__.clicked.connect(self.remove_item)
+            # self.ui.pushButton__.clicked.connect(self.remove_item)
 
     def remove_item(self):
         try:
@@ -302,9 +306,13 @@ class ManagerUser(QMainWindow):
             self.ui.lineEdit_10.setText(str(self.phone))
             self.ui.lineEdit_11.setText(str(self.email))
             pixmap = self.display_image(cv2.cvtColor(self.img, cv2.COLOR_BGR2RGB))
+
+            # output = round_image(pixmap)
+
             icon = QIcon(pixmap)
+
             self.ui.btn_avatar.setIcon(icon)
-            self.ui.btn_avatar.setIconSize(pixmap.rect().size())
+            # self.ui.btn_avatar.setIconSize(pixmap.rect().size())
 
             self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
 
@@ -350,7 +358,8 @@ class ManagerUser(QMainWindow):
         self.gender = data['user'].gender
         self.password = data['user'].password
         pixmap = self.display_image(cv2.cvtColor(self.img, cv2.COLOR_BGR2RGB))
-        self.ui.label_avatar.setPixmap(pixmap)
+        output = round_image(pixmap)
+        self.ui.label_avatar.setPixmap(output)
 
     def mouseReleaseEvent(self, event):
         self.initial_pos = None
