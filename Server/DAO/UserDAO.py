@@ -23,13 +23,12 @@ class UserDAO:
             user = []
             # user = User(item[0], item[1], item[2])
             for item in result:
-                user = User(item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8], item[9],0)
+                user = User(item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8], item[9],0,0)
             # print(current_directory)
             img = cv2.imread(current_directory + user.avatar)
             _, img_encoded = cv2.imencode('.jpg', img)
             dataImg = img_encoded.tobytes()
             user.dataImage = dataImg
-            print(user.dataImage)
             return user
         except Exception as e:
             print(e)
@@ -52,7 +51,7 @@ class UserDAO:
                 # user = User(item[0], item[1], item[2])
                 for item in result:
                     user = User(item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8],
-                                item[9],0)
+                                item[9],0,0)
                 img = cv2.imread(current_directory + user.avatar)
 
                 _, img_encoded = cv2.imencode('.jpg', img)
@@ -79,7 +78,7 @@ class UserDAO:
             user = []
             # user = User(item[0], item[1], item[2])
             for item in result:
-                user = User(item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8], item[9],0)
+                user = User(item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8], item[9],0,0)
             img = cv2.imread(current_directory + user.avatar)
             _, img_encoded = cv2.imencode('.jpg', img)
             dataImg = img_encoded.tobytes()
@@ -110,7 +109,7 @@ class UserDAO:
             users = []
             # user = User(item[0], item[1], item[2])
             for item in result:
-                user = User(item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8], item[9], 0)
+                user = User(item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8], item[9], 0,0)
                 img = cv2.imread(current_directory + user.avatar)
                 _, img_encoded = cv2.imencode('.jpg', img)
                 dataImg = img_encoded.tobytes()
@@ -128,7 +127,7 @@ class UserDAO:
             users = []
             # user = User(item[0], item[1], item[2])
             for item in result:
-                user = User(item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8], item[9], 0)
+                user = User(item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8], item[9], 0,0)
                 img = cv2.imread(current_directory + user.avatar)
                 _, img_encoded = cv2.imencode('.jpg', img)
                 dataImg = img_encoded.tobytes()
@@ -138,3 +137,35 @@ class UserDAO:
         except Exception as e:
             print(e)
 
+    def getListRank(self,dic):
+        try:
+            sql = 'SELECT user.ID,user.lastname,user.firstname,user.email,user.username,user.`password`,user.gender,user.id_role,user.avatar,user.phone,SUM(user_word.`point`) AS point FROM user INNER JOIN user_word ON user_word.ID_user = user.ID GROUP BY user.ID,user.lastname,user.firstname,user.email,user.username,user.`password`,user.gender,user.id_role,user.avatar,user.phone ORDER BY point DESC;'
+            self.myCursor.execute(sql)
+            result = self.myCursor.fetchall()
+            # item = result[0]
+            users = []
+            # user = User(item[0], item[1], item[2])
+            for item in result:
+                user = User(item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8], item[9], 0, item[10])
+                img = cv2.imread(current_directory + user.avatar)
+                _, img_encoded = cv2.imencode('.jpg', img)
+                dataImg = img_encoded.tobytes()
+                user.dataImage = dataImg
+                users.append(user)
+            return users
+        except Exception as e:
+            print(e)
+
+    def getWord(self,dic):
+        try:
+            sql = 'SELECT word.word FROM word INNER JOIN user_word ON word.ID = user_word.ID_word WHERE user_word.ID_user = %s'
+            self.myCursor.execute(sql,[dic['id']])
+            result = self.myCursor.fetchall()
+            # item = result[0]
+            word = []
+            # user = User(item[0], item[1], item[2])
+            for item in result:
+                word.append(item)
+            return word
+        except Exception as e:
+            print(e)

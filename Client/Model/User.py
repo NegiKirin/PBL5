@@ -1,5 +1,5 @@
 class User:
-    def __init__(self, id, lastname, firstname, email, username, password, gender, id_role, avatar,phone,dataImage):
+    def __init__(self, id, lastname, firstname, email, username, password, gender, id_role, avatar,phone,dataImage,point):
         self.id = id
         self.lastname = lastname
         self.firstname = firstname
@@ -11,5 +11,6 @@ class User:
         self.avatar = avatar
         self.phone = phone
         self.dataImage = dataImage
+        self.point = point
     def __str__(self):
         return self.username

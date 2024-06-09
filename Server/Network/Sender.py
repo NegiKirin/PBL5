@@ -14,11 +14,13 @@ class Sender:
         self.socket = conn
         self.active = True
 
-    def sendUser(self, user):
+    def sendUser(self, user,listRank,word):
         try:
             command = Command.USER.value
             data = {
                 'user': user,
+                'listRank': listRank,
+                'word': word,
             }
             data = pickle.dumps(data)
             data = bytes(f'{command:<{COMMANDSIZE}}', 'utf-8') + bytes(f"{len(data):<{HEADERSIZE}}", 'utf-8') + data
@@ -75,3 +77,19 @@ class Sender:
         except Exception as e:
             print(e)
             return False
+
+    def sendListRank(self,users,word):
+        try:
+            data = {
+                'users': users,
+                'word': word,
+            }
+            command = Command.SEND_CLIENT_LIST_RANK.value
+            data = pickle.dumps(data)
+            data = bytes(f'{command:<{COMMANDSIZE}}', 'utf-8') + bytes(f"{len(data):<{HEADERSIZE}}", 'utf-8') + data
+            self.socket.sendall(data)
+            return True
+        except Exception as e:
+            print(e)
+            return False
+

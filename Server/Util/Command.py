@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class Command(Enum):
     USER = -1
     USERNAME_AND_PASSWORD = -2
@@ -12,3 +13,5 @@ class Command(Enum):
     SEND_SERVER_GET_LIST_USER = -9
     SEND_CLIENT_GET_LIST_USER = -10
     SEND_CLIENT_AFTER_DELETE = -11
+    SEND_SERVER_LIST_RANK = -12
+    SEND_CLIENT_LIST_RANK = -13

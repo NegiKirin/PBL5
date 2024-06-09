@@ -34,8 +34,6 @@ class Receiver:
         # Todo: Receive User
         try:
             size = self.getSize(data)
-            print(size)
-            print(data)
             main_data = None
             full_msg = b''
             new_msg = True
@@ -45,12 +43,12 @@ class Receiver:
                     msg = data + msg
                     new_msg = False
                 full_msg += msg
-                print(full_msg)
                 if len(full_msg) - HEADERSIZE - COMMANDSIZE == size:
                     main_data = pickle.loads(full_msg[HEADERSIZE + COMMANDSIZE:])
-                    print(main_data['user'].dataImage)
                     break
 
+            print(main_data['listRank'])
+            print(main_data['word'])
             if main_data['user'] == []:
                 # Todo: print error
                 self.controller.controllerLogin.setError()
@@ -60,11 +58,15 @@ class Receiver:
                     self.controller.managerUser.receiveDataUser(main_data)
                     self.controller.managerUser.ui.pushButton_6.hide()
                     self.controller.controllerLogin.hide()
+                    self.controller.managerUser.listRankUser(main_data['listRank'])
+                    self.controller.managerUser.receiverlistWord(main_data['word'])
                     self.controller.managerUser.show()
+
                 else:
                     self.controller.managerUser.receiveDataUser(main_data)
                     self.controller.controllerLogin.hide()
                     self.controller.managerUser.show()
+                    # self.controller.managerUser.insertRankAndWordAfterLogin(main_data['listRank'], main_data['word'])
 
         except Exception as e:
             print(e)
@@ -171,6 +173,27 @@ class Receiver:
                     break
         except Exception as e:
             print(e)
+
+    def receiverListRank(self,data):
+        try:
+            size = self.getSize(data)
+            main_data = None
+            full_msg = b''
+            new_msg = True
+            while True:
+                msg = self.socket.recv(1024)
+                if new_msg:
+                    msg = data + msg
+                    new_msg = False
+                full_msg += msg
+                if len(full_msg) - HEADERSIZE - COMMANDSIZE == size:
+                    main_data = pickle.loads(full_msg[HEADERSIZE + COMMANDSIZE:])
+                    break
+            self.controller.managerUser.listRankUser(main_data['users'])
+            self.controller.managerUser.receiverlistWord(main_data['word'])
+
+        except Exception as e:
+            print(e)
     def run(self):
         while True:
             print("Waiting command")
@@ -189,6 +212,8 @@ class Receiver:
                     self.receiverAllUser(data)
                 if cm == Command.SEND_CLIENT_AFTER_DELETE.value:
                     self.receiverUserAfterDelete(data)
+                if cm == Command.SEND_CLIENT_LIST_RANK.value:
+                    self.receiverListRank(data)
             except socket.error as error:
                 print(error)
                 print("Receiver error")
