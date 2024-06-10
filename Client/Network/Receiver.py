@@ -7,7 +7,7 @@ import cv2
 import numpy as np
 from PyQt5.QtWidgets import QApplication
 
-import Client.Model.User
+from Client.Model.User import User
 from Client.Util.Command import Command
 
 BUFF_SIZE = 65536
@@ -46,27 +46,22 @@ class Receiver:
                 if len(full_msg) - HEADERSIZE - COMMANDSIZE == size:
                     main_data = pickle.loads(full_msg[HEADERSIZE + COMMANDSIZE:])
                     break
-
-            print(main_data['listRank'])
-            print(main_data['word'])
-            if main_data['user'] == []:
+            print(main_data)
+            if main_data['user'] == 'error':
                 # Todo: print error
                 self.controller.controllerLogin.setError()
-                print()
             else:
                 if(main_data['user'].id_role) == 1:
                     self.controller.managerUser.receiveDataUser(main_data)
                     self.controller.managerUser.ui.pushButton_6.hide()
                     self.controller.controllerLogin.hide()
-                    self.controller.managerUser.listRankUser(main_data['listRank'])
-                    self.controller.managerUser.receiverlistWord(main_data['word'])
                     self.controller.managerUser.show()
 
                 else:
                     self.controller.managerUser.receiveDataUser(main_data)
                     self.controller.controllerLogin.hide()
                     self.controller.managerUser.show()
-                    # self.controller.managerUser.insertRankAndWordAfterLogin(main_data['listRank'], main_data['word'])
+                    # self.controller.managerUser.insertRankAndWordAfterLogin()
 
         except Exception as e:
             print(e)
@@ -91,9 +86,9 @@ class Receiver:
                     main_data = pickle.loads(full_msg[HEADERSIZE + COMMANDSIZE:])
                     print(main_data)
                     break
-            if main_data['user'] == []:
+            if main_data['user'] == 'username already exists':
                 # Todo: print error
-                self.controller.controllerLogin.setError()
+                self.controller.controllerLogin.setErrorRegister()
                 print()
             else:
                 if (main_data['user'].id_role) == 1:
@@ -191,12 +186,11 @@ class Receiver:
                     break
             self.controller.managerUser.listRankUser(main_data['users'])
             self.controller.managerUser.receiverlistWord(main_data['word'])
-
+            print('receiverListRank', main_data['users'])
         except Exception as e:
             print(e)
     def run(self):
         while True:
-            print("Waiting command")
             try:
                 print('wait command')
                 data = self.socket.recv(13)

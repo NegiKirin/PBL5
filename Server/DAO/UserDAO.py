@@ -20,16 +20,22 @@ class UserDAO:
             self.myCursor.execute(sql, [dic['username'], dic['password']])
             result = self.myCursor.fetchall()
             # item = result[0]
-            user = []
             # user = User(item[0], item[1], item[2])
-            for item in result:
-                user = User(item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8], item[9],0,0)
-            # print(current_directory)
-            img = cv2.imread(current_directory + user.avatar)
-            _, img_encoded = cv2.imencode('.jpg', img)
-            dataImg = img_encoded.tobytes()
-            user.dataImage = dataImg
-            return user
+
+            if result != []:
+                for item in result:
+                    user = User(item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8],
+                                item[9], 0,
+                                0)
+                # print(current_directory)
+                img = cv2.imread(current_directory + user.avatar)
+                _, img_encoded = cv2.imencode('.jpg', img)
+                dataImg = img_encoded.tobytes()
+                user.dataImage = dataImg
+                return user
+            else:
+
+                return "error"
         except Exception as e:
             print(e)
             return {}
@@ -40,9 +46,10 @@ class UserDAO:
             sql_check_username = 'SELECT * FROM user WHERE username = %s'
             self.myCursor.execute(sql_check_username, [dic['username']])
             result = self.myCursor.fetchall()
+            path_img = "../DB/images.jpg"
             if result == []:
-                sql = 'INSERT INTO user (username, password,phone,avatar,id_role) VALUES ( %s, %s, %s,"E:/PBL_2/PBL5/Server/DB/images.jpg",1)'
-                self.myCursor.execute(sql, [dic['username'], dic['password'], dic['phone']])
+                sql = 'INSERT INTO user (username, password,phone,avatar,id_role) VALUES ( %s, %s, %s,%s,1)'
+                self.myCursor.execute(sql, [dic['username'], dic['password'], dic['phone'],path_img])
                 self.connect.commit()
                 get_Infor = 'SELECT * FROM user WHERE username = %s'
                 self.myCursor.execute(get_Infor, [dic['username']])

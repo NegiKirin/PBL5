@@ -1,8 +1,6 @@
-#TODO: SET size to image of rank
-#TODO : display rank and word after login
+#TODO : clear login user error
 import logging
 import sys
-
 import cv2
 import imutils
 import numpy as np
@@ -139,19 +137,26 @@ class ManagerUser(QMainWindow):
         self.id = None
 
         self.list_user_in_user_widget = []
+        self.list_user_in_rank_widget = []
         self.selected_user_id = None
 
         # self.ui.btn_profile.clicked.connect(self.read_user)
         self.ui.pushButton_13.clicked.connect(self.show_change_password)
-        self.ui.btn_Next.clicked.connect(self.viewCameraToLearning)
+        #open camera
+        self.ui.btn_openCamera.clicked.connect(self.viewCameraToLearning)
+        #close camera
+        self.ui.btn_closeCamera.clicked.connect(self.closeCamera)
+
         imgpath = "../Client/View/Image/Ellipse 10.png"
         imgdata = open(imgpath, 'rb').read()
         self.cap = None
         self.timer = None
-        #open camera to learning
 
-    def insertListRank(self,data):
+        #open page learning and this word
+
+    def insertListRank(self, data):
         count = 1
+        print(len(data))
         for i in data:
 
             dataImg = bytearray()
@@ -163,17 +168,22 @@ class ManagerUser(QMainWindow):
             newItem = QListWidgetItem()
             newItem.setSizeHint(QSize(1, 80))
             self.ui.listWidget.addItem(newItem)
-            self.row_widget = self.ui.addRow_bxh(str(count), i.username, str(i.point),pixmap)
-            self.ui.listWidget.setItemWidget(newItem, self.row_widget)
+            print('before add row')
+            self.ui.addRow_bxh(str(count), i.username, str(i.point), pixmap, self.list_user_in_rank_widget)
+            print('after add row')
+            print(self.list_user_in_rank_widget[-1])
+            self.ui.listWidget.setItemWidget(newItem, self.list_user_in_rank_widget[-1][0])
             if count != 1:
-                self.ui.label___5.hide()
-            count +=1
+                self.list_user_in_rank_widget[-1][1].hide()
+            count += 1
+            print('add row succe')
+
+    def closeCamera(self):
+        pass
     def eventFilter(self, obj, event):
         if event.type() == QEvent.Leave:
             for i in self.list_user_in_user_widget:
                 i[1].hide()
-            # for i in self.list_item_in_list_session:
-            #     i[1].hide()
 
         elif event.type() == QEvent.Enter:
             pointer_to_widget = obj
@@ -182,10 +192,7 @@ class ManagerUser(QMainWindow):
                     list_item[1].show()
                     self.selected_user_id = list_item[-1]
                     print(list_item[-1])
-            # for list_item in self.list_item_in_list_session:
-            #     if list_item[0] == pointer_to_widget:
-            #         list_item[1].show()
-            #         self.selected_session_id = list_item[-1].id
+
         return super(ManagerUser, self).eventFilter(obj, event)
 
     def viewCameraToLearning(self):
@@ -195,7 +202,6 @@ class ManagerUser(QMainWindow):
             print("Error: Camera không thể mở")
             return
 
-        # Khởi tạo một QTimer để cập nhật khung hình từ camera
         self.timer = QTimer()
         self.timer.timeout.connect(self.update_frame)
         self.timer.start(20)  # Cập nhật mỗi 20ms
@@ -204,7 +210,6 @@ class ManagerUser(QMainWindow):
         if self.cap.isOpened():
             ret, frame = self.cap.read()
             if ret:
-                # Chuyển đổi frame từ BGR (OpenCV) sang RGB (Qt)
                 frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                 height, width, channel = frame.shape
                 step = channel * width
@@ -214,6 +219,7 @@ class ManagerUser(QMainWindow):
                 print("Error: Không thể đọc frame từ camera")
         else:
             print("Error: Camera không hoạt động")
+
     def back_to_manangement(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page)
 
@@ -234,7 +240,6 @@ class ManagerUser(QMainWindow):
             nparr = np.frombuffer(dataImg, np.uint8)
             self.img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
             pixmap = self.display_image(cv2.cvtColor(self.img, cv2.COLOR_BGR2RGB))
-
             newItem = QListWidgetItem()
             newItem.setSizeHint(QSize(1, 80))
             self.ui.listWidget_2.addItem(newItem)
@@ -245,12 +250,19 @@ class ManagerUser(QMainWindow):
             # event delete button
             self.list_user_in_user_widget[i][1].clicked.connect(self.deleteUser)
             # self.ui.pushButton__.clicked.connect(self.remove_item)
-    def insertRankAndWordAfterLogin(self,data,word):
-        self.listRank = data
+
+    def insertRankAndWordAfterLogin(self):
         while True:
             if self.listRank != []:
+                print('insertRankAndWordAfterLogin', self.listRank)
                 break
+        self.ui.stackedWidget.setCurrentWidget(self.ui.page_profile)
         self.insertListRank(self.listRank)
+        self.insertWord(self.listWord)
+
+    def sendRequestToOpenVideo(self,text):
+        self.ui.stackedWidget.setCurrentWidget(self.ui.page_learning)
+
     def remove_item(self):
         try:
             item = self.ui.listWidget_2.itemClicked()
@@ -268,7 +280,6 @@ class ManagerUser(QMainWindow):
     def show_page(self):
         try:
             self.sender.getListUser(self.username)
-
             while True:
                 if self.listUser != []:
                     break
@@ -287,8 +298,8 @@ class ManagerUser(QMainWindow):
         self.w.ui.btn_change.clicked.connect(self.change_password)
 
     def change_password(self):
-        if (self.password == self.w.ui.LEdit_email_register.text()):
-            if (self.w.ui.LEdit_password_register.text() == self.w.ui.LEdit_confirm.text()):
+        if self.password == self.w.ui.LEdit_email_register.text():
+            if self.w.ui.LEdit_password_register.text() == self.w.ui.LEdit_confirm.text():
                 password = self.w.ui.LEdit_password_register.text()
                 self.sender.change_password(self.username, password)
                 self.w.hide()
@@ -336,6 +347,7 @@ class ManagerUser(QMainWindow):
     def move_to_page_home(self):
         try:
             self.sender.sendListRank(self.id)
+            self.ui.listWidget.clear()
             while True:
                 if self.listRank != []:
                     break
@@ -345,24 +357,27 @@ class ManagerUser(QMainWindow):
         except Exception as e:
             logging.error("An error occurred", exc_info=True)
             print(e)
-    def insertWord(self,data):
+
+    def insertWord(self, data):
         count = 1
         for i in data:
             if count <= len(data):
-                button_name = f"buttonWord_{count}"
+                button_name = f"btn_word{count}"
                 button = self.findChild(QtWidgets.QPushButton, button_name)
                 button.setText(i[0])
                 count += 1
             if count > len(data):
-                for j in range(count,10):
-                    button_name = f"buttonWord_{j}"
+                for j in range(count, 10):
+                    button_name = f"btn_word{j}"
                     button = self.findChild(QtWidgets.QPushButton, button_name)
                     button.hide()
+
     def move_to_page_learning(self):
         try:
             self.ui.stackedWidget.setCurrentWidget(self.ui.page_learning)
         except Exception as e:
             print(f"An error occurred: {e}")
+
     def move_to_page_profile(self):
         try:
             self.ui.lineEdit.setText(str(self.lastname))
@@ -399,10 +414,12 @@ class ManagerUser(QMainWindow):
         super().mousePressEvent(event)
         event.accept()
 
-    def listRankUser(self,data):
+    def listRankUser(self, data):
         self.listRank = data
-    def receiverlistWord(self,data):
+
+    def receiverlistWord(self, data):
         self.listWord = data
+
     def mouseMoveEvent(self, event):
         if self.initial_pos is not None:
             delta = event.pos() - self.initial_pos

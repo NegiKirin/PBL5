@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1013</width>
+    <width>522</width>
     <height>94</height>
    </rect>
   </property>
@@ -15,12 +15,56 @@
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
-    <widget class="QWidget" name="widget__" native="true">
+    <widget class="QWidget" name="widget____" native="true">
      <layout class="QHBoxLayout" name="horizontalLayout_22">
       <item>
-       <widget class="QLabel" name="label__33">
+       <widget class="QLabel" name="label___33">
         <property name="text">
          <string>1</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>5</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label___5">
+        <property name="minimumSize">
+         <size>
+          <width>30</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>Image/image 2.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -32,9 +76,6 @@
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
-        <property name="sizeType">
-         <enum>QSizePolicy::Fixed</enum>
-        </property>
         <property name="sizeHint" stdset="0">
          <size>
           <width>40</width>
@@ -44,7 +85,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QLabel" name="label__1">
+       <widget class="QLabel" name="label___1">
         <property name="minimumSize">
          <size>
           <width>54</width>
@@ -66,79 +107,10 @@ margin-left: 2px;</string>
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap>Image/z5461290588979_692bf1a21a79b202b016a475ef95d80d.jpg</pixmap>
+         <pixmap>Image/Ellipse 10.png</pixmap>
         </property>
         <property name="scaledContents">
          <bool>true</bool>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer_5">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QLabel" name="label__44">
-        <property name="text">
-         <string>Pham Doan Minh Hieu</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer_3">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QLabel" name="label__2">
-        <property name="text">
-         <string>abc@gmail.com</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer_4">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QLabel" name="label__5">
-        <property name="text">
-         <string>0762649422</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -155,52 +127,46 @@ margin-left: 2px;</string>
         </property>
         <property name="sizeHint" stdset="0">
          <size>
-          <width>50</width>
+          <width>90</width>
           <height>20</height>
          </size>
         </property>
        </spacer>
       </item>
       <item>
-       <widget class="QWidget" name="widget__2" native="true">
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
-         <item>
-          <widget class="QPushButton" name="pushButton__">
-           <property name="minimumSize">
-            <size>
-             <width>42</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>41</width>
-             <height>44</height>
-            </size>
-           </property>
-           <property name="cursor">
-            <cursorShape>PointingHandCursor</cursorShape>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">#pushButton__{
-border-radius : 15px;
-border-right : none
-
-}
-#pushButton__:hover {
-                background-color: rgb(255,0,0); 
-            }</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>Image/icons8-delete-trash-50.png</normaloff>Image/icons8-delete-trash-50.png</iconset>
-           </property>
-          </widget>
-         </item>
-        </layout>
+       <widget class="QLabel" name="label___44">
+        <property name="text">
+         <string>Pham Doan Minh Hieu</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_4">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>90</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label___2">
+        <property name="text">
+         <string>100</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
        </widget>
       </item>
      </layout>

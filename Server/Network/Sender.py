@@ -14,13 +14,11 @@ class Sender:
         self.socket = conn
         self.active = True
 
-    def sendUser(self, user,listRank,word):
+    def sendUser(self, user):
         try:
             command = Command.USER.value
             data = {
                 'user': user,
-                'listRank': listRank,
-                'word': word,
             }
             data = pickle.dumps(data)
             data = bytes(f'{command:<{COMMANDSIZE}}', 'utf-8') + bytes(f"{len(data):<{HEADERSIZE}}", 'utf-8') + data

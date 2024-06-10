@@ -36,7 +36,9 @@ class ControllerLogin(QMainWindow):
         self.uic.stackedWidget.setCurrentWidget(self.uic.page_2)
     def show_login(self):
         self.uic.stackedWidget.setCurrentWidget(self.uic.page_1)
-
+    def setErrorRegister(self):
+        self.uic.label_11.setText("username already exists")
+        self.uic.label_11.show()
     def closeEvent(self,event):
         self.close()
     def setError(self):

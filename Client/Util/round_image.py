@@ -1,6 +1,4 @@
-from IPython.external.qt_for_kernel import QtCore
-from pyqt5_plugins.examplebuttonplugin import QtGui
-
+from PyQt5 import QtCore, QtGui
 
 def round_image_url(url_image):
     # url_image = "Image/z5461290588979_692bf1a21a79b202b016a475ef95d80d.jpg"
@@ -22,6 +20,7 @@ def round_image(source):
 
     # h, w, _ = img.shape
     # source = QtGui.QImage(img.data, w, h, 3 * w, QtGui.QImage.Format_RGB888)
+
 
     output = QtGui.QPixmap(source.width(), source.height())
     output.fill(QtCore.Qt.transparent)
