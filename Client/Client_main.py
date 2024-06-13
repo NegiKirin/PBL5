@@ -8,7 +8,8 @@ from PyQt5.QtWidgets import QApplication
 from Client.Network.Receiver import Receiver
 from Client.Network.Sender import Sender
 from Controller.Controller import Controller
-
+import tensorflow as tf
+import tensorflow_hub as hub
 class Client():
     # def __init__(self,host="192.168.220.1",port=9999):
     #     # socket
@@ -42,10 +43,10 @@ class Client():
         self.sender = Sender(self.soc)
 
         # self.detector = checkin.face_detector(cam=0)
-
+        self.initMovenet()
         # draw gui
         app = QApplication(sys.argv)
-        self.controller = Controller(self.sender)
+        self.controller = Controller(self.sender,self.movenet)
         self.controller.controllerLogin.show()
         self.controller.managerUser.show()
         self.controller.managerUser.hide()
@@ -54,10 +55,11 @@ class Client():
         # t1 = threading.Thread(target=self.detector.face_detection, args=[main_win])
         # t1.setDaemon = True
         # t1.start()
-
         self.arduino = None
         sys.exit(app.exec())
-
+    def initMovenet(self):
+        model = hub.load("https://www.kaggle.com/models/google/movenet/TensorFlow2/singlepose-thunder/4")
+        self.movenet = model.signatures['serving_default']
     def create_socket(self):
         try:
             self.soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

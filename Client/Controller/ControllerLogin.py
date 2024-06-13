@@ -31,6 +31,11 @@ class ControllerLogin(QMainWindow):
         #checklogin
         self.uic.btn_signIn.clicked.connect(self.Check_Login)
         self.uic.btn_register.clicked.connect(self.SendInforRegister)
+        #change text to mode password
+        self.uic.LEdit_password_signin.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.uic.LEdit_confirm.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.uic.LEdit_password_register.setEchoMode(QtWidgets.QLineEdit.Password)
+
 
     def show_register(self):
         self.uic.stackedWidget.setCurrentWidget(self.uic.page_2)

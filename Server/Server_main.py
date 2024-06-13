@@ -3,6 +3,7 @@ import threading
 import sys
 
 from Server.Util.HandleClient import HandlerClient
+from SignLanguage.Model import Graph, ST_GCN, SpatialGraphConvolution, STGC_block, load_model
 
 
 class Server:
@@ -54,6 +55,7 @@ class Server:
         self.binding_socket()
         self.listening_socket(1)
 
+        self.model, self.device = load_model()
 
         t = threading.Thread(target=self.accept_socket, args=())
         # t.setDaemon = True
@@ -95,7 +97,7 @@ class Server:
                 conn, address = self.soc.accept()
                 print('Establish connection with IP = ' + str(address[0]) + " | PORT = " + str(address[1]))
 
-                self.handlerClient.appendClient(conn)
+                self.handlerClient.appendClient(conn, self.model, self.device)
                 print("client connected")
 
             except socket.error as msg:

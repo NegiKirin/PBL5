@@ -138,3 +138,65 @@ class Sender:
         except Exception as e:
             print(e)
             return False
+    def sendAllOfWord(self,id):
+        try:
+            command = Command.SEND_SERVER_ALL_WORD.value
+            data = {
+                'id': id,
+            }
+            data = pickle.dumps(data)
+            data = bytes(f'{command:<{COMMANDSIZE}}', 'utf-8') + bytes(f"{len(data):<{HEADERSIZE}}", 'utf-8') + data
+            self.socket.sendall(data)
+            print("send succeed")
+            return True
+        except Exception as e:
+            print(e)
+            return False
+    def sendKeyPoint(self,list):
+        try:
+            command = Command.SEND_SERVER_KEYPOINT.value
+            data = {
+                'keyPoints': list,
+            }
+            data = pickle.dumps(data)
+            data = bytes(f'{command:<{COMMANDSIZE}}', 'utf-8') + bytes(f"{len(data):<{HEADERSIZE}}", 'utf-8') + data
+            self.socket.sendall(data)
+            print("send succeed")
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def sendWordAfterLearning(self,id_user,id_word,point):
+        try:
+            command = Command.SEND_SERVER_ADD_WORD_AFTER_LEARNING.value
+            data = {
+                'id_user': id_user,
+                'id_word': id_word,
+                'point': point,
+            }
+            data = pickle.dumps(data)
+            data = bytes(f'{command:<{COMMANDSIZE}}', 'utf-8') + bytes(f"{len(data):<{HEADERSIZE}}", 'utf-8') + data
+            self.socket.sendall(data)
+            print("send succeed")
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def updatePoint(self, id_user, id_word, point):
+        try:
+            command = Command.SEND_SERVER_UPDATE_POINT.value
+            data = {
+                'id_user': id_user,
+                'id_word': id_word,
+                'point': point,
+            }
+            data = pickle.dumps(data)
+            data = bytes(f'{command:<{COMMANDSIZE}}', 'utf-8') + bytes(f"{len(data):<{HEADERSIZE}}", 'utf-8') + data
+            self.socket.sendall(data)
+            print("send succeed")
+            return True
+        except Exception as e:
+            print(e)
+            return False

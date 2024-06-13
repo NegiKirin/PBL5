@@ -91,3 +91,33 @@ class Sender:
             print(e)
             return False
 
+    def sendAllWord(self,listWord):
+        try:
+            data = {
+                'word' : listWord
+            }
+            command = Command.SEND_CLIENT_ALL_WORD.value
+            data = pickle.dumps(data)
+            data = bytes(f'{command:<{COMMANDSIZE}}', 'utf-8') + bytes(f"{len(data):<{HEADERSIZE}}", 'utf-8') + data
+            self.socket.sendall(data)
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def sendWordPrediction(self,word,value):
+        try:
+            print(word)
+            data = {
+                'word' : word,
+                'point' : value
+            }
+            command = Command.SEND_CLIENT_WORD_PREDICTION.value
+            data = pickle.dumps(data)
+            data = bytes(f'{command:<{COMMANDSIZE}}', 'utf-8') + bytes(f"{len(data):<{HEADERSIZE}}", 'utf-8') + data
+            self.socket.sendall(data)
+            return True
+        except Exception as e:
+            print(e)
+            return False
+

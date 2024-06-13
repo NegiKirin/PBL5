@@ -18,7 +18,7 @@ class Receiver:
         self.socket = conn
         self.sender = sender
         self.controller = controller
-
+        self.frame_shape = False
         t = threading.Thread(target=self.run, args=())
         # t.setDaemon = True
         t.start()
@@ -54,6 +54,8 @@ class Receiver:
                 if(main_data['user'].id_role) == 1:
                     self.controller.managerUser.receiveDataUser(main_data)
                     self.controller.managerUser.ui.pushButton_6.hide()
+                    self.controller.managerUser.receiveDataUser(main_data)
+                    self.controller.managerUser.move_to_page_profile()
                     self.controller.controllerLogin.hide()
                     self.controller.managerUser.show()
 
@@ -189,6 +191,47 @@ class Receiver:
             print('receiverListRank', main_data['users'])
         except Exception as e:
             print(e)
+
+    def receiverAllWord(self,data):
+        try:
+            size = self.getSize(data)
+            main_data = None
+            full_msg = b''
+            new_msg = True
+            while True:
+                msg = self.socket.recv(1024)
+                if new_msg:
+                    msg = data + msg
+                    new_msg = False
+                full_msg += msg
+                if len(full_msg) - HEADERSIZE - COMMANDSIZE == size:
+                    main_data = pickle.loads(full_msg[HEADERSIZE + COMMANDSIZE:])
+                    break
+
+            self.controller.managerUser.receiverAllWord(main_data['word'])
+        except Exception as e:
+            print(e)
+
+    def receiverWordPredict(self,data):
+        try:
+            size = self.getSize(data)
+            main_data = None
+            full_msg = b''
+            new_msg = True
+            while True:
+                msg = self.socket.recv(1024)
+                if new_msg:
+                    msg = data + msg
+                    new_msg = False
+                full_msg += msg
+                if len(full_msg) - HEADERSIZE - COMMANDSIZE == size:
+                    main_data = pickle.loads(full_msg[HEADERSIZE + COMMANDSIZE:])
+                    break
+
+            self.controller.managerUser.display_Word_Predict(main_data['word'],main_data['point'])
+        except Exception as e:
+            print(e)
+
     def run(self):
         while True:
             try:
@@ -208,6 +251,10 @@ class Receiver:
                     self.receiverUserAfterDelete(data)
                 if cm == Command.SEND_CLIENT_LIST_RANK.value:
                     self.receiverListRank(data)
+                if cm == Command.SEND_CLIENT_ALL_WORD.value:
+                    self.receiverAllWord(data)
+                if cm == Command.SEND_CLIENT_WORD_PREDICTION.value:
+                    self.receiverWordPredict(data)
             except socket.error as error:
                 print(error)
                 print("Receiver error")

@@ -19,10 +19,11 @@ class HandlerClient:
         # t = threading.Thread(target=self.checkActive, args=())
         # t.start()
 
-    def appendClient(self, conn):
+    def appendClient(self, conn, model, device):
         # Todo: add client receiver
         sender_client = Sender(conn)
-        receiver_client = Receiver(conn, sender_client)
+
+        receiver_client = Receiver(conn, sender_client,model, device)
         self.devices.append(receiver_client)
 
     def removeDevice(self, device):

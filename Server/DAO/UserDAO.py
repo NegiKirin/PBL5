@@ -2,8 +2,10 @@ import os
 import sys
 
 import cv2
+import imutils
 
 from Server.Model.User import User
+from Server.Model.Word import Word
 from Server.Util import Connection
 
 current_directory = os.path.dirname(os.path.abspath(__file__)) + '\\'
@@ -174,5 +176,51 @@ class UserDAO:
             for item in result:
                 word.append(item)
             return word
+        except Exception as e:
+            print(e)
+    def getALLWord(self,dic):
+        try:
+            sql = 'SELECT id, word, point FROM word'
+            self.myCursor.execute(sql)
+            result = self.myCursor.fetchall()
+            words = []
+            # user = User(item[0], item[1], item[2])
+            for item in result:
+                word = Word(item[0],item[1],item[2])
+                words.append(word)
+            return words
+        except Exception as e:
+            print(e)
+
+    def testSendVideo(self,dic):
+        try:
+            sql = 'SELECT path_video FROM word WHERE id = 1'
+            self.myCursor.execute(sql)
+            result = self.myCursor.fetchall()
+            data = ''
+            vid = cv2.VideoCapture(current_directory + result)
+            while (vid.isOpened()):
+                img, frame = vid.read()
+                frames = imutils.resize(frame, width=380)
+                dataImg = frames.tobytes()
+            return data
+        except Exception as e:
+            print(e)
+
+    def insertWordAfterLearning(self,dic):
+        try:
+            sql = 'INSERT INTO user_word (id_word, id_user,point) VALUES ( %s, %s, %s)'
+            self.myCursor.execute(sql, [dic['id_word'], dic['id_user'], dic['point']])
+            self.connect.commit()
+            return "add succeed"
+        except Exception as e:
+            print(e)
+
+    def updatePoint(self,dic):
+        try:
+            sql = 'UPDATE user_word SET  point = %s WHERE id_user = %s AND id_word = %s'
+            self.myCursor.execute(sql, [dic['point'], dic['id_user'], dic['id_word']])
+            self.connect.commit()
+            return "update succeed"
         except Exception as e:
             print(e)
