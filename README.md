@@ -13,3 +13,5 @@ B1: Sau khi pull code về,cài các thư viện cần cài để sử dụng ch
 B2: Import database, thay đổi host và port để của server
 B3: chạy server và chờ client kết nối tới
 B4: Đăng nhập và bắt đầu sử dụng
+
+LINK DATASET: https://drive.google.com/file/d/1C7k_m2m4n5VzI4lljMoezc-uowDEgIUh/view
